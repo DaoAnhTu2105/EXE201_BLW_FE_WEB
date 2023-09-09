@@ -4,12 +4,24 @@ import { useLocation } from "react-router-dom";
 
 import DefaultLayout from "../components/DefaultLayout";
 import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 export const publicRouters = [
   {
     path: "/",
     name: "home",
     component: Home,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
   },
 ];
 
