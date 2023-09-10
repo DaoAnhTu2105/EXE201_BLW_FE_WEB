@@ -3,7 +3,7 @@ import "bulma/css/bulma.min.css";
 
 function App() {
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <RouterComponents />
     </div>
   );
