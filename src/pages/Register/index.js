@@ -14,7 +14,7 @@ const Register = () => {
             </div>
             <div className="field" style={{ marginTop: 50 }}>
               <p className="control">
-                <p style={{ marginBottom: 10 }}>Họ và tên</p>
+                <p style={{ marginBottom: 10 }}>Tên người dùng</p>
                 <input
                   className="input is-primary"
                   type="text"

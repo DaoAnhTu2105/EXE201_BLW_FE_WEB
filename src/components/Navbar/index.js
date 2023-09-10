@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 const Navbar = () => {
   return (
@@ -18,7 +19,6 @@ const Navbar = () => {
                 height="28"
               />
             </a>
-
             <a
               role="button"
               className="navbar-burger"
@@ -34,11 +34,21 @@ const Navbar = () => {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <a className="navbar-item">Thức ăn</a>
-              <a className="navbar-item">Thực đơn</a>
-              <a className="navbar-item">Kế hoạch</a>
-              <a className="navbar-item">Chuyên gia</a>
-              <a className="navbar-item">Cộng đồng</a>
+              <a className="navbar-item">
+                <span className="navbar-item-text">Thức ăn</span>
+              </a>
+              <a className="navbar-item">
+                <span className="navbar-item-text">Thực đơn</span>
+              </a>
+              <a className="navbar-item">
+                <span className="navbar-item-text">Kế hoạch</span>
+              </a>
+              <a className="navbar-item">
+                <span className="navbar-item-text">Chuyên gia</span>
+              </a>
+              <a className="navbar-item">
+                <span className="navbar-item-text">Cộng đồng</span>
+              </a>
 
               {/* <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">More</a>
