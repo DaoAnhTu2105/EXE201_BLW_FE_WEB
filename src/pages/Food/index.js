@@ -3,6 +3,7 @@ import "./food.css";
 import carrot from "../../image/carrot.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+//SỬA LẠI DÀNH CHO CÔNG THỨC
 const Food = () => {
   return (
     <>
