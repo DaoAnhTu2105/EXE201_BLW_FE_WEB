@@ -6,12 +6,15 @@ import DefaultLayout from "../components/DefaultLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import LayoutNavSearchFooter from "../components/LayoutNavSearchFooter";
+import Food from "../pages/Food";
 
 export const publicRouters = [
   {
     path: "/",
     name: "home",
     component: Home,
+    layout: LayoutNavSearchFooter,
   },
   {
     path: "/login",
@@ -22,6 +25,12 @@ export const publicRouters = [
     path: "/register",
     name: "register",
     component: Register,
+  },
+  {
+    path: "/food",
+    name: "food",
+    component: Food,
+    layout: LayoutNavSearchFooter,
   },
 ];
 
