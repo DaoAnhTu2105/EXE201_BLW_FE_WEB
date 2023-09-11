@@ -15,11 +15,11 @@ const Login = () => {
             </div>
             <div className="field" style={{ marginTop: 50 }}>
               <p className="control">
-                <p style={{ marginBottom: 10 }}>Họ và tên</p>
+                <p style={{ marginBottom: 10 }}>Email</p>
                 <input
                   className="input is-primary"
                   type="text"
-                  placeholder="Nhập tên"
+                  placeholder="Nhập E-mail"
                   required
                   style={{ width: "400px", height: "50px" }}
                 />
@@ -60,13 +60,13 @@ const Login = () => {
 
             <div className="field">
               <div className="button-container">
-                <button className="google-button">Sign In with Google</button>
+                <button className="google-button">Đăng nhập với Google</button>
               </div>
             </div>
             <div className="field">
               <div className="button-container">
                 <button className="facebook-button">
-                  Log In with Facebook
+                  Đăng nhập bằng Facebook
                 </button>
               </div>
             </div>

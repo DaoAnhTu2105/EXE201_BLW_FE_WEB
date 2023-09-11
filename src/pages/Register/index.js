@@ -71,13 +71,13 @@ const Register = () => {
 
             <div className="field">
               <div className="button-container">
-                <button className="google-button">Sign In with Google</button>
+                <button className="google-button">Đăng nhập với Google</button>
               </div>
             </div>
             <div className="field">
               <div className="button-container">
                 <button className="facebook-button">
-                  Log In with Facebook
+                  Đăng nhập bằng Facebook
                 </button>
               </div>
             </div>

@@ -35,9 +35,6 @@ const Navbar = () => {
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
               <a className="navbar-item">
-                <span className="navbar-item-text">Thức ăn</span>
-              </a>
-              <a className="navbar-item">
                 <span className="navbar-item-text">Thực đơn</span>
               </a>
               <a className="navbar-item">
