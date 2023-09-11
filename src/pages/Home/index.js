@@ -632,12 +632,21 @@ const Home = () => {
                           marginBottom: 10,
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-evenly",
                         }}
                       >
-                        <span>Thực đơn 1</span>
-                        &nbsp; &nbsp;
+                        <span
+                          style={{
+                            width: "160px",
+                            height: "23px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          Thực đơn 1
+                        </span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <button
-                          class="button is-primary"
+                          className="button is-primary"
                           style={{
                             borderRadius: "50%",
                             width: "10px",
@@ -707,12 +716,21 @@ const Home = () => {
                           marginBottom: 10,
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-evenly",
                         }}
                       >
-                        <span>Thực đơn 1</span>
-                        &nbsp; &nbsp;
+                        <span
+                          style={{
+                            width: "160px",
+                            height: "23px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          Thực đơn 1
+                        </span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <button
-                          class="button is-primary"
+                          className="button is-primary"
                           style={{
                             borderRadius: "50%",
                             width: "10px",
@@ -782,12 +800,21 @@ const Home = () => {
                           marginBottom: 10,
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-evenly",
                         }}
                       >
-                        <span>Thực đơn 1</span>
-                        &nbsp; &nbsp;
+                        <span
+                          style={{
+                            width: "160px",
+                            height: "23px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          Thực đơn 1
+                        </span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <button
-                          class="button is-primary"
+                          className="button is-primary"
                           style={{
                             borderRadius: "50%",
                             width: "10px",
@@ -857,12 +884,21 @@ const Home = () => {
                           marginBottom: 10,
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-evenly",
                         }}
                       >
-                        <span>Thực đơn 1</span>
-                        &nbsp; &nbsp;
+                        <span
+                          style={{
+                            width: "160px",
+                            height: "23px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          Thực đơn 1
+                        </span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <button
-                          class="button is-primary"
+                          className="button is-primary"
                           style={{
                             borderRadius: "50%",
                             width: "10px",
@@ -932,12 +968,21 @@ const Home = () => {
                           marginBottom: 10,
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-evenly",
                         }}
                       >
-                        <span>Thực đơn 1</span>
-                        &nbsp; &nbsp;
+                        <span
+                          style={{
+                            width: "160px",
+                            height: "23px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          Thực đơn 1
+                        </span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <button
-                          class="button is-primary"
+                          className="button is-primary"
                           style={{
                             borderRadius: "50%",
                             width: "10px",
@@ -1007,12 +1052,21 @@ const Home = () => {
                           marginBottom: 10,
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-evenly",
                         }}
                       >
-                        <span>Thực đơn 1</span>
-                        &nbsp; &nbsp;
+                        <span
+                          style={{
+                            width: "160px",
+                            height: "23px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          Thực đơn 1
+                        </span>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <button
-                          class="button is-primary"
+                          className="button is-primary"
                           style={{
                             borderRadius: "50%",
                             width: "10px",
@@ -1069,7 +1123,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", marginBottom: 10 }}>
         <a href="/#" className="has-text-primary title is-4">
           Xem tất cả
         </a>
