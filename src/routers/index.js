@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LayoutNavSearchFooter from "../components/LayoutNavSearchFooter";
 import Recipe from "../pages/Recipe";
+import Plan from "../pages/Plan";
 
 export const publicRouters = [
   {
@@ -30,6 +31,12 @@ export const publicRouters = [
     path: "/recipe",
     name: "recipe",
     component: Recipe,
+    layout: LayoutNavSearchFooter,
+  },
+  {
+    path: "/plan",
+    name: "plan",
+    component: Plan,
     layout: LayoutNavSearchFooter,
   },
 ];
