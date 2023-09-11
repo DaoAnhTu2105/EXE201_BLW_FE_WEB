@@ -320,7 +320,7 @@ const Recipe = () => {
               <div className="grid-item-food">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "350px" }}
+                  style={{ width: "300px", height: "370px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -348,6 +348,7 @@ const Recipe = () => {
                           >
                             Thực đơn 1
                           </span>
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                           <button
                             className="button is-primary"
                             style={{
@@ -359,34 +360,45 @@ const Recipe = () => {
                             <FontAwesomeIcon icon={faHeart} />
                           </button>
                         </p>
-                        <h6
-                          className="subtitle is-6 mb-3 mt-3"
-                          style={{ paddingLeft: "22px" }}
-                        >
-                          Ngày cập nhật: <span>&nbsp;11/9/2023</span>
-                        </h6>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                          }}
-                        >
-                          <div>
-                            <Rating
-                              name="half-rating-read"
-                              defaultValue={4.5}
-                              precision={0.5}
-                              readOnly
-                              size="small"
-                            />
-                            &nbsp; &nbsp;
-                            <span>4.5/5</span>
-                          </div>
-                          <div>
-                            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                          </div>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                          />
+                          &nbsp; &nbsp;
+                          <span>4.5/5</span>
                         </div>
+                        <div style={{ marginTop: 5 }}>
+                          <p>Ngày cập nhật: 10/9/2023</p>
+                        </div>
+                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Cá
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Bột
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Cà chua
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Hành tây
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Thịt lợn
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Tôm hùm
+                          </button>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -395,7 +407,7 @@ const Recipe = () => {
               <div className="grid-item-food">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "350px" }}
+                  style={{ width: "300px", height: "370px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -423,6 +435,7 @@ const Recipe = () => {
                           >
                             Thực đơn 1
                           </span>
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                           <button
                             className="button is-primary"
                             style={{
@@ -434,34 +447,45 @@ const Recipe = () => {
                             <FontAwesomeIcon icon={faHeart} />
                           </button>
                         </p>
-                        <h6
-                          className="subtitle is-6 mb-3 mt-3"
-                          style={{ paddingLeft: "22px" }}
-                        >
-                          Ngày cập nhật: <span>&nbsp;11/9/2023</span>
-                        </h6>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                          }}
-                        >
-                          <div>
-                            <Rating
-                              name="half-rating-read"
-                              defaultValue={4.5}
-                              precision={0.5}
-                              readOnly
-                              size="small"
-                            />
-                            &nbsp; &nbsp;
-                            <span>4.5/5</span>
-                          </div>
-                          <div>
-                            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                          </div>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                          />
+                          &nbsp; &nbsp;
+                          <span>4.5/5</span>
                         </div>
+                        <div style={{ marginTop: 5 }}>
+                          <p>Ngày cập nhật: 10/9/2023</p>
+                        </div>
+                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Cá
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Bột
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Cà chua
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Hành tây
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Thịt lợn
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Tôm hùm
+                          </button>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -470,7 +494,7 @@ const Recipe = () => {
               <div className="grid-item-food">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "350px" }}
+                  style={{ width: "300px", height: "370px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -498,6 +522,7 @@ const Recipe = () => {
                           >
                             Thực đơn 1
                           </span>
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                           <button
                             className="button is-primary"
                             style={{
@@ -509,109 +534,45 @@ const Recipe = () => {
                             <FontAwesomeIcon icon={faHeart} />
                           </button>
                         </p>
-                        <h6
-                          className="subtitle is-6 mb-3 mt-3"
-                          style={{ paddingLeft: "22px" }}
-                        >
-                          Ngày cập nhật: <span>&nbsp;11/9/2023</span>
-                        </h6>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                          }}
-                        >
-                          <div>
-                            <Rating
-                              name="half-rating-read"
-                              defaultValue={4.5}
-                              precision={0.5}
-                              readOnly
-                              size="small"
-                            />
-                            &nbsp; &nbsp;
-                            <span>4.5/5</span>
-                          </div>
-                          <div>
-                            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                          </div>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                          />
+                          &nbsp; &nbsp;
+                          <span>4.5/5</span>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="grid-item-food">
-                <div
-                  className="card"
-                  style={{ width: "300px", height: "350px" }}
-                >
-                  <div className="card-image">
-                    <figure className="image is-3by2">
-                      <img src={carrot} alt="Placeholder" />
-                    </figure>
-                  </div>
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-content">
-                        <p
-                          className="title is-5"
-                          style={{
-                            marginBottom: 10,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                          }}
-                        >
-                          <span
-                            style={{
-                              width: "160px",
-                              height: "23px",
-                              overflow: "hidden",
-                            }}
-                          >
-                            Thực đơn 1
-                          </span>
-                          <button
-                            className="button is-primary"
-                            style={{
-                              borderRadius: "50%",
-                              width: "10px",
-                              height: "30px",
-                            }}
-                          >
-                            <FontAwesomeIcon icon={faHeart} />
+                        <div style={{ marginTop: 5 }}>
+                          <p>Ngày cập nhật: 10/9/2023</p>
+                        </div>
+                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Cá
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Bột
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Cà chua
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Hành tây
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Thịt lợn
+                          </button>
+                          &nbsp; &nbsp;
+                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
+                            Tôm hùm
                           </button>
                         </p>
-                        <h6
-                          className="subtitle is-6 mb-3 mt-3"
-                          style={{ paddingLeft: "22px" }}
-                        >
-                          Ngày cập nhật: <span>&nbsp;11/9/2023</span>
-                        </h6>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-evenly",
-                          }}
-                        >
-                          <div>
-                            <Rating
-                              name="half-rating-read"
-                              defaultValue={4.5}
-                              precision={0.5}
-                              readOnly
-                              size="small"
-                            />
-                            &nbsp; &nbsp;
-                            <span>4.5/5</span>
-                          </div>
-                          <div>
-                            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
