@@ -44,7 +44,7 @@ const Login = () => {
             </div>
             <div className="field" style={{ marginTop: 20 }}>
               <p>
-                Bạn chưa có tài khoản?{" "}
+                Bạn chưa có tài khoản?
                 <span className="has-text-primary">Đăng kí</span>
               </p>
             </div>
