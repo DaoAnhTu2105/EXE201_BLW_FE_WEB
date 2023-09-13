@@ -107,7 +107,7 @@ const RecipeDetail = () => {
         </ol>
       </div>
       <div>
-        <h3 class="title is-3 has-text-primary">Bình luận: </h3>
+        <h3 className="title is-3 has-text-primary">Bình luận: </h3>
         <div className="box" style={{ width: "600px" }}>
           <article className="media">
             <div className="media-left">
@@ -161,13 +161,13 @@ const RecipeDetail = () => {
         </div>
       </div>
       <div style={{ marginTop: "80px" }}>
-        <article class="media mt-5">
-          <figure class="media-left">
-            <p class="image is-64x64">
+        <article className="media mt-5">
+          <figure className="media-left">
+            <p className="image is-64x64">
               <img src="https://bulma.io/images/placeholders/128x128.png" />
             </p>
           </figure>
-          <div class="media-content">
+          <div className="media-content">
             <strong className="pl-2">Đào Anh Tú</strong>
             <div className="mt-2 mb-2">
               <Rating
@@ -179,17 +179,17 @@ const RecipeDetail = () => {
               />
             </div>
 
-            <div class="field">
-              <p class="control">
+            <div className="field">
+              <p className="control">
                 <textarea
-                  class="textarea"
+                  className="textarea"
                   placeholder="Ghi bình luận tại đây..."
                 ></textarea>
               </p>
             </div>
-            <div class="field">
-              <p class="control">
-                <button class="button">Đăng bình luận</button>
+            <div className="field">
+              <p className="control">
+                <button className="button">Đăng bình luận</button>
               </p>
             </div>
           </div>
