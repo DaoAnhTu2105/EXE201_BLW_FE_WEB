@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -25,6 +26,7 @@ const Navbar = () => {
               aria-label="menu"
               aria-expanded="false"
               data-target="navbarBasicExample"
+              href="/"
             >
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
@@ -34,19 +36,21 @@ const Navbar = () => {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <a className="navbar-item">
-                <span className="navbar-item-text">Thức ăn</span>
-              </a>
-              <a className="navbar-item">
+              <Link className="navbar-item" to="/recipe">
                 <span className="navbar-item-text">Thực đơn</span>
-              </a>
-              <a className="navbar-item">
+              </Link>
+              <Link className="navbar-item" to="/plan">
                 <span className="navbar-item-text">Kế hoạch</span>
-              </a>
-              <a className="navbar-item">
+              </Link>
+              <Link className="navbar-item" to="/expert">
                 <span className="navbar-item-text">Chuyên gia</span>
-              </a>
-              <a className="navbar-item">
+              </Link>
+              <a
+                className="navbar-item"
+                href="https://www.facebook.com/profile.php?id=100095496554189&mibextid=LQQJ4d"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className="navbar-item-text">Cộng đồng</span>
               </a>
 
@@ -65,10 +69,12 @@ const Navbar = () => {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className="button is-primary">
+                  <Link className="button is-primary" to="/register">
                     <strong>Sign up</strong>
-                  </a>
-                  <a className="button is-light">Log in</a>
+                  </Link>
+                  <Link className="button is-light" to="/login">
+                    Log in
+                  </Link>
                 </div>
               </div>
             </div>
