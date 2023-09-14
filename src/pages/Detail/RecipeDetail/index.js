@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Rating } from "@mui/material";
 import recipe from "../../../image/recipe2.jpg";
 import "./recipeDetail.css";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faCrown,
+//   faChevronRight,
+//   faDisplay,
+//   faFire,
+// } from "@fortawesome/free-solid-svg-icons";
+// import { faAdversal, faJs } from "@fortawesome/free-brands-svg-icons";
 
 const RecipeDetail = () => {
+  //  const [buttonVip, setButtonVip] = useState(false);
   return (
     <div className="container is-widescreen mt-5 mb-5">
       <h2 className="title is-2 has-text-primary">
@@ -195,6 +204,182 @@ const RecipeDetail = () => {
           </div>
         </article>
       </div>
+      {/* <div className="mt-5">
+        <button
+          className="button is-warning"
+          onMouseOver={() => setButtonVip(true)}
+          // onMouseOut={() => setButtonVip(false)}
+          style={{ display: "flex", justifyContent: "flex-start" }}
+        >
+          <div>
+            <FontAwesomeIcon icon={faCrown} />
+            &nbsp; &nbsp;
+            <span className="title is-6">VIP</span>
+          </div>
+        </button>
+      </div>
+      {buttonVip && (
+        <>
+          <div
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              marginTop: 5,
+              width: 410,
+              borderRadius: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingTop: 5,
+                alignItems: "center",
+                paddingLeft: "30px",
+                paddingRight: "30px",
+                paddingBottom: 10,
+              }}
+            >
+              <p
+                className="title is-6 mb-0"
+                style={{ color: "rgba(245, 245, 245, 0.8)" }}
+              >
+                Quyền lợi thành viên
+              </p>
+              <div>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  style={{ color: "rgba(245, 245, 245, 0.8)" }}
+                />
+              </div>
+            </div>
+            <div style={{ marginTop: 10 }}>
+              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <div style={{ display: "flex" }}>
+                  <div
+                    style={{
+                      borderRadius: "50%",
+                      backgroundColor: "rgba(251, 227, 0, 0.2)",
+                      width: 30,
+                      height: 25,
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faDisplay}
+                      style={{
+                        color: "rgba(251, 227, 0, 0.8)",
+                        paddingLeft: 6,
+                      }}
+                    />
+                  </div>
+                  &nbsp;
+                  <span
+                    className="subtitle is-6 mb-0"
+                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
+                  >
+                    Hỗ trợ đa nền tảng
+                  </span>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <div
+                    style={{
+                      borderRadius: "50%",
+                      backgroundColor: "rgba(251, 227, 0, 0.2)",
+                      width: 30,
+                      height: 25,
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faJs}
+                      style={{
+                        color: "rgba(251, 227, 0, 0.8)",
+                        paddingLeft: 7,
+                      }}
+                    />
+                  </div>
+                  &nbsp;
+                  <span
+                    className="subtitle is-6 mb-0"
+                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
+                  >
+                    1080P
+                  </span>
+                </div>
+              </div>
+              <div style={{ display: "flex", paddingLeft: 50, marginTop: 20 }}>
+                <div style={{ display: "flex", width: 140, marginLeft: 5 }}>
+                  <div
+                    style={{
+                      borderRadius: "50%",
+                      backgroundColor: "rgba(251, 227, 0, 0.2)",
+                      width: 35,
+                      height: 25,
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faFire}
+                      style={{
+                        color: "rgba(251, 227, 0, 0.8)",
+                        paddingLeft: 6,
+                      }}
+                    />
+                  </div>
+                  &nbsp;
+                  <span
+                    className="subtitle is-6 mb-0"
+                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
+                  >
+                    Nội dung độc quyền
+                  </span>
+                </div>
+                <div style={{ display: "flex", width: 140, marginLeft: 95 }}>
+                  <div
+                    style={{
+                      borderRadius: "50%",
+                      backgroundColor: "rgba(251, 227, 0, 0.2)",
+                      width: 35,
+                      height: 25,
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faAdversal}
+                      style={{
+                        color: "rgba(251, 227, 0, 0.8)",
+                        paddingLeft: 7,
+                      }}
+                    />
+                  </div>
+                  &nbsp;
+                  <span
+                    className="subtitle is-6 mb-0"
+                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
+                  >
+                    Không quảng cáo
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-5" style={{ textAlign: "center" }}>
+              <button
+                class="button is-warning"
+                style={{ color: "black", width: 300 }}
+              >
+                Đăng kí VIP, tận hưởng nội dung,...
+              </button>
+            </div>
+            <div
+              className="mt-5"
+              style={{ textAlign: "center", paddingBottom: 20 }}
+            >
+              <h6
+                class="subtitle is-6 is-warning"
+                style={{ color: "rgba(245, 245, 245, 0.8)" }}
+              >
+                Mã đổi quà
+              </h6>
+            </div>
+          </div>
+        </>
+      )} */}
     </div>
   );
 };

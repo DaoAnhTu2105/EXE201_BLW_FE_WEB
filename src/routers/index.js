@@ -10,6 +10,7 @@ import LayoutNavSearchFooter from "../components/LayoutNavSearchFooter";
 import Recipe from "../pages/Recipe";
 import Plan from "../pages/Plan";
 import RecipeDetail from "../pages/Detail/RecipeDetail";
+import PlanDetail from "../pages/Detail/PlanDetail";
 
 export const publicRouters = [
   {
@@ -44,6 +45,12 @@ export const publicRouters = [
     path: "/recipeDetail",
     name: "recipeDetail",
     component: RecipeDetail,
+    layout: LayoutNavSearchFooter,
+  },
+  {
+    path: "/planDetail",
+    name: "planDetail",
+    component: PlanDetail,
     layout: LayoutNavSearchFooter,
   },
 ];

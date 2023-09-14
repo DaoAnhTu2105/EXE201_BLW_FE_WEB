@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Plan = () => {
   return (
@@ -9,14 +10,14 @@ const Plan = () => {
             Kế hoạch hướng dẫn ăn uống chi tiết cho con của bạn
           </h3>
           <div className="box">
-            <a href="/" style={{ textDecoration: "none" }}>
+            <Link to="/planDetail" style={{ textDecoration: "none" }}>
               <h5
                 className="title is-5 has-text-dark"
                 style={{ textAlign: "center" }}
               >
                 6 tháng - 30 ngày đầu tiên
               </h5>
-            </a>
+            </Link>
           </div>
           <div className="columns">
             <div className="column is-half">
