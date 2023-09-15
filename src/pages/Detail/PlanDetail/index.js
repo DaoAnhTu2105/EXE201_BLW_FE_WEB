@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Rating } from "@mui/material";
 import img from "../../../image/recipe1.jpg";
-import "./index.js";
+import "./index.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faReceipt } from "@fortawesome/free-solid-svg-icons";
 const PlanDetail = () => {
   const [buttonDate, setButtonDate] = useState(true);
   const [buttonWeek, setButtonWeek] = useState(false);
@@ -17,6 +19,11 @@ const PlanDetail = () => {
         id: 2,
         recipe: "Thức ăn 2",
         isSnack: true,
+      },
+      {
+        id: 2,
+        recipe: "Thức ăn 2",
+        isBreak: true,
       },
     ],
     2: [
@@ -196,6 +203,7 @@ const PlanDetail = () => {
             <h4 className="title is-4" style={{ textAlign: "center" }}>
               Buổi sáng
             </h4>
+
             <div
               style={{
                 display: "flex",
@@ -203,86 +211,78 @@ const PlanDetail = () => {
                 alignItems: "center",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <div className="grid-container">
-                  {currentBreakfastItems.length === 0 ? (
-                    <>
-                      <div className="grid-item"></div>
-                      <div className="grid-item">
-                        <div
-                          className="notification is-primary is-light"
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "100%",
-                          }}
-                        >
-                          Kế hoạch cho buổi sáng không khả dụng cho ngày này!!!
-                        </div>
+              <div className="grid-container-planDetail">
+                {currentBreakfastItems.length === 0 ? (
+                  <>
+                    <div className="grid-item-planDetail"></div>
+                    <div className="grid-item-planDetail">
+                      <div
+                        className="notification is-primary is-light"
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "100%",
+                        }}
+                      >
+                        Kế hoạch cho buổi sáng không khả dụng cho ngày này!!!
                       </div>
-                    </>
-                  ) : (
-                    currentBreakfastItems.map((item) => (
-                      <div className="grid-item">
-                        <div
-                          className="card"
-                          style={{ width: "300px", height: "320px" }}
-                        >
-                          <div className="card-image">
-                            <figure className="image is-3by2">
-                              <img src={img} alt="Placeholder" />
-                            </figure>
-                          </div>
-                          <div className="card-content">
-                            <div className="media">
-                              <div className="media-content">
-                                <p
-                                  className="title is-5"
-                                  style={{
-                                    marginBottom: 10,
-                                    display: "flex",
-                                    alignItems: "center",
-                                    width: "160px",
-                                    height: "23px",
-                                    overflow: "hidden",
-                                  }}
-                                >
-                                  Thực đơn 1
-                                </p>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <Rating
-                                    name="half-rating-read"
-                                    defaultValue={4.5}
-                                    precision={0.5}
-                                    readOnly
-                                    size="small"
-                                  />
-                                  &nbsp; &nbsp;
-                                  <span>4.5/5</span>
-                                </div>
-                                <div style={{ marginTop: 5 }}>
-                                  <p>Ngày cập nhật: 10/9/2023</p>
-                                </div>
+                    </div>
+                  </>
+                ) : (
+                  currentBreakfastItems.map((item) => (
+                    <div className="grid-item-planDetail">
+                      <div
+                        className="card"
+                        style={{ width: "300px", height: "320px" }}
+                      >
+                        <div className="card-image">
+                          <figure className="image is-3by2">
+                            <img src={img} alt="Placeholder" />
+                          </figure>
+                        </div>
+                        <div className="card-content">
+                          <div className="media">
+                            <div className="media-content">
+                              <p
+                                className="title is-5"
+                                style={{
+                                  marginBottom: 10,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  width: "160px",
+                                  height: "23px",
+                                  overflow: "hidden",
+                                }}
+                              >
+                                Thực đơn 1
+                              </p>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <Rating
+                                  name="half-rating-read"
+                                  defaultValue={4.5}
+                                  precision={0.5}
+                                  readOnly
+                                  size="small"
+                                />
+                                &nbsp; &nbsp;
+                                <span>4.5/5</span>
+                              </div>
+                              <div style={{ marginTop: 5 }}>
+                                <p>Ngày cập nhật: 10/9/2023</p>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    ))
-                  )}
-                </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </div>
@@ -304,11 +304,11 @@ const PlanDetail = () => {
                   alignItems: "center",
                 }}
               >
-                <div className="grid-container">
+                <div className="grid-container-planDetail">
                   {currentLunchItems.length === 0 ? (
                     <>
-                      <div className="grid-item"></div>
-                      <div className="grid-item">
+                      <div className="grid-item-planDetail"></div>
+                      <div className="grid-item-planDetail">
                         <div
                           className="notification is-primary is-light"
                           style={{
@@ -324,7 +324,7 @@ const PlanDetail = () => {
                     </>
                   ) : (
                     currentLunchItems.map((item) => (
-                      <div className="grid-item">
+                      <div className="grid-item-planDetail">
                         <div
                           className="card"
                           style={{ width: "300px", height: "320px" }}
@@ -398,11 +398,11 @@ const PlanDetail = () => {
                   alignItems: "center",
                 }}
               >
-                <div className="grid-container">
+                <div className="grid-container-planDetail">
                   {currentSnackItems.length === 0 ? (
                     <>
-                      <div className="grid-item"></div>
-                      <div className="grid-item">
+                      <div className="grid-item-planDetail"></div>
+                      <div className="grid-item-planDetail">
                         <div
                           className="notification is-primary is-light"
                           style={{
@@ -418,7 +418,7 @@ const PlanDetail = () => {
                     </>
                   ) : (
                     currentSnackItems.map((item) => (
-                      <div className="grid-item">
+                      <div className="grid-item-planDetail">
                         <div
                           className="card"
                           style={{ width: "300px", height: "320px" }}
@@ -492,11 +492,11 @@ const PlanDetail = () => {
                   alignItems: "center",
                 }}
               >
-                <div className="grid-container">
+                <div className="grid-container-planDetail">
                   {currentEveningItems.length === 0 ? (
                     <>
-                      <div className="grid-item"></div>
-                      <div className="grid-item">
+                      <div className="grid-item-planDetail"></div>
+                      <div className="grid-item-planDetail">
                         <div
                           className="notification is-primary is-light"
                           style={{
@@ -512,7 +512,7 @@ const PlanDetail = () => {
                     </>
                   ) : (
                     currentEveningItems.map((item) => (
-                      <div className="grid-item">
+                      <div className="grid-item-planDetail">
                         <div
                           className="card"
                           style={{ width: "300px", height: "320px" }}
@@ -590,32 +590,238 @@ const PlanDetail = () => {
             </div>
           </div>
           <div>
-            <h4>Tuần {currentWeekNumber}</h4>
-            <ul>
-              {currentWeekDates.map((date) => (
-                <li key={date}>
-                  <h4>Ngày {date}</h4>
-                  <ul>
-                    {planDetail[date].map((item) => (
-                      <>
-                        {item.isBreak && (
-                          <li key={item.id}>Buổi sáng: {item.recipe}</li>
-                        )}
-                        {item.isLunch && (
-                          <li key={item.id}>Buổi trưa: {item.recipe}</li>
-                        )}
-                        {item.isEvening && (
-                          <li key={item.id}>Buổi tối: {item.recipe}</li>
-                        )}
-                        {item.isSnack && (
-                          <li key={item.id}>Snack: {item.recipe}</li>
-                        )}
-                      </>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+            <h2
+              className="title is-2"
+              style={{ textAlign: "center", marginTop: 20, marginBottom: 20 }}
+            >
+              Tuần {currentWeekNumber}
+            </h2>
+            {currentWeekDates.map((date) => (
+              <>
+                <h2 className="title is-2" key={date}>
+                  Ngày {date}
+                </h2>
+                {planDetail[date].map((item) => (
+                  <>
+                    {item.isBreak && (
+                      <article
+                        className="message is-primary"
+                        key={item.id}
+                        style={{ width: 800, margin: "20px auto" }}
+                      >
+                        <div className="message-body" style={{ padding: 0 }}>
+                          <div style={{ display: "flex" }}>
+                            <img
+                              src={img}
+                              alt=""
+                              style={{ width: 100, height: 80 }}
+                            />
+                            <div
+                              style={{
+                                paddingLeft: 50,
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <h5
+                                className="title is-5"
+                                style={{ margin: 0, width: 100 }}
+                              >
+                                Buổi sáng :
+                              </h5>
+
+                              <p
+                                className="subtitle is-5 ml-5"
+                                style={{
+                                  width: 300,
+                                  height: 25,
+                                  overflow: "hidden",
+                                  marginTop: 1,
+                                }}
+                              >
+                                {item.recipe}
+                              </p>
+                            </div>
+                            <FontAwesomeIcon
+                              icon={faReceipt}
+                              size="lg"
+                              style={{
+                                width: 80,
+                                height: 40,
+                                marginLeft: 140,
+                                marginTop: 20,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </article>
+                    )}
+                    {item.isLunch && (
+                      <article
+                        className="message is-primary"
+                        key={item.id}
+                        style={{ width: 800, margin: "20px auto" }}
+                      >
+                        <div className="message-body" style={{ padding: 0 }}>
+                          <div style={{ display: "flex" }}>
+                            <img
+                              src={img}
+                              alt=""
+                              style={{ width: 100, height: 80 }}
+                            />
+                            <div
+                              style={{
+                                paddingLeft: 50,
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <div style={{ width: "473" }}>
+                                <h5
+                                  className="title is-5"
+                                  style={{ margin: 0, width: 100 }}
+                                >
+                                  Buổi trưa :
+                                </h5>
+                              </div>
+                              <p
+                                className="subtitle is-5 ml-5"
+                                style={{
+                                  width: 300,
+                                  height: 25,
+                                  overflow: "hidden",
+                                  marginTop: 1,
+                                }}
+                              >
+                                {item.recipe}
+                              </p>
+                            </div>
+                            <FontAwesomeIcon
+                              icon={faReceipt}
+                              size="lg"
+                              style={{
+                                width: 80,
+                                height: 40,
+                                marginLeft: 140,
+                                marginTop: 20,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </article>
+                    )}
+                    {item.isEvening && (
+                      <article
+                        className="message is-primary"
+                        key={item.id}
+                        style={{ width: 800, margin: "20px auto" }}
+                      >
+                        <div className="message-body" style={{ padding: 0 }}>
+                          <div style={{ display: "flex" }}>
+                            <img
+                              src={img}
+                              alt=""
+                              style={{ width: 100, height: 80 }}
+                            />
+                            <div
+                              style={{
+                                paddingLeft: 50,
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <div style={{ width: "473" }}>
+                                <h5
+                                  className="title is-5"
+                                  style={{ margin: 0, width: 100 }}
+                                >
+                                  Buổi tối :
+                                </h5>
+                              </div>
+                              <p
+                                className="subtitle is-5 ml-5"
+                                style={{
+                                  width: 300,
+                                  height: 25,
+                                  overflow: "hidden",
+                                  marginTop: 1,
+                                }}
+                              >
+                                {item.recipe}
+                              </p>
+                            </div>
+                            <FontAwesomeIcon
+                              icon={faReceipt}
+                              size="lg"
+                              style={{
+                                width: 80,
+                                height: 40,
+                                marginLeft: 140,
+                                marginTop: 20,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </article>
+                    )}
+                    {item.isSnack && (
+                      <article
+                        className="message is-primary"
+                        key={item.id}
+                        style={{ width: 800, margin: "20px auto" }}
+                      >
+                        <div className="message-body" style={{ padding: 0 }}>
+                          <div style={{ display: "flex" }}>
+                            <img
+                              src={img}
+                              alt=""
+                              style={{ width: 100, height: 80 }}
+                            />
+                            <div
+                              style={{
+                                paddingLeft: 50,
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <div style={{ width: "473" }}>
+                                <h5
+                                  className="title is-5"
+                                  style={{ margin: 0, width: 100 }}
+                                >
+                                  Snack :
+                                </h5>
+                              </div>
+                              <p
+                                className="subtitle is-5 ml-5"
+                                style={{
+                                  width: 300,
+                                  height: 25,
+                                  overflow: "hidden",
+                                  marginTop: 1,
+                                }}
+                              >
+                                {item.recipe}
+                              </p>
+                            </div>
+                            <FontAwesomeIcon
+                              icon={faReceipt}
+                              size="lg"
+                              style={{
+                                width: 80,
+                                height: 40,
+                                marginLeft: 140,
+                                marginTop: 20,
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </article>
+                    )}
+                  </>
+                ))}
+              </>
+            ))}
           </div>
         </>
       )}
