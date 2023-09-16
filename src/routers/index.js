@@ -11,6 +11,7 @@ import Recipe from "../pages/Recipe";
 import Plan from "../pages/Plan";
 import RecipeDetail from "../pages/Detail/RecipeDetail";
 import PlanDetail from "../pages/Detail/PlanDetail";
+import Profile from "../pages/Profile";
 
 export const publicRouters = [
   {
@@ -51,6 +52,12 @@ export const publicRouters = [
     path: "/planDetail",
     name: "planDetail",
     component: PlanDetail,
+    layout: LayoutNavSearchFooter,
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
     layout: LayoutNavSearchFooter,
   },
 ];
