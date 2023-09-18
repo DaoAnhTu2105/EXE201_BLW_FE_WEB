@@ -7,11 +7,15 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LayoutNavSearchFooter from "../components/LayoutNavSearchFooter";
-import Food from "../pages/Food";
 import Payment from "../pages/Payment";
 import Recipe from "../pages/Recipe";
 import Plan from "../pages/Plan";
 import RecipeDetail from "../pages/Detail/RecipeDetail";
+import PremiumPack from "../pages/PremiumPack";
+import Expert from "../pages/Expert";
+import LayoutWithoutSearch from "../components/LayoutWithoutSearch";
+
+
 
 export const publicRouters = [
   {
@@ -53,6 +57,18 @@ export const publicRouters = [
     name: "payment",
     component: Payment,
   },
+  {
+    path: "/pack",
+    name: "pack",
+    component: PremiumPack,
+    layout: LayoutNavSearchFooter,
+  },
+  {
+    path: "/expert",
+    name: "expert",
+    component: Expert,
+    layout: LayoutWithoutSearch,
+  }
 ];
 
 export const privateRouters = [];

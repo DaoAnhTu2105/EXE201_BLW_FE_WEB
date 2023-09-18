@@ -43,7 +43,6 @@ const Payment = () => {
                     </ul>
                 </div>
             </div>
-
         </>
     )
 }
