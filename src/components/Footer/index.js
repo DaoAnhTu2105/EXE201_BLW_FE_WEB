@@ -3,13 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="content has-text-centered">
-        <p>
-          Copyright © <span className="has-text-primary">BLW</span>
-        </p>
-      </div>
-      <div className="columns">
-        <div className="column">
+      <div className="columns pl-5">
+        <div className="column pl-5">
           <h4
             className="bd-footer-title 
                  has-text-weight-medium
