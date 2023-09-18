@@ -613,7 +613,7 @@ progress {
 }
 
 .blockquote-footer::before {
-    content: "\2014\00A0";
+    a: "\2014\00A0";
 }
 
 .img-fluid {
@@ -3927,7 +3927,7 @@ fieldset:disabled .btn {
     display: inline-block;
     margin-left: 0.255em;
     vertical-align: 0.255em;
-    content: "";
+    a: "";
     border-top: 0.3em solid;
     border-right: 0.3em solid transparent;
     border-bottom: 0;
@@ -4138,7 +4138,7 @@ fieldset:disabled .btn {
     display: inline-block;
     margin-left: 0.255em;
     vertical-align: 0.255em;
-    content: "";
+    a: "";
     border-top: 0;
     border-right: 0.3em solid transparent;
     border-bottom: 0.3em solid;
@@ -4161,7 +4161,7 @@ fieldset:disabled .btn {
     display: inline-block;
     margin-left: 0.255em;
     vertical-align: 0.255em;
-    content: "";
+    a: "";
     border-top: 0.3em solid transparent;
     border-right: 0;
     border-bottom: 0.3em solid transparent;
@@ -4188,7 +4188,7 @@ fieldset:disabled .btn {
     display: inline-block;
     margin-left: 0.255em;
     vertical-align: 0.255em;
-    content: "";
+    a: "";
 }
 
 .dropstart .dropdown-toggle::after {
@@ -4199,7 +4199,7 @@ fieldset:disabled .btn {
     display: inline-block;
     margin-right: 0.255em;
     vertical-align: 0.255em;
-    content: "";
+    a: "";
     border-top: 0.3em solid transparent;
     border-right: 0.3em solid;
     border-bottom: 0.3em solid transparent;
@@ -4343,7 +4343,7 @@ fieldset:disabled .btn {
 .btn-toolbar {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-a: flex-start;
 }
 
 .btn-toolbar .input-group {
@@ -4398,7 +4398,7 @@ fieldset:disabled .btn {
 .btn-group-vertical {
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-a: center;
 }
 
 .btn-group-vertical>.btn,
@@ -4523,11 +4523,11 @@ fieldset:disabled .btn {
     width: 100%;
 }
 
-.tab-content>.tab-pane {
+.tab-a>.tab-pane {
     display: none;
 }
 
-.tab-content>.active {
+.tab-a>.active {
     display: block;
 }
 
@@ -4536,7 +4536,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-a: space-between;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -4551,7 +4551,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-wrap: inherit;
     align-items: center;
-    justify-content: space-between;
+    justify-a: space-between;
 }
 
 .navbar-brand {
@@ -4635,7 +4635,7 @@ fieldset:disabled .btn {
 @media (min-width: 576px) {
     .navbar-expand-sm {
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-a: flex-start;
     }
 
     .navbar-expand-sm .navbar-nav {
@@ -4668,7 +4668,7 @@ fieldset:disabled .btn {
 @media (min-width: 768px) {
     .navbar-expand-md {
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-a: flex-start;
     }
 
     .navbar-expand-md .navbar-nav {
@@ -4701,7 +4701,7 @@ fieldset:disabled .btn {
 @media (min-width: 992px) {
     .navbar-expand-lg {
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-a: flex-start;
     }
 
     .navbar-expand-lg .navbar-nav {
@@ -4734,7 +4734,7 @@ fieldset:disabled .btn {
 @media (min-width: 1200px) {
     .navbar-expand-xl {
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-a: flex-start;
     }
 
     .navbar-expand-xl .navbar-nav {
@@ -4767,7 +4767,7 @@ fieldset:disabled .btn {
 @media (min-width: 1400px) {
     .navbar-expand-xxl {
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-a: flex-start;
     }
 
     .navbar-expand-xxl .navbar-nav {
@@ -4799,7 +4799,7 @@ fieldset:disabled .btn {
 
 .navbar-expand {
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-a: flex-start;
 }
 
 .navbar-expand .navbar-nav {
@@ -5135,7 +5135,7 @@ fieldset:disabled .btn {
     width: 1.25rem;
     height: 1.25rem;
     margin-left: auto;
-    content: "";
+    a: "";
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-size: 1.25rem;
@@ -5239,7 +5239,7 @@ fieldset:disabled .btn {
     float: left;
     padding-right: 0.5rem;
     color: #6c757d;
-    content: var(--bs-breadcrumb-divider, "/")
+    a: var(--bs-breadcrumb-divider, "/")
         /* rtl: var(--bs-breadcrumb-divider, "/") */
     ;
 }
@@ -5501,7 +5501,7 @@ fieldset:disabled .btn {
 .progress-bar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-a: center;
     overflow: hidden;
     color: #fff;
     text-align: center;
@@ -5547,7 +5547,7 @@ fieldset:disabled .btn {
 }
 
 .list-group-numbered>li::before {
-    content: counters(section, ".") ". ";
+    a: counters(section, ".") ". ";
     counter-increment: section;
 }
 
@@ -5940,7 +5940,7 @@ fieldset:disabled .btn {
 }
 
 .btn-close {
-    box-sizing: content-box;
+    box-sizing: a-box;
     width: 1em;
     height: 1em;
     padding: 0.25em 0.25em;
@@ -5998,9 +5998,9 @@ fieldset:disabled .btn {
 }
 
 .toast-container {
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
+    width: -webkit-max-a;
+    width: -moz-max-a;
+    width: max-a;
     max-width: 100%;
     pointer-events: none;
 }
@@ -6074,7 +6074,7 @@ fieldset:disabled .btn {
     height: calc(100% - 1rem);
 }
 
-.modal-dialog-scrollable .modal-content {
+.modal-dialog-scrollable .modal-a {
     max-height: 100%;
     overflow: hidden;
 }
@@ -6089,7 +6089,7 @@ fieldset:disabled .btn {
     min-height: calc(100% - 1rem);
 }
 
-.modal-content {
+.modal-a {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -6124,7 +6124,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    justify-content: space-between;
+    justify-a: space-between;
     padding: 2rem 2rem;
     border-bottom: 2px solid #f4f6f8;
     border-top-left-radius: calc(0.3rem - 2px);
@@ -6152,7 +6152,7 @@ fieldset:disabled .btn {
     flex-wrap: wrap;
     flex-shrink: 0;
     align-items: center;
-    justify-content: flex-end;
+    justify-a: flex-end;
     padding: 1.75rem;
     border-top: 2px solid #f4f6f8;
     border-bottom-right-radius: calc(0.3rem - 2px);
@@ -6203,7 +6203,7 @@ fieldset:disabled .btn {
     margin: 0;
 }
 
-.modal-fullscreen .modal-content {
+.modal-fullscreen .modal-a {
     height: 100%;
     border: 0;
     border-radius: 0;
@@ -6229,7 +6229,7 @@ fieldset:disabled .btn {
         margin: 0;
     }
 
-    .modal-fullscreen-sm-down .modal-content {
+    .modal-fullscreen-sm-down .modal-a {
         height: 100%;
         border: 0;
         border-radius: 0;
@@ -6256,7 +6256,7 @@ fieldset:disabled .btn {
         margin: 0;
     }
 
-    .modal-fullscreen-md-down .modal-content {
+    .modal-fullscreen-md-down .modal-a {
         height: 100%;
         border: 0;
         border-radius: 0;
@@ -6283,7 +6283,7 @@ fieldset:disabled .btn {
         margin: 0;
     }
 
-    .modal-fullscreen-lg-down .modal-content {
+    .modal-fullscreen-lg-down .modal-a {
         height: 100%;
         border: 0;
         border-radius: 0;
@@ -6310,7 +6310,7 @@ fieldset:disabled .btn {
         margin: 0;
     }
 
-    .modal-fullscreen-xl-down .modal-content {
+    .modal-fullscreen-xl-down .modal-a {
         height: 100%;
         border: 0;
         border-radius: 0;
@@ -6337,7 +6337,7 @@ fieldset:disabled .btn {
         margin: 0;
     }
 
-    .modal-fullscreen-xxl-down .modal-content {
+    .modal-fullscreen-xxl-down .modal-a {
         height: 100%;
         border: 0;
         border-radius: 0;
@@ -6393,7 +6393,7 @@ fieldset:disabled .btn {
 
 .tooltip .tooltip-arrow::before {
     position: absolute;
-    content: "";
+    a: "";
     border-color: transparent;
     border-style: solid;
 }
@@ -6521,7 +6521,7 @@ fieldset:disabled .btn {
 .popover .popover-arrow::after {
     position: absolute;
     display: block;
-    content: "";
+    a: "";
     border-color: transparent;
     border-style: solid;
 }
@@ -6593,7 +6593,7 @@ fieldset:disabled .btn {
     display: block;
     width: 1rem;
     margin-left: -0.5rem;
-    content: "";
+    a: "";
     border-bottom: 2px solid #f0f0f0;
 }
 
@@ -6654,7 +6654,7 @@ fieldset:disabled .btn {
 .carousel-inner::after {
     display: block;
     clear: both;
-    content: "";
+    a: "";
 }
 
 .carousel-item {
@@ -6728,7 +6728,7 @@ fieldset:disabled .btn {
     z-index: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-a: center;
     width: 15%;
     padding: 0;
     color: #fff;
@@ -6798,7 +6798,7 @@ fieldset:disabled .btn {
     left: 0;
     z-index: 2;
     display: flex;
-    justify-content: center;
+    justify-a: center;
     padding: 0;
     margin-right: 15%;
     margin-bottom: 1rem;
@@ -6807,7 +6807,7 @@ fieldset:disabled .btn {
 }
 
 .carousel-indicators [data-bs-target] {
-    box-sizing: content-box;
+    box-sizing: a-box;
     flex: 0 1 auto;
     width: 30px;
     height: 3px;
@@ -6964,7 +6964,7 @@ fieldset:disabled .btn {
 .offcanvas-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-a: space-between;
     padding: 2rem 2rem;
 }
 
@@ -7026,7 +7026,7 @@ fieldset:disabled .btn {
 .clearfix::after {
     display: block;
     clear: both;
-    content: "";
+    a: "";
 }
 
 .link-primary {
@@ -7109,7 +7109,7 @@ fieldset:disabled .btn {
 .ratio::before {
     display: block;
     padding-top: var(--bs-aspect-ratio);
-    content: "";
+    a: "";
 }
 
 .ratio>* {
@@ -7218,7 +7218,7 @@ fieldset:disabled .btn {
     bottom: 0;
     left: 0;
     z-index: 1;
-    content: "";
+    a: "";
 }
 
 .text-truncate {
@@ -7647,28 +7647,28 @@ fieldset:disabled .btn {
     gap: 4rem !important;
 }
 
-.justify-content-start {
-    justify-content: flex-start !important;
+.justify-a-start {
+    justify-a: flex-start !important;
 }
 
-.justify-content-end {
-    justify-content: flex-end !important;
+.justify-a-end {
+    justify-a: flex-end !important;
 }
 
-.justify-content-center {
-    justify-content: center !important;
+.justify-a-center {
+    justify-a: center !important;
 }
 
-.justify-content-between {
-    justify-content: space-between !important;
+.justify-a-between {
+    justify-a: space-between !important;
 }
 
-.justify-content-around {
-    justify-content: space-around !important;
+.justify-a-around {
+    justify-a: space-around !important;
 }
 
-.justify-content-evenly {
-    justify-content: space-evenly !important;
+.justify-a-evenly {
+    justify-a: space-evenly !important;
 }
 
 .align-items-start {
@@ -7691,28 +7691,28 @@ fieldset:disabled .btn {
     align-items: stretch !important;
 }
 
-.align-content-start {
-    align-content: flex-start !important;
+.align-a-start {
+    align-a: flex-start !important;
 }
 
-.align-content-end {
-    align-content: flex-end !important;
+.align-a-end {
+    align-a: flex-end !important;
 }
 
-.align-content-center {
-    align-content: center !important;
+.align-a-center {
+    align-a: center !important;
 }
 
-.align-content-between {
-    align-content: space-between !important;
+.align-a-between {
+    align-a: space-between !important;
 }
 
-.align-content-around {
-    align-content: space-around !important;
+.align-a-around {
+    align-a: space-around !important;
 }
 
-.align-content-stretch {
-    align-content: stretch !important;
+.align-a-stretch {
+    align-a: stretch !important;
 }
 
 .align-self-auto {
@@ -8748,28 +8748,28 @@ fieldset:disabled .btn {
         gap: 4rem !important;
     }
 
-    .justify-content-sm-start {
-        justify-content: flex-start !important;
+    .justify-a-sm-start {
+        justify-a: flex-start !important;
     }
 
-    .justify-content-sm-end {
-        justify-content: flex-end !important;
+    .justify-a-sm-end {
+        justify-a: flex-end !important;
     }
 
-    .justify-content-sm-center {
-        justify-content: center !important;
+    .justify-a-sm-center {
+        justify-a: center !important;
     }
 
-    .justify-content-sm-between {
-        justify-content: space-between !important;
+    .justify-a-sm-between {
+        justify-a: space-between !important;
     }
 
-    .justify-content-sm-around {
-        justify-content: space-around !important;
+    .justify-a-sm-around {
+        justify-a: space-around !important;
     }
 
-    .justify-content-sm-evenly {
-        justify-content: space-evenly !important;
+    .justify-a-sm-evenly {
+        justify-a: space-evenly !important;
     }
 
     .align-items-sm-start {
@@ -8792,28 +8792,28 @@ fieldset:disabled .btn {
         align-items: stretch !important;
     }
 
-    .align-content-sm-start {
-        align-content: flex-start !important;
+    .align-a-sm-start {
+        align-a: flex-start !important;
     }
 
-    .align-content-sm-end {
-        align-content: flex-end !important;
+    .align-a-sm-end {
+        align-a: flex-end !important;
     }
 
-    .align-content-sm-center {
-        align-content: center !important;
+    .align-a-sm-center {
+        align-a: center !important;
     }
 
-    .align-content-sm-between {
-        align-content: space-between !important;
+    .align-a-sm-between {
+        align-a: space-between !important;
     }
 
-    .align-content-sm-around {
-        align-content: space-around !important;
+    .align-a-sm-around {
+        align-a: space-around !important;
     }
 
-    .align-content-sm-stretch {
-        align-content: stretch !important;
+    .align-a-sm-stretch {
+        align-a: stretch !important;
     }
 
     .align-self-sm-auto {
@@ -9550,28 +9550,28 @@ fieldset:disabled .btn {
         gap: 4rem !important;
     }
 
-    .justify-content-md-start {
-        justify-content: flex-start !important;
+    .justify-a-md-start {
+        justify-a: flex-start !important;
     }
 
-    .justify-content-md-end {
-        justify-content: flex-end !important;
+    .justify-a-md-end {
+        justify-a: flex-end !important;
     }
 
-    .justify-content-md-center {
-        justify-content: center !important;
+    .justify-a-md-center {
+        justify-a: center !important;
     }
 
-    .justify-content-md-between {
-        justify-content: space-between !important;
+    .justify-a-md-between {
+        justify-a: space-between !important;
     }
 
-    .justify-content-md-around {
-        justify-content: space-around !important;
+    .justify-a-md-around {
+        justify-a: space-around !important;
     }
 
-    .justify-content-md-evenly {
-        justify-content: space-evenly !important;
+    .justify-a-md-evenly {
+        justify-a: space-evenly !important;
     }
 
     .align-items-md-start {
@@ -9594,28 +9594,28 @@ fieldset:disabled .btn {
         align-items: stretch !important;
     }
 
-    .align-content-md-start {
-        align-content: flex-start !important;
+    .align-a-md-start {
+        align-a: flex-start !important;
     }
 
-    .align-content-md-end {
-        align-content: flex-end !important;
+    .align-a-md-end {
+        align-a: flex-end !important;
     }
 
-    .align-content-md-center {
-        align-content: center !important;
+    .align-a-md-center {
+        align-a: center !important;
     }
 
-    .align-content-md-between {
-        align-content: space-between !important;
+    .align-a-md-between {
+        align-a: space-between !important;
     }
 
-    .align-content-md-around {
-        align-content: space-around !important;
+    .align-a-md-around {
+        align-a: space-around !important;
     }
 
-    .align-content-md-stretch {
-        align-content: stretch !important;
+    .align-a-md-stretch {
+        align-a: stretch !important;
     }
 
     .align-self-md-auto {
@@ -10352,28 +10352,28 @@ fieldset:disabled .btn {
         gap: 4rem !important;
     }
 
-    .justify-content-lg-start {
-        justify-content: flex-start !important;
+    .justify-a-lg-start {
+        justify-a: flex-start !important;
     }
 
-    .justify-content-lg-end {
-        justify-content: flex-end !important;
+    .justify-a-lg-end {
+        justify-a: flex-end !important;
     }
 
-    .justify-content-lg-center {
-        justify-content: center !important;
+    .justify-a-lg-center {
+        justify-a: center !important;
     }
 
-    .justify-content-lg-between {
-        justify-content: space-between !important;
+    .justify-a-lg-between {
+        justify-a: space-between !important;
     }
 
-    .justify-content-lg-around {
-        justify-content: space-around !important;
+    .justify-a-lg-around {
+        justify-a: space-around !important;
     }
 
-    .justify-content-lg-evenly {
-        justify-content: space-evenly !important;
+    .justify-a-lg-evenly {
+        justify-a: space-evenly !important;
     }
 
     .align-items-lg-start {
@@ -10396,28 +10396,28 @@ fieldset:disabled .btn {
         align-items: stretch !important;
     }
 
-    .align-content-lg-start {
-        align-content: flex-start !important;
+    .align-a-lg-start {
+        align-a: flex-start !important;
     }
 
-    .align-content-lg-end {
-        align-content: flex-end !important;
+    .align-a-lg-end {
+        align-a: flex-end !important;
     }
 
-    .align-content-lg-center {
-        align-content: center !important;
+    .align-a-lg-center {
+        align-a: center !important;
     }
 
-    .align-content-lg-between {
-        align-content: space-between !important;
+    .align-a-lg-between {
+        align-a: space-between !important;
     }
 
-    .align-content-lg-around {
-        align-content: space-around !important;
+    .align-a-lg-around {
+        align-a: space-around !important;
     }
 
-    .align-content-lg-stretch {
-        align-content: stretch !important;
+    .align-a-lg-stretch {
+        align-a: stretch !important;
     }
 
     .align-self-lg-auto {
@@ -11154,28 +11154,28 @@ fieldset:disabled .btn {
         gap: 4rem !important;
     }
 
-    .justify-content-xl-start {
-        justify-content: flex-start !important;
+    .justify-a-xl-start {
+        justify-a: flex-start !important;
     }
 
-    .justify-content-xl-end {
-        justify-content: flex-end !important;
+    .justify-a-xl-end {
+        justify-a: flex-end !important;
     }
 
-    .justify-content-xl-center {
-        justify-content: center !important;
+    .justify-a-xl-center {
+        justify-a: center !important;
     }
 
-    .justify-content-xl-between {
-        justify-content: space-between !important;
+    .justify-a-xl-between {
+        justify-a: space-between !important;
     }
 
-    .justify-content-xl-around {
-        justify-content: space-around !important;
+    .justify-a-xl-around {
+        justify-a: space-around !important;
     }
 
-    .justify-content-xl-evenly {
-        justify-content: space-evenly !important;
+    .justify-a-xl-evenly {
+        justify-a: space-evenly !important;
     }
 
     .align-items-xl-start {
@@ -11198,28 +11198,28 @@ fieldset:disabled .btn {
         align-items: stretch !important;
     }
 
-    .align-content-xl-start {
-        align-content: flex-start !important;
+    .align-a-xl-start {
+        align-a: flex-start !important;
     }
 
-    .align-content-xl-end {
-        align-content: flex-end !important;
+    .align-a-xl-end {
+        align-a: flex-end !important;
     }
 
-    .align-content-xl-center {
-        align-content: center !important;
+    .align-a-xl-center {
+        align-a: center !important;
     }
 
-    .align-content-xl-between {
-        align-content: space-between !important;
+    .align-a-xl-between {
+        align-a: space-between !important;
     }
 
-    .align-content-xl-around {
-        align-content: space-around !important;
+    .align-a-xl-around {
+        align-a: space-around !important;
     }
 
-    .align-content-xl-stretch {
-        align-content: stretch !important;
+    .align-a-xl-stretch {
+        align-a: stretch !important;
     }
 
     .align-self-xl-auto {
@@ -11956,28 +11956,28 @@ fieldset:disabled .btn {
         gap: 4rem !important;
     }
 
-    .justify-content-xxl-start {
-        justify-content: flex-start !important;
+    .justify-a-xxl-start {
+        justify-a: flex-start !important;
     }
 
-    .justify-content-xxl-end {
-        justify-content: flex-end !important;
+    .justify-a-xxl-end {
+        justify-a: flex-end !important;
     }
 
-    .justify-content-xxl-center {
-        justify-content: center !important;
+    .justify-a-xxl-center {
+        justify-a: center !important;
     }
 
-    .justify-content-xxl-between {
-        justify-content: space-between !important;
+    .justify-a-xxl-between {
+        justify-a: space-between !important;
     }
 
-    .justify-content-xxl-around {
-        justify-content: space-around !important;
+    .justify-a-xxl-around {
+        justify-a: space-around !important;
     }
 
-    .justify-content-xxl-evenly {
-        justify-content: space-evenly !important;
+    .justify-a-xxl-evenly {
+        justify-a: space-evenly !important;
     }
 
     .align-items-xxl-start {
@@ -12000,28 +12000,28 @@ fieldset:disabled .btn {
         align-items: stretch !important;
     }
 
-    .align-content-xxl-start {
-        align-content: flex-start !important;
+    .align-a-xxl-start {
+        align-a: flex-start !important;
     }
 
-    .align-content-xxl-end {
-        align-content: flex-end !important;
+    .align-a-xxl-end {
+        align-a: flex-end !important;
     }
 
-    .align-content-xxl-center {
-        align-content: center !important;
+    .align-a-xxl-center {
+        align-a: center !important;
     }
 
-    .align-content-xxl-between {
-        align-content: space-between !important;
+    .align-a-xxl-between {
+        align-a: space-between !important;
     }
 
-    .align-content-xxl-around {
-        align-content: space-around !important;
+    .align-a-xxl-around {
+        align-a: space-around !important;
     }
 
-    .align-content-xxl-stretch {
-        align-content: stretch !important;
+    .align-a-xxl-stretch {
+        align-a: stretch !important;
     }
 
     .align-self-xxl-auto {
@@ -12746,7 +12746,7 @@ hr {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     font-family: "Font Awesome 5 Free";
-    content: "" !important;
+    a: "" !important;
     vertical-align: top;
     opacity: 0.6;
 }
