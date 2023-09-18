@@ -14,8 +14,8 @@ import RecipeDetail from "../pages/Detail/RecipeDetail";
 import PremiumPack from "../pages/PremiumPack";
 import Expert from "../pages/Expert";
 import LayoutWithoutSearch from "../components/LayoutWithoutSearch";
-
-
+import PlanDetail from "../pages/Detail/PlanDetail";
+import Profile from "../pages/Profile";
 
 export const publicRouters = [
   {
@@ -68,7 +68,19 @@ export const publicRouters = [
     name: "expert",
     component: Expert,
     layout: LayoutWithoutSearch,
-  }
+  },
+  {
+    path: "/planDetail",
+    name: "planDetail",
+    component: PlanDetail,
+    layout: LayoutNavSearchFooter,
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
+    layout: LayoutNavSearchFooter,
+  },
 ];
 
 export const privateRouters = [];
