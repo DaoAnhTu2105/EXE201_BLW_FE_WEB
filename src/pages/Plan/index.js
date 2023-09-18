@@ -12,7 +12,7 @@ const Plan = () => {
           <div className="box">
             <Link to="/planDetail" style={{ textDecoration: "none" }}>
               <h5
-                className="title is-5 has-text-dark"
+                className="title is-5 has-text-dark mb-0"
                 style={{ textAlign: "center" }}
               >
                 6 tháng - 30 ngày đầu tiên
@@ -24,7 +24,7 @@ const Plan = () => {
               <div className="box mb-0">
                 <a href="/" style={{ textDecoration: "none" }}>
                   <h5
-                    className="title is-5 has-text-dark"
+                    className="title is-5 has-text-dark mb-0"
                     style={{ textAlign: "center" }}
                   >
                     7 tháng tuổi
@@ -36,7 +36,7 @@ const Plan = () => {
               <div className="box mb-0">
                 <a href="/" style={{ textDecoration: "none" }}>
                   <h5
-                    className="title is-5 has-text-dark"
+                    className="title is-5 has-text-dark mb-0"
                     style={{ textAlign: "center" }}
                   >
                     8 tháng tuổi
@@ -50,7 +50,7 @@ const Plan = () => {
               <div className="box mb-0">
                 <a href="/" style={{ textDecoration: "none" }}>
                   <h5
-                    className="title is-5 has-text-dark"
+                    className="title is-5 has-text-dark mb-0"
                     style={{ textAlign: "center" }}
                   >
                     9 tháng tuổi
@@ -62,7 +62,7 @@ const Plan = () => {
               <div className="box mb-0">
                 <a href="/" style={{ textDecoration: "none" }}>
                   <h5
-                    className="title is-5 has-text-dark"
+                    className="title is-5 has-text-dark mb-0"
                     style={{ textAlign: "center" }}
                   >
                     10 tháng tuổi
@@ -74,7 +74,7 @@ const Plan = () => {
               <div className="box mb-0">
                 <a href="/" style={{ textDecoration: "none" }}>
                   <h5
-                    className="title is-5 has-text-dark"
+                    className="title is-5 has-text-dark mb-0"
                     style={{ textAlign: "center" }}
                   >
                     11 tháng tuổi
@@ -86,7 +86,7 @@ const Plan = () => {
           <div className="box">
             <a href="/" style={{ textDecoration: "none" }}>
               <h5
-                className="title is-5 has-text-dark"
+                className="title is-5 has-text-dark mb-0"
                 style={{ textAlign: "center" }}
               >
                 12 tháng trở lên và bắt đầu ăn cùng gia đình

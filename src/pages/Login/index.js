@@ -14,7 +14,7 @@ const Login = () => {
               </h1>
             </div>
             <div className="field" style={{ marginTop: 50 }}>
-              <p className="control">
+              <div className="control">
                 <p style={{ marginBottom: 10 }}>Email</p>
                 <input
                   className="input is-primary"
@@ -23,10 +23,10 @@ const Login = () => {
                   required
                   style={{ width: "400px", height: "50px" }}
                 />
-              </p>
+              </div>
             </div>
             <div className="field">
-              <p className="control">
+              <div className="control">
                 <p style={{ marginBottom: 10 }}>Mật khẩu</p>
                 <input
                   className="input is-primary"
@@ -35,7 +35,7 @@ const Login = () => {
                   required
                   style={{ width: "400px", height: "50px" }}
                 />
-              </p>
+              </div>
             </div>
             <div className="field" style={{ marginTop: 20 }}>
               <p className="control">
