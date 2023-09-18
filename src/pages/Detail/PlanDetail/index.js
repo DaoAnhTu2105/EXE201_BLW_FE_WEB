@@ -591,7 +591,7 @@ const PlanDetail = () => {
           </div>
           <div>
             <h2
-              className="title is-2"
+              className="title is-2 mt-5"
               style={{ textAlign: "center", marginTop: 20, marginBottom: 20 }}
             >
               Tuần {currentWeekNumber}
@@ -624,10 +624,10 @@ const PlanDetail = () => {
                               }}
                             >
                               <h5
-                                className="title is-5"
+                                className="title is-5 mb-0"
                                 style={{ margin: 0, width: 100 }}
                               >
-                                Buổi sáng :
+                                Buổi sáng:
                               </h5>
 
                               <p
@@ -678,7 +678,7 @@ const PlanDetail = () => {
                             >
                               <div style={{ width: "473" }}>
                                 <h5
-                                  className="title is-5"
+                                  className="title is-5 mb-0"
                                   style={{ margin: 0, width: 100 }}
                                 >
                                   Buổi trưa :
@@ -732,7 +732,7 @@ const PlanDetail = () => {
                             >
                               <div style={{ width: "473" }}>
                                 <h5
-                                  className="title is-5"
+                                  className="title is-5 mb-0"
                                   style={{ margin: 0, width: 100 }}
                                 >
                                   Buổi tối :
