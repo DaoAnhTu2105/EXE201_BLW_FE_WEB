@@ -7,9 +7,13 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import LayoutNavSearchFooter from "../components/LayoutNavSearchFooter";
+import Payment from "../pages/Payment";
 import Recipe from "../pages/Recipe";
 import Plan from "../pages/Plan";
 import RecipeDetail from "../pages/Detail/RecipeDetail";
+import PremiumPack from "../pages/PremiumPack";
+import Expert from "../pages/Expert";
+import LayoutWithoutSearch from "../components/LayoutWithoutSearch";
 import PlanDetail from "../pages/Detail/PlanDetail";
 import Profile from "../pages/Profile";
 
@@ -47,6 +51,23 @@ export const publicRouters = [
     name: "recipeDetail",
     component: RecipeDetail,
     layout: LayoutNavSearchFooter,
+  },
+  {
+    path: "/payment",
+    name: "payment",
+    component: Payment,
+  },
+  {
+    path: "/pack",
+    name: "pack",
+    component: PremiumPack,
+    layout: LayoutNavSearchFooter,
+  },
+  {
+    path: "/expert",
+    name: "expert",
+    component: Expert,
+    layout: LayoutWithoutSearch,
   },
   {
     path: "/planDetail",

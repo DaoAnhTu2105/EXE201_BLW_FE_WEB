@@ -1,0 +1,14 @@
+.pack-container{
+    width: 100%; 
+    height: 600px;
+    text-align: center;
+    margin: 0 auto;
+}
+.pack-container{
+    margin-top: 24px;
+    font-family: SF Pro,Roboto,Noto Sans,sans-serif;
+    padding-left: 300px;
+    margin: 0px;
+    padding: 0px;
+    outline: 0px;
+}
