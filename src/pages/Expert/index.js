@@ -169,7 +169,7 @@ const Expert = () => {
                                     <div className="card-expert-header px-3 py-2">
                                         <div className="d-flex justify-content-between">
                                             <div>
-                                                <h3 className="h5 mb-1">UI/UX Design</h3>
+                                                <h3 className="h5 mb-1">Chuyên gia dinh dưỡng</h3>
                                                 <div className="text-muted text-small">Designerr Inc. <small>(2012-2014)</small></div>
                                             </div><img src={experienceIcon} width="48" height="48" alt="ui-ux" />
                                         </div>

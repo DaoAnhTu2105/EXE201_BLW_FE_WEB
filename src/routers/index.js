@@ -61,7 +61,7 @@ export const publicRouters = [
     path: "/pack",
     name: "pack",
     component: PremiumPack,
-    layout: LayoutNavSearchFooter,
+    layout: LayoutWithoutSearch,
   },
   {
     path: "/expert",
