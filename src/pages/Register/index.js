@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./index.css";
 const Register = () => {
@@ -18,6 +18,7 @@ const Register = () => {
         },
         body: JSON.stringify({ username, phone, password }),
       });
+      console.log("api tra ra kieu gi: ", response.headers.get("content-type"));
       if (response.status === 400) {
         const errorData = await response.json();
         await Swal.fire({
@@ -98,7 +99,9 @@ const Register = () => {
             <div className="field" style={{ marginTop: 20 }}>
               <p>
                 Bạn đã có tài khoản? &nbsp;
-                <span className="has-text-primary">Đăng nhập</span>
+                <Link to="/login">
+                  <span className="has-text-primary">Đăng nhập</span>
+                </Link>
               </p>
             </div>
             <div
@@ -119,7 +122,7 @@ const Register = () => {
             <div className="field">
               <div className="button-container">
                 <button className="facebook-button">
-                  Đăng nhập bằng Facebook
+                  Đăng nhập với Facebook
                 </button>
               </div>
             </div>
