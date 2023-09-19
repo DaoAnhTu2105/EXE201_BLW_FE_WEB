@@ -128,7 +128,7 @@ const RecipeDetail = () => {
               </figure>
             </div>
             <div className="media-content">
-              <div className="content">
+              <div>
                 <p>
                   <strong>Đào Anh Tú</strong> &nbsp;{" "}
                   <span>Xóa bình luận (chỉnh qua icon sau)</span>

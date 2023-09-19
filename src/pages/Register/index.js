@@ -18,18 +18,17 @@ const Register = () => {
         },
         body: JSON.stringify({ username, phone, password }),
       });
-      console.log("aaaaaaaaaaa", response);
-      if (response.status === "Error") {
+      if (response.status === 400) {
+        const errorData = await response.json();
         await Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: `${response.errorMessage}`,
+          text: `${errorData.errorMessage}`,
         });
       } else if (response.ok) {
         await Swal.fire({
           icon: "success",
-          title: "Login success",
-          text: `${response.errorMessage}`,
+          title: "Đăng nhập thành công",
         });
         navigate("/login");
       }
@@ -98,7 +97,7 @@ const Register = () => {
             </div>
             <div className="field" style={{ marginTop: 20 }}>
               <p>
-                Bạn đã có tài khoản?
+                Bạn đã có tài khoản? &nbsp;
                 <span className="has-text-primary">Đăng nhập</span>
               </p>
             </div>
