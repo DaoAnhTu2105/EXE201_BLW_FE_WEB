@@ -2,12 +2,62 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./index.css";
+import { useEffect } from "react";
+import jwt_decode from "jwt-decode";
 const Register = () => {
   const [username, setUsername] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const baseUrl = `https://blw-api.azurewebsites.net/api/Customers/RegisPhone`;
+  const ggLogin = `https://blw-api.azurewebsites.net/api/Customers/LoginEmail`;
+
+  const handleCredentialResponse = async (response) => {
+    const decoded = jwt_decode(response.credential);
+    console.log("decode :", decoded);
+    const email = decoded.email;
+    const googleSub = decoded.sub;
+    const fullname = decoded.name;
+    const avatar = decoded.picture;
+
+    document.getElementById("buttonDiv").hidden = true;
+    console.log({ email, googleSub, fullname, avatar });
+    try {
+      const response = await fetch(ggLogin, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, googleSub, fullname, avatar }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        localStorage.setItem("user", JSON.stringify(responseData));
+        navigate("/");
+        console.log("login data", responseData);
+        console.log("response", response);
+      } else {
+        console.log("Đăng nhập thất bại!!!");
+      }
+    } catch (error) {
+      console.error("Error calling API:", error);
+    }
+  };
+  useEffect(() => {
+    /* global google*/
+    google.accounts.id.initialize({
+      client_id:
+        "1060634016056-mvcmc2tsnq3pd0giaviq410finp62pso.apps.googleusercontent.com",
+      callback: handleCredentialResponse,
+    });
+    google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+    google.accounts.id.prompt();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -114,11 +164,15 @@ const Register = () => {
               <p className="line-text-center">Hoặc</p>
             </div>
 
-            <div className="field">
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div id="buttonDiv"></div>
+            </div>
+
+            {/* <div className="field">
               <div className="button-container">
                 <button className="google-button">Đăng nhập với Google</button>
               </div>
-            </div>
+            </div> */}
             <div className="field">
               <div className="button-container">
                 <button className="facebook-button">
