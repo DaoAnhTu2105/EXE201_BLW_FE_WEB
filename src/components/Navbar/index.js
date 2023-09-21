@@ -147,7 +147,11 @@ const Navbar = () => {
                     >
                       <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                          <Avatar alt="Remy Sharp" src={imgUser} />
+                          <Avatar
+                            alt="Remy Sharp"
+                            src={user.data.avatar ? user.data.avatar : imgUser}
+                            style={{ width: "30px", height: "30px" }}
+                          />
                         </IconButton>
                       </Tooltip>
                       <Tooltip title="Open settings">
@@ -169,9 +173,13 @@ const Navbar = () => {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                       >
-                        <MenuItem>
-                          <Typography textAlign="center">Tài khoản</Typography>
-                        </MenuItem>
+                        <Link to="/profile" style={{ color: "black" }}>
+                          <MenuItem>
+                            <Typography textAlign="center">
+                              Tài khoản
+                            </Typography>
+                          </MenuItem>
+                        </Link>
                         <MenuItem>
                           <Typography textAlign="center">
                             Gói Premium

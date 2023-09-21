@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -11,12 +11,95 @@ import {
 import { Rating } from "@mui/material";
 import img from "../../image/recipe2.jpg";
 import "./index.css";
+import CircularProgress from "@mui/material/CircularProgress";
+import Swal from "sweetalert2";
+import { format } from "date-fns";
 
 const Profile = () => {
   const [active, setActive] = useState("account");
+  const [dataAccount, setDataAccount] = useState([]);
+  const [changeEmail, setChangeEmail] = useState("");
+  const [changePhone, setChangePhone] = useState("");
+  const [changeAvatar, setChangeAvatar] = useState(img);
+  const [changeDateOfBirth, setChangeDateOfBirth] = useState("");
+  const [gender, setGender] = useState(1);
+  const [fullname, setFullname] = useState("");
+  const accountApi = `https://blw-api.azurewebsites.net/api/Customers/GetInfo`;
+  const updateInfo = `https://blw-api.azurewebsites.net/api/Customers/UpdateInfo`;
+  const user = JSON.parse(localStorage.getItem("user"));
   const handleActive = (item) => {
     setActive(item);
   };
+
+  const getAccountApi = () => {
+    fetch(accountApi, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setDataAccount(data);
+        setFullname(data?.data?.fullname || "");
+        setChangeDateOfBirth(data?.data?.dateOfBirth || "");
+        setChangePhone(data?.data?.phoneNum || "");
+        setGender(data?.data?.gender || "");
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  };
+
+  const handleGenderChange = (value) => {
+    setGender(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(updateInfo, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          email: changeEmail,
+          fullname: fullname,
+          avatar: changeAvatar,
+          dateOfBirth: changeDateOfBirth,
+          gender: gender,
+          phoneNum: changePhone,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("data cap nhat: ", responseData);
+        await Swal.fire({
+          icon: "success",
+          title: "Cập nhật thành công",
+        });
+        getAccountApi();
+      } else {
+        console.log("Cập nhật thất bại!!!");
+      }
+    } catch (error) {
+      console.error("Error calling API:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAccountApi();
+  }, []);
+
   return (
     <div className="container is-max-widescreen mt-5 mb-5">
       <div className="columns">
@@ -172,45 +255,127 @@ const Profile = () => {
         </div>
         <div>
           {active === "account" ? (
-            <div style={{ paddingLeft: 15 }}>
-              <h2 className="title is-2">Thông tin cá nhân</h2>
-              <h6 className="title is-6">
-                Đây là chi tiết thông tin cá nhân của bạn vui lòng không chia sẻ
-                cho người lạ.
-              </h6>
-              <div className="field" style={{ width: 700 }}>
-                <label className="label">Tên tài khoản</label>
-                <div className="control">
-                  <input className="input" type="text" value="Đào Anh Tú" />
-                </div>
+            !dataAccount.data ? (
+              <div
+                style={{
+                  paddingLeft: 15,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginLeft: 300,
+                  height: "50vh",
+                }}
+              >
+                <CircularProgress />
               </div>
+            ) : (
+              <form style={{ paddingLeft: 15 }} onSubmit={handleSubmit}>
+                <h2 className="title is-2">Thông tin cá nhân</h2>
+                <h6 className="title is-6">
+                  Đây là chi tiết thông tin cá nhân của bạn vui lòng không chia
+                  sẻ cho người lạ.
+                </h6>
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Tên tài khoản</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="text"
+                      value={fullname}
+                      required
+                      onChange={(e) => setFullname(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-              <div className="field" style={{ width: 700 }}>
-                <label className="label">Email</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="email"
-                    value="tudase151149@fpt.edu.vn"
-                  />
+                <div className="mt-5 mb-5">
+                  <label>
+                    <input
+                      type="radio"
+                      name="gender"
+                      checked={gender === 1}
+                      onChange={() => handleGenderChange(1)}
+                    />
+                    Nam
+                  </label>
+                  <label className="ml-5">
+                    <input
+                      type="radio"
+                      name="gender"
+                      checked={gender === 2}
+                      onChange={() => handleGenderChange(2)}
+                    />
+                    Nữ
+                  </label>
                 </div>
-              </div>
-              <div className="field" style={{ width: 700 }}>
-                <label className="label">Số điện thoại</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="email"
-                    placeholder="e.g. 0937550256"
-                    value=""
-                  />
+
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Email</label>
+                  <div className="control">
+                    {dataAccount.data.email ? (
+                      <input
+                        className="input"
+                        type="email"
+                        value={dataAccount.data.email}
+                        readOnly
+                      />
+                    ) : (
+                      <input
+                        className="input"
+                        type="email"
+                        value={changeEmail}
+                        onChange={(e) => setChangeEmail(e.target.value)}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="buttons">
-                <button className="button is-primary">Save changes</button>
-                <button className="button is-link">Cancel</button>
-              </div>
-            </div>
+
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Ngày tháng năm sinh</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="date"
+                      value={
+                        dataAccount.data.dateOfBirth
+                          ? format(new Date(changeDateOfBirth), "yyyy-MM-dd")
+                          : changeDateOfBirth
+                      }
+                      onChange={(e) => setChangeDateOfBirth(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Số điện thoại</label>
+                  <div className="control">
+                    {dataAccount.data.phoneNum ? (
+                      <input
+                        className="input"
+                        type="tel"
+                        pattern="[0-9]{10}"
+                        placeholder="e.g. 09XXXXXXX"
+                        value={dataAccount.data.phoneNum}
+                        readOnly
+                      />
+                    ) : (
+                      <input
+                        className="input"
+                        type="tel"
+                        pattern="[0-9]{10}"
+                        value={changePhone}
+                        placeholder="e.g. 09XXXXXXX"
+                        onChange={(e) => setChangePhone(e.target.value)}
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="buttons">
+                  <button className="button is-primary">Save changes</button>
+                  <button className="button is-link">Cancel</button>
+                </div>
+              </form>
+            )
           ) : active === "favorite" ? (
             <div style={{ paddingLeft: 15 }}>
               <h2 className="title is-2 mb-5">Thực đơn yêu thích của bạn</h2>
@@ -297,8 +462,8 @@ const Profile = () => {
             <div style={{ paddingLeft: 15 }}>
               <h2 className="subtitle is-2">Chi tiết gói</h2>
               <div className="notification is-primary is-light">
-                Bạn đã mua gói 365 ngày vào lúc <strong>12h</strong> ngày{" "}
-                <strong>17/9/2023</strong>, gói sẽ hết hạn vào lúc{" "}
+                Bạn đã mua gói 365 ngày vào lúc <strong>12h</strong> ngày
+                <strong>17/9/2023</strong>, gói sẽ hết hạn vào lúc
                 <strong>12h</strong> ngày <strong> 17/9/2024 </strong>
               </div>
               <h4 className="subtitle is-4">Lịch sử mua hàng</h4>
