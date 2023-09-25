@@ -4,8 +4,6 @@ import {
   faUser,
   faHeart,
   faMoneyCheck,
-  faPhoneAlt,
-  faCog,
   faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from "@mui/material";
@@ -14,13 +12,15 @@ import "./index.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const Profile = () => {
   const [active, setActive] = useState("account");
   const [dataAccount, setDataAccount] = useState([]);
+  const [favorite, setFavorite] = useState([]);
   const [changeEmail, setChangeEmail] = useState("");
   const [changePhone, setChangePhone] = useState("");
-  const [changeAvatar, setChangeAvatar] = useState(img);
+  const [changeAvatar, setChangeAvatar] = useState("");
   const [changeDateOfBirth, setChangeDateOfBirth] = useState("");
   const [gender, setGender] = useState(1);
   const [fullname, setFullname] = useState("");
@@ -109,7 +109,7 @@ const Profile = () => {
             border: "2px solid hsl(171, 100%, 41%)",
             borderRadius: "10px",
             width: "267px",
-            height: "380px",
+            height: "300px",
           }}
         >
           <h4 className="title is-4">Thông tin tài khoản</h4>
@@ -192,7 +192,7 @@ const Profile = () => {
                 }}
               >
                 <FontAwesomeIcon
-                  icon={faPhoneAlt}
+                  icon={faFacebook}
                   size="lg"
                   className="has-text-primary"
                 />
@@ -207,7 +207,7 @@ const Profile = () => {
               </li>
             </a>
 
-            <hr className="is-divider mt-3 mb-3" />
+            {/* <hr className="is-divider mt-3 mb-3" />
             <li
               style={{
                 display: "flex",
@@ -228,7 +228,7 @@ const Profile = () => {
               >
                 Cài đặt
               </span>
-            </li>
+            </li> */}
             <hr className="is-divider mt-3 mb-3" />
             <li
               style={{
@@ -544,6 +544,86 @@ const Profile = () => {
                     </tr>
                   </tfoot>
                 </table>
+              </div>
+            </div>
+          ) : active === "help" ? (
+            <div style={{ paddingLeft: 15, marginBottom: 15 }}>
+              <h2 className="title is-2 mb-5">
+                Chính sách về BLW (baby led weaning)
+              </h2>
+              <p class="subtitle is-6">
+                Chế độ ăn{" "}
+                <strong className="has-text-primary">
+                  BLW (Baby-Led Weaning)
+                </strong>{" "}
+                là một phương pháp giúp bé tự học cách tự ăn và khám phá thức ăn
+                bằng cách tự tay cầm và tự nắm, nếm thử thức ăn mà không cần
+                dùng đũa hoặc thìa. Chế độ này thường bắt đầu khi bé đã đủ
+                <strong className="has-text-primary"> 6 tháng tuổi</strong>, có
+                khả năng ngồi đứng mà không cần hỗ trợ và có khả năng nuốt thức
+                ăn.
+              </p>
+              <p class="subtitle is-5">
+                Chính sách về chế độ ăn BLW có thể thay đổi tùy theo quốc gia
+                hoặc tổ chức y tế.
+              </p>
+              <div style={{ paddingLeft: 15 }}>
+                <ol type="1">
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Thời điểm bắt đầu:
+                    </strong>
+                    BLW thường bắt đầu từ 6 tháng tuổi trở lên, sau khi bé đã có
+                    khả năng ngồi đứng độc lập và không có dấu hiệu dự đoán của
+                    vấn đề sức khỏe nghiêm trọng.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Loại thức ăn:
+                    </strong>
+                    Bé có thể thử nhiều loại thức ăn, bao gồm thức ăn gia đình
+                    được chuẩn bị dễ ăn và dễ nắm bằng tay.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      An toàn:
+                    </strong>
+                    Đảm bảo rằng thức ăn được chuẩn bị an toàn cho bé, tránh các
+                    loại thức ăn có nguy cơ nóng hoặc nghi ngờ về nguy cơ nghẹt
+                    họng.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Giám sát:
+                    </strong>
+                    Luôn giám sát bé trong thời gian ăn và đảm bảo rằng bé có
+                    thể nắm và nuốt thức ăn một cách an toàn.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Khuyến nghị về việc tiếp tục cho con bú:
+                    </strong>
+                    BLW không loại trừ việc cho con bú hoặc sử dụng sữa công
+                    thức. Bé vẫn có thể được cho bú hoặc sữa công thức nhưng
+                    thức ăn cố định cũng sẽ là một phần của chế độ ăn của bé.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Thời gian:
+                    </strong>
+                    Cho bé thời gian để khám phá và học cách ăn. Đừng ép bé ăn
+                    hoặc gắn liền với việc phải ăn nhiều.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Tư vấn với bác sĩ hoặc chuyên gia dinh dưỡng:
+                    </strong>
+                    Trước khi bắt đầu BLW hoặc thay đổi chế độ ăn của bé, nên
+                    thảo luận với bác sĩ hoặc chuyên gia dinh dưỡng để đảm bảo
+                    rằng bé đủ điều kiện và có thể thực hiện chế độ ăn này một
+                    cách an toàn và phù hợp.
+                  </li>
+                </ol>
               </div>
             </div>
           ) : (
