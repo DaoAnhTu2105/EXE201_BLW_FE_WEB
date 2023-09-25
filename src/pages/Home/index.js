@@ -74,7 +74,7 @@ const Home = () => {
                               </button>
                             </Link>
                             &nbsp;
-                            <h6 className="subtitle is-6">1200</h6>
+                            <h6 className="subtitle is-6 mb-0">1200</h6>
                           </div>
                         </p>
 
@@ -178,7 +178,7 @@ const Home = () => {
                               </button>
                             </Link>
                             &nbsp;
-                            <h6 className="subtitle is-6">1200</h6>
+                            <h6 className="subtitle is-6 mb-0">1200</h6>
                           </div>
                         </p>
 
@@ -282,7 +282,7 @@ const Home = () => {
                               </button>
                             </Link>
                             &nbsp;
-                            <h6 className="subtitle is-6">1200</h6>
+                            <h6 className="subtitle is-6 mb-0">1200</h6>
                           </div>
                         </p>
 

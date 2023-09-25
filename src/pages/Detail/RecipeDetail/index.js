@@ -43,33 +43,33 @@ const RecipeDetail = () => {
       </div>
       <div className="mb-5">
         <div className="mt-5">
-          <h4 className="subtitle is-4 has-text-primary">
+          <h4 className="title is-5 has-text-primary">
             Khẩu phần ăn: &nbsp;
-            <span className="title is-5 ">1 phần.</span>
+            <span className="subtitle is-5 ">1 phần.</span>
           </h4>
         </div>
         <div className="mt-5">
-          <h4 className="subtitle is-4 has-text-primary">
+          <h4 className="title is-5 has-text-primary">
             Thích hợp: &nbsp;
-            <span className="title is-5">Với trẻ 6 tháng +</span>
+            <span className="subtitle is-5">Với trẻ 6 tháng trở lên.</span>
           </h4>
         </div>
         <div className="mt-5">
-          <h4 className="subtitle is-4 has-text-primary">
+          <h4 className="title is-5 has-text-primary">
             Thời gian chuẩn bị: &nbsp;
-            <span className="title is-5">30 phút.</span>
+            <span className="subtitle is-5">30 phút.</span>
           </h4>
         </div>
         <div className="mt-5">
-          <h4 className="subtitle is-4 has-text-primary">
+          <h4 className="title is-5 has-text-primary">
             Thời gian nấu: &nbsp;
-            <span className="title is-5">10 - 20 phút.</span>
+            <span className="subtitle is-5">10 - 20 phút.</span>
           </h4>
         </div>
         <div className="mt-5">
-          <h4 className="subtitle is-4 has-text-primary">
+          <h4 className="title is-5 has-text-primary">
             Thời gian nấu: &nbsp;
-            <span className="title is-5">20 - 30 phút.</span>
+            <span className="subtitle is-5">20 - 30 phút.</span>
           </h4>
         </div>
       </div>
@@ -116,7 +116,7 @@ const RecipeDetail = () => {
         </ol>
       </div>
       <div>
-        <h3 className="title is-3 has-text-primary">Bình luận: </h3>
+        <h3 className="title is-4 has-text-primary">Bình luận: </h3>
         <div className="box" style={{ width: "600px" }}>
           <article className="media">
             <div className="media-left">
