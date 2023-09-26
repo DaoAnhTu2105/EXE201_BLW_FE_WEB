@@ -1,11 +1,6 @@
 import React from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-import premiumLogo from "./../../image/premium-logo.png"
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
