@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,16 +12,23 @@ import {
   faFire,
 } from "@fortawesome/free-solid-svg-icons";
 import { faAdversal, faJs } from "@fortawesome/free-brands-svg-icons";
-
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import imgUser from "../../image/user.jpg";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useNavigate } from "react-router-dom";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   p: 4,
 };
 
@@ -27,8 +36,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [buttonVip, setButtonVip] = useState(false);
   const [mouseLeftContent, setMouseLeftContent] = useState(false);
-
-
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log("user: ", user);
   useEffect(() => {
     if (mouseLeftContent) {
       const timer = setTimeout(() => {
@@ -38,6 +48,19 @@ const Navbar = () => {
     }
   }, [mouseLeftContent, buttonVip]);
 
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -103,17 +126,69 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-end">
-
-
-
               <div className="navbar-item">
                 <div className="buttons">
-                  <Link className="button is-primary" to="/register">
-                    <strong>Sign up</strong>
-                  </Link>
-                  <Link className="button is-light" to="/login">
-                    Log in
-                  </Link>
+                  {!user && (
+                    <div style={{ marginRight: 10 }}>
+                      <Link className="button is-primary" to="/register">
+                        <strong>Sign up</strong>
+                      </Link>
+                      <Link className="button is-light" to="/login">
+                        Log in
+                      </Link>
+                    </div>
+                  )}
+                  {user && (
+                    <Box
+                      sx={{ flexGrow: 0, marginRight: 5, marginTop: "-10px" }}
+                    >
+                      <Tooltip title="Open settings">
+                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                          <Avatar
+                            alt="Remy Sharp"
+                            src={user.data.avatar ? user.data.avatar : imgUser}
+                            style={{ width: "30px", height: "30px" }}
+                          />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Open settings">
+                        <ArrowDropDownIcon onClick={handleOpenUserMenu} />
+                      </Tooltip>
+                      <Menu
+                        sx={{ mt: "45px" }}
+                        id="menu-appbar"
+                        anchorEl={anchorElUser}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}
+                      >
+                        <Link to="/profile" style={{ color: "black" }}>
+                          <MenuItem>
+                            <Typography textAlign="center">
+                              Tài khoản
+                            </Typography>
+                          </MenuItem>
+                        </Link>
+                        <MenuItem>
+                          <Typography textAlign="center">
+                            Gói Premium
+                          </Typography>
+                        </MenuItem>
+                        <MenuItem onClick={handleLogout}>
+                          <Typography textAlign="center">Đăng xuất</Typography>
+                        </MenuItem>
+                      </Menu>
+                    </Box>
+                  )}
+
                   <div>
                     <button
                       className="button is-warning"
@@ -121,8 +196,8 @@ const Navbar = () => {
                         setMouseLeftContent(true);
                       }}
                       onMouseEnter={() => {
-                        setMouseLeftContent(false)
-                        setButtonVip(true)
+                        setMouseLeftContent(false);
+                        setButtonVip(true);
                       }}
                       style={{ display: "flex", justifyContent: "flex-start" }}
                     >
@@ -135,8 +210,6 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
         </nav>
@@ -151,7 +224,7 @@ const Navbar = () => {
             top: 80,
             right: 0,
             zIndex: 1000,
-            position: "fixed"
+            position: "fixed",
           }}
           onMouseEnter={() => {
             setMouseLeftContent(false)
@@ -171,20 +244,19 @@ const Navbar = () => {
               paddingBottom: 10,
             }}
           >
-            <Link to='/pack'>
+            <Link to="/pack">
               <p
                 className="title is-6 mb-0"
-                style={{ color: "rgba(245, 245, 245, 0.8", paddingTop:"10px" }}
+                style={{ color: "rgba(245, 245, 245, 0.8", paddingTop: "10px" }}
               >
-                Quyền lợi thành viên<FontAwesomeIcon 
+                Quyền lợi thành viên<FontAwesomeIcon
                   icon={faChevronRight}
-                  style={{ color: "rgba(245, 245, 245, 0.8", paddingLeft:"150px" }}
+                  style={{ color: "rgba(245, 245, 245, 0.8", paddingLeft: "150px" }}
                 />
               </p>
 
 
             </Link>
-
           </div>
           <div style={{ marginTop: 10 }}>
             <div style={{ display: "flex", justifyContent: "space-evenly" }}>
@@ -301,7 +373,6 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-
       )}
     </>
   );

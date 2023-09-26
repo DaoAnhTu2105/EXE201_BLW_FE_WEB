@@ -1,22 +1,105 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faHeart,
   faMoneyCheck,
-  faPhoneAlt,
-  faCog,
   faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from "@mui/material";
 import img from "../../image/recipe2.jpg";
 import "./index.css";
+import CircularProgress from "@mui/material/CircularProgress";
+import Swal from "sweetalert2";
+import { format } from "date-fns";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const Profile = () => {
   const [active, setActive] = useState("account");
+  const [dataAccount, setDataAccount] = useState([]);
+  const [favorite, setFavorite] = useState([]);
+  const [changeEmail, setChangeEmail] = useState("");
+  const [changePhone, setChangePhone] = useState("");
+  const [changeAvatar, setChangeAvatar] = useState("");
+  const [changeDateOfBirth, setChangeDateOfBirth] = useState("");
+  const [gender, setGender] = useState(1);
+  const [fullname, setFullname] = useState("");
+  const accountApi = `https://blw-api.azurewebsites.net/api/Customers/GetInfo`;
+  const updateInfo = `https://blw-api.azurewebsites.net/api/Customers/UpdateInfo`;
+  const user = JSON.parse(localStorage.getItem("user"));
   const handleActive = (item) => {
     setActive(item);
   };
+
+  const getAccountApi = () => {
+    fetch(accountApi, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setDataAccount(data);
+        setFullname(data?.data?.fullname || "");
+        setChangeDateOfBirth(data?.data?.dateOfBirth || "");
+        setChangePhone(data?.data?.phoneNum || "");
+        setGender(data?.data?.gender || "");
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  };
+
+  const handleGenderChange = (value) => {
+    setGender(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(updateInfo, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          email: changeEmail,
+          fullname: fullname,
+          avatar: changeAvatar,
+          dateOfBirth: changeDateOfBirth,
+          gender: gender,
+          phoneNum: changePhone,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("data cap nhat: ", responseData);
+        await Swal.fire({
+          icon: "success",
+          title: "Cập nhật thành công",
+        });
+        getAccountApi();
+      } else {
+        console.log("Cập nhật thất bại!!!");
+      }
+    } catch (error) {
+      console.error("Error calling API:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAccountApi();
+  }, []);
+
   return (
     <div className="container is-max-widescreen mt-5 mb-5">
       <div className="columns">
@@ -26,7 +109,7 @@ const Profile = () => {
             border: "2px solid hsl(171, 100%, 41%)",
             borderRadius: "10px",
             width: "267px",
-            height: "380px",
+            height: "300px",
           }}
         >
           <h4 className="title is-4">Thông tin tài khoản</h4>
@@ -109,7 +192,7 @@ const Profile = () => {
                 }}
               >
                 <FontAwesomeIcon
-                  icon={faPhoneAlt}
+                  icon={faFacebook}
                   size="lg"
                   className="has-text-primary"
                 />
@@ -124,7 +207,7 @@ const Profile = () => {
               </li>
             </a>
 
-            <hr className="is-divider mt-3 mb-3" />
+            {/* <hr className="is-divider mt-3 mb-3" />
             <li
               style={{
                 display: "flex",
@@ -145,7 +228,7 @@ const Profile = () => {
               >
                 Cài đặt
               </span>
-            </li>
+            </li> */}
             <hr className="is-divider mt-3 mb-3" />
             <li
               style={{
@@ -172,45 +255,127 @@ const Profile = () => {
         </div>
         <div>
           {active === "account" ? (
-            <div style={{ paddingLeft: 15 }}>
-              <h2 className="title is-2">Thông tin cá nhân</h2>
-              <h6 className="title is-6">
-                Đây là chi tiết thông tin cá nhân của bạn vui lòng không chia sẻ
-                cho người lạ.
-              </h6>
-              <div className="field" style={{ width: 700 }}>
-                <label className="label">Tên tài khoản</label>
-                <div className="control">
-                  <input className="input" type="text" value="Đào Anh Tú" />
-                </div>
+            !dataAccount.data ? (
+              <div
+                style={{
+                  paddingLeft: 15,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginLeft: 300,
+                  height: "50vh",
+                }}
+              >
+                <CircularProgress />
               </div>
+            ) : (
+              <form style={{ paddingLeft: 15 }} onSubmit={handleSubmit}>
+                <h2 className="title is-2">Thông tin cá nhân</h2>
+                <h6 className="title is-6">
+                  Đây là chi tiết thông tin cá nhân của bạn vui lòng không chia
+                  sẻ cho người lạ.
+                </h6>
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Tên tài khoản</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="text"
+                      value={fullname}
+                      required
+                      onChange={(e) => setFullname(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-              <div className="field" style={{ width: 700 }}>
-                <label className="label">Email</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="email"
-                    value="tudase151149@fpt.edu.vn"
-                  />
+                <div className="mt-5 mb-5">
+                  <label>
+                    <input
+                      type="radio"
+                      name="gender"
+                      checked={gender === 1}
+                      onChange={() => handleGenderChange(1)}
+                    />
+                    Nam
+                  </label>
+                  <label className="ml-5">
+                    <input
+                      type="radio"
+                      name="gender"
+                      checked={gender === 2}
+                      onChange={() => handleGenderChange(2)}
+                    />
+                    Nữ
+                  </label>
                 </div>
-              </div>
-              <div className="field" style={{ width: 700 }}>
-                <label className="label">Số điện thoại</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="email"
-                    placeholder="e.g. 0937550256"
-                    value=""
-                  />
+
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Email</label>
+                  <div className="control">
+                    {dataAccount.data.email ? (
+                      <input
+                        className="input"
+                        type="email"
+                        value={dataAccount.data.email}
+                        readOnly
+                      />
+                    ) : (
+                      <input
+                        className="input"
+                        type="email"
+                        value={changeEmail}
+                        onChange={(e) => setChangeEmail(e.target.value)}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="buttons">
-                <button className="button is-primary">Save changes</button>
-                <button className="button is-link">Cancel</button>
-              </div>
-            </div>
+
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Ngày tháng năm sinh</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="date"
+                      value={
+                        dataAccount.data.dateOfBirth
+                          ? format(new Date(changeDateOfBirth), "yyyy-MM-dd")
+                          : changeDateOfBirth
+                      }
+                      onChange={(e) => setChangeDateOfBirth(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="field" style={{ width: 700 }}>
+                  <label className="label">Số điện thoại</label>
+                  <div className="control">
+                    {dataAccount.data.phoneNum ? (
+                      <input
+                        className="input"
+                        type="tel"
+                        pattern="[0-9]{10}"
+                        placeholder="e.g. 09XXXXXXX"
+                        value={dataAccount.data.phoneNum}
+                        readOnly
+                      />
+                    ) : (
+                      <input
+                        className="input"
+                        type="tel"
+                        pattern="[0-9]{10}"
+                        value={changePhone}
+                        placeholder="e.g. 09XXXXXXX"
+                        onChange={(e) => setChangePhone(e.target.value)}
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="buttons">
+                  <button className="button is-primary">Save changes</button>
+                  <button className="button is-link">Cancel</button>
+                </div>
+              </form>
+            )
           ) : active === "favorite" ? (
             <div style={{ paddingLeft: 15 }}>
               <h2 className="title is-2 mb-5">Thực đơn yêu thích của bạn</h2>
@@ -297,8 +462,8 @@ const Profile = () => {
             <div style={{ paddingLeft: 15 }}>
               <h2 className="subtitle is-2">Chi tiết gói</h2>
               <div className="notification is-primary is-light">
-                Bạn đã mua gói 365 ngày vào lúc <strong>12h</strong> ngày{" "}
-                <strong>17/9/2023</strong>, gói sẽ hết hạn vào lúc{" "}
+                Bạn đã mua gói 365 ngày vào lúc <strong>12h</strong> ngày
+                <strong>17/9/2023</strong>, gói sẽ hết hạn vào lúc
                 <strong>12h</strong> ngày <strong> 17/9/2024 </strong>
               </div>
               <h4 className="subtitle is-4">Lịch sử mua hàng</h4>
@@ -379,6 +544,86 @@ const Profile = () => {
                     </tr>
                   </tfoot>
                 </table>
+              </div>
+            </div>
+          ) : active === "help" ? (
+            <div style={{ paddingLeft: 15, marginBottom: 15 }}>
+              <h2 className="title is-2 mb-5">
+                Chính sách về BLW (baby led weaning)
+              </h2>
+              <p class="subtitle is-6">
+                Chế độ ăn{" "}
+                <strong className="has-text-primary">
+                  BLW (Baby-Led Weaning)
+                </strong>{" "}
+                là một phương pháp giúp bé tự học cách tự ăn và khám phá thức ăn
+                bằng cách tự tay cầm và tự nắm, nếm thử thức ăn mà không cần
+                dùng đũa hoặc thìa. Chế độ này thường bắt đầu khi bé đã đủ
+                <strong className="has-text-primary"> 6 tháng tuổi</strong>, có
+                khả năng ngồi đứng mà không cần hỗ trợ và có khả năng nuốt thức
+                ăn.
+              </p>
+              <p class="subtitle is-5">
+                Chính sách về chế độ ăn BLW có thể thay đổi tùy theo quốc gia
+                hoặc tổ chức y tế.
+              </p>
+              <div style={{ paddingLeft: 15 }}>
+                <ol type="1">
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Thời điểm bắt đầu:
+                    </strong>
+                    BLW thường bắt đầu từ 6 tháng tuổi trở lên, sau khi bé đã có
+                    khả năng ngồi đứng độc lập và không có dấu hiệu dự đoán của
+                    vấn đề sức khỏe nghiêm trọng.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Loại thức ăn:
+                    </strong>
+                    Bé có thể thử nhiều loại thức ăn, bao gồm thức ăn gia đình
+                    được chuẩn bị dễ ăn và dễ nắm bằng tay.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      An toàn:
+                    </strong>
+                    Đảm bảo rằng thức ăn được chuẩn bị an toàn cho bé, tránh các
+                    loại thức ăn có nguy cơ nóng hoặc nghi ngờ về nguy cơ nghẹt
+                    họng.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Giám sát:
+                    </strong>
+                    Luôn giám sát bé trong thời gian ăn và đảm bảo rằng bé có
+                    thể nắm và nuốt thức ăn một cách an toàn.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Khuyến nghị về việc tiếp tục cho con bú:
+                    </strong>
+                    BLW không loại trừ việc cho con bú hoặc sử dụng sữa công
+                    thức. Bé vẫn có thể được cho bú hoặc sữa công thức nhưng
+                    thức ăn cố định cũng sẽ là một phần của chế độ ăn của bé.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Thời gian:
+                    </strong>
+                    Cho bé thời gian để khám phá và học cách ăn. Đừng ép bé ăn
+                    hoặc gắn liền với việc phải ăn nhiều.
+                  </li>
+                  <li>
+                    <strong className="has-text-primary title is-6">
+                      Tư vấn với bác sĩ hoặc chuyên gia dinh dưỡng:
+                    </strong>
+                    Trước khi bắt đầu BLW hoặc thay đổi chế độ ăn của bé, nên
+                    thảo luận với bác sĩ hoặc chuyên gia dinh dưỡng để đảm bảo
+                    rằng bé đủ điều kiện và có thể thực hiện chế độ ăn này một
+                    cách an toàn và phù hợp.
+                  </li>
+                </ol>
               </div>
             </div>
           ) : (
