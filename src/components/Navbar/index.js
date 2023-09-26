@@ -36,6 +36,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [buttonVip, setButtonVip] = useState(false);
   const [mouseLeftContent, setMouseLeftContent] = useState(false);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   console.log("user: ", user);
