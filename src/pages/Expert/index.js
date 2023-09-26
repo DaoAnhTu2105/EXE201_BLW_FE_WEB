@@ -3,9 +3,9 @@ import "./index.css"
 import "./bootstrap.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import avatar from './images/avatar.jpg'
-import { faTwitter, faFacebook,faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
+import { faTwitter, faFacebook, faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
 import { faRightLong } from '@fortawesome/free-solid-svg-icons'
-import experienceIcon from './images/services/ui-ux.svg'
+import experienceIcon from './images/services/consulting.png'
 import exerienceIcon1 from './images/services/app-development.svg'
 import experienceIcon2 from './images/services/web-design.svg'
 import experienceIcon3 from './images/services/full-stack.svg'
@@ -20,9 +20,9 @@ const Expert = () => {
                                 <div className="col-lg-6 p-2"><img className="img-fluid" src={avatar} alt="hello" /></div>
                                 <div className="col-lg-6">
                                     <div className="mt-5">
-                                        <p className="lead-expert text-uppercase-expert-expert mb-1">Xin chào!</p>
-                                        <h1 className="intro-title marker-expert" data-aos="fade-left" data-aos-delay="50">Tôi là Nguyễn Công Vũ</h1>
-                                        <p className="lead-expert fw-normal mt-3" data-aos="fade-up" data-aos-delay="100">Chuyên gia dinh dưỡng</p>
+                                        {/* <p className="lead-expert text-uppercase-expert-expert mb-1"></p> */}
+                                        <h1 className="intro-title marker-expert" data-aos="fade-left" data-aos-delay="50">Xin chào!  Tôi là Nguyễn Công Vũ</h1>
+                                        <p className="lead-expert fw-normal mt-3" data-aos="fade-up" data-aos-delay="100">Chuyên gia dinh dưỡng là người tư vấn cho mọi người về các vấn đề liên quan đến dinh dưỡng hàng ngày, giải thích cho mọi người hiểu rõ tác động của các loại thực phẩm đối với sức khỏe của con người.</p>
                                         <div className="social-nav" data-aos="fade-up" data-aos-delay="200">
                                             <nav role="navigation">
                                                 <ul className="nav justify-content-left">
@@ -34,6 +34,47 @@ const Expert = () => {
                                                 </ul>
                                             </nav>
                                         </div>
+                                        <div className="container-narrow">
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="row mt-3">
+                                                        <div className="col-sm-2">
+                                                            <div className="pb-1">Tuổi:</div>
+                                                        </div>
+                                                        <div className="col-sm-10">
+                                                            <div className="pb-1 fw-bolder">28</div>
+                                                        </div>
+                                                        <div className="col-sm-2">
+                                                            <div className="pb-1">Email:</div>
+                                                        </div>
+                                                        <div className="col-sm-10">
+                                                            <div className="pb-1 fw-bolder">walter@company.com</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-sm-2">
+                                                        <div className="pb-1">Skype:</div>
+                                                    </div>
+                                                    <div className="col-sm-10">
+                                                        <div className="pb-1 fw-bolder">username@skype.com</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+
+                                                    <div className="col-sm-2">
+                                                        <div className="pb-1">Phone:</div>
+                                                    </div>
+                                                    <div className="col-sm-10">
+                                                        <div className="pb-1 fw-bolder">+0123-456-7890</div>
+                                                    </div>
+                                                    <div className="col-sm-2">
+                                                        <div className="pb-1">Địa chỉ:</div>
+                                                    </div>
+                                                    <div className="col-sm-10">
+                                                        <div className="pb-1 fw-bolder">New Delhi, India</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div className="mt-3" data-aos="fade-up" data-aos-delay="200"><a className="btn btn-primary shadow-sm mt-1 hover-effect" href="#contact">Get In Touch <FontAwesomeIcon icon={faRightLong} /></a></div>
                                     </div>
                                 </div>
@@ -42,55 +83,7 @@ const Expert = () => {
                     </div>
                     <div className="wave-bg"></div>
                 </header>
-                <div className="section pt-4 px-3 px-lg-4" id="about">
-                    <div className="container-narrow">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <h2 className="h4 my-2">Xin chào! Tôi là Nguyễn Công Vũ.</h2>
-                                <p>Chuyên gia dinh dưỡng là người tư vấn cho mọi người về các vấn đề liên quan đến dinh dưỡng hàng ngày, giải thích cho mọi người hiểu rõ tác động của các loại thực phẩm đối với sức khỏe của con người.</p>
-                                <div className="row mt-3">
-                                    <div className="col-sm-2">
-                                        <div className="pb-1">Tuổi:</div>
-                                    </div>
-                                    <div className="col-sm-10">
-                                        <div className="pb-1 fw-bolder">28</div>
-                                    </div>
-                                    <div className="col-sm-2">
-                                        <div className="pb-1">Email:</div>
-                                    </div>
-                                    <div className="col-sm-10">
-                                        <div className="pb-1 fw-bolder">walter@company.com</div>
-                                    </div>
-                                    <div className="col-sm-2">
-                                        <div className="pb-1">Skype:</div>
-                                    </div>
-                                    <div className="col-sm-10">
-                                        <div className="pb-1 fw-bolder">username@skype.com</div>
-                                    </div>
-                                    <div className="col-sm-2">
-                                        <div className="pb-1">Phone:</div>
-                                    </div>
-                                    <div className="col-sm-10">
-                                        <div className="pb-1 fw-bolder">+0123-456-7890</div>
-                                    </div>
-                                    <div className="col-sm-2">
-                                        <div className="pb-1">Địa chỉ:</div>
-                                    </div>
-                                    <div className="col-sm-10">
-                                        <div className="pb-1 fw-bolder">New Delhi, India</div>
-                                    </div>
-                                    <div className="col-sm-2">
-                                        <div className="pb-1">Staus:</div>
-                                    </div>
-                                    <div className="col-sm-10">
-                                        <div className="pb-1 fw-bolder">Available</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-5 offset-md-1" data-aos="fade-left" data-aos-delay="100"><img className="avatar img-fluid mt-2" src={avatar} width="400" height="400" alt="Walter Patterson" /></div>
-                        </div>
-                    </div>
-                </div>
+
 
                 {/* <div className="section px-2 px-lg-4 pt-5" id="portfolio">
                     <div className="container">
@@ -169,7 +162,7 @@ const Expert = () => {
                                     <div className="card-expert-header px-3 py-2">
                                         <div className="d-flex justify-content-between">
                                             <div>
-                                                <h3 className="h5 mb-1">UI/UX Design</h3>
+                                                <h3 className="h5 mb-1">Chuyên gia dinh dưỡng</h3>
                                                 <div className="text-muted text-small">Designerr Inc. <small>(2012-2014)</small></div>
                                             </div><img src={experienceIcon} width="48" height="48" alt="ui-ux" />
                                         </div>

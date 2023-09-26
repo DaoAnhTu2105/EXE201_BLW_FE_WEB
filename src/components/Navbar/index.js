@@ -36,14 +36,12 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [buttonVip, setButtonVip] = useState(false);
   const [mouseLeftContent, setMouseLeftContent] = useState(false);
-  const [isVipDisplayed, setIsVipDisplayed] = useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   console.log("user: ", user);
-
   useEffect(() => {
-    if (mouseLeftContent && !isVipDisplayed) {
+    if (mouseLeftContent) {
       const timer = setTimeout(() => {
         setButtonVip(false);
       }, 500);
@@ -197,7 +195,6 @@ const Navbar = () => {
                       className="button is-warning"
                       onMouseLeave={() => {
                         setMouseLeftContent(true);
-                        setIsVipDisplayed(false);
                       }}
                       onMouseEnter={() => {
                         setMouseLeftContent(false);
@@ -230,8 +227,12 @@ const Navbar = () => {
             zIndex: 1000,
             position: "fixed",
           }}
-          onMouseEnter={() => setIsVipDisplayed(true)}
-          onMouseLeave={() => setIsVipDisplayed(false)}
+          onMouseEnter={() => {
+            setMouseLeftContent(false)
+          }}
+          onMouseLeave={() => {
+            setMouseLeftContent(true)
+          }}
         >
           <div
             style={{
@@ -247,16 +248,15 @@ const Navbar = () => {
             <Link to="/pack">
               <p
                 className="title is-6 mb-0"
-                style={{ color: "rgba(245, 245, 245, 0.8" }}
+                style={{ color: "rgba(245, 245, 245, 0.8", paddingTop: "10px" }}
               >
-                Quyền lợi thành viên
-              </p>
-              <div>
-                <FontAwesomeIcon
+                Quyền lợi thành viên<FontAwesomeIcon
                   icon={faChevronRight}
-                  style={{ color: "rgba(245, 245, 245, 0.8" }}
+                  style={{ color: "rgba(245, 245, 245, 0.8", paddingLeft: "150px" }}
                 />
-              </div>
+              </p>
+
+
             </Link>
           </div>
           <div style={{ marginTop: 10 }}>
@@ -372,17 +372,6 @@ const Navbar = () => {
             >
               Đăng kí VIP, tận hưởng nội dung,...
             </button>
-          </div>
-          <div
-            className="mt-5"
-            style={{ textAlign: "center", paddingBottom: 20 }}
-          >
-            <h6
-              class="subtitle is-6 is-warning"
-              style={{ color: "rgba(245, 245, 245, 0.8" }}
-            >
-              Mã đổi quà
-            </h6>
           </div>
         </div>
       )}

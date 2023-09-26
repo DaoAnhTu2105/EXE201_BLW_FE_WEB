@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import AdminRouters from './adminRouter'
 
 import DefaultLayout from "../components/DefaultLayout";
 import Home from "../pages/Home";
@@ -16,6 +17,7 @@ import Expert from "../pages/Expert";
 import LayoutWithoutSearch from "../components/LayoutWithoutSearch";
 import PlanDetail from "../pages/Detail/PlanDetail";
 import Profile from "../pages/Profile";
+import Admin from "../pages/Admin";
 
 export const publicRouters = [
   {
@@ -61,7 +63,7 @@ export const publicRouters = [
     path: "/pack",
     name: "pack",
     component: PremiumPack,
-    layout: LayoutNavSearchFooter,
+    layout: LayoutWithoutSearch,
   },
   {
     path: "/expert",
@@ -81,11 +83,15 @@ export const publicRouters = [
     component: Profile,
     layout: LayoutNavSearchFooter,
   },
+  {
+    path: "/admin/dashboard",
+    name:"dashboard",
+    component: Admin,
+    layout: LayoutWithoutSearch,
+  }
 ];
 
 export const privateRouters = [];
-
-export const adminRouters = [];
 
 export const cookerRouters = [];
 
@@ -101,6 +107,16 @@ function ScrollToTop() {
 
   return null;
 }
+
+export const adminRouters = [
+  {
+    path: '/user-list',
+    name: 'user-list',
+    component: Admin,
+    layout: LayoutWithoutSearch,
+  },
+  
+]
 
 export const RouterComponents = () => {
   return (
@@ -129,71 +145,71 @@ export const RouterComponents = () => {
             );
           })}
           {/* <Route exact path="/" element={<PrivateRouters />}>
-                        {privateRouters.map((route, index) => {
-                            const Page = route.component
-                            let Layout = DefaultLayout
-                            if (route.layout) {
-                                Layout = route.layout
-                            } else if (route.layout === null) {
-                                Layout = Fragment
-                            }
-                            return (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    element={
-                                        <Layout>
-                                            <Page />
-                                        </Layout>
-                                    }
-                                />
-                            )
-                        })}
-                    </Route>
-                    <Route exact path="/" element={<AdminRouters />}>
-                        {adminRouters.map((route, index) => {
-                            const Page = route.component
-                            let Layout = DefaultLayout
-                            if (route.layout) {
-                                Layout = route.layout
-                            } else if (route.layout === null) {
-                                Layout = Fragment
-                            }
-                            return (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    element={
-                                        <Layout>
-                                            <Page />
-                                        </Layout>
-                                    }
-                                />
-                            )
-                        })}
-                    </Route>
-                    <Route exact path="/" element={<UserRouters />}>
-                        {userRouters.map((route, index) => {
-                            const Page = route.component
-                            let Layout = DefaultLayout
-                            if (route.layout) {
-                                Layout = route.layout
-                            } else if (route.layout === null) {
-                                Layout = Fragment
-                            }
-                            return (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    element={
-                                        <Layout>
-                                            <Page />
-                                        </Layout>
-                                    }
-                                />
-                            )
-                        })}
-                    </Route> */}
+            {privateRouters.map((route, index) => {
+              const Page = route.component
+              let Layout = DefaultLayout
+              if (route.layout) {
+                Layout = route.layout
+              } else if (route.layout === null) {
+                Layout = Fragment
+              }
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              )
+            })}
+          </Route> */}
+          <Route exact path="/" element={<AdminRouters />}>
+            {adminRouters.map((route, index) => {
+              const Page = route.component
+              let Layout = DefaultLayout
+              if (route.layout) {
+                Layout = route.layout
+              } else if (route.layout === null) {
+                Layout = Fragment
+              }
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              )
+            })}
+          </Route>
+          {/* <Route exact path="/" element={<UserRouters />}>
+            {userRouters.map((route, index) => {
+              const Page = route.component
+              let Layout = DefaultLayout
+              if (route.layout) {
+                Layout = route.layout
+              } else if (route.layout === null) {
+                Layout = Fragment
+              }
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              )
+            })}
+          </Route> */}
         </Routes>
       </div>
     </BrowserRouter>

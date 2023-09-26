@@ -45,12 +45,31 @@ $accent-color: #33c4b6;
     font-size: 3rem;
     margin-top: -5px;
 }
-.price {
+.price-for-month {
     margin-top: 7px;
     font-weight: bold;
 
     &::after {
-        content: " / month per user";
+        content: " / tháng";
+        font-weight: normal;
+    }
+}
+.price-for-year {
+    margin-top: 7px;
+    font-weight: bold;
+
+    &::after {
+        content: " / năm";
+        font-weight: normal;
+    }
+}
+
+.price-for-6-month {
+    margin-top: 7px;
+    font-weight: bold;
+
+    &::after {
+        content: " / 6 tháng";
         font-weight: normal;
     }
 }
