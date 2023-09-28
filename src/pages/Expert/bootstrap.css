@@ -4554,7 +4554,7 @@ fieldset:disabled .btn {
     justify-content: space-between;
 }
 
-.navbar-brand {
+.navbar-brand-expert {
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
     margin-right: 1rem;
@@ -4828,12 +4828,12 @@ fieldset:disabled .btn {
     display: none;
 }
 
-.navbar-light .navbar-brand {
+.navbar-light .navbar-brand-expert {
     color: rgba(0, 0, 0, 0.9);
 }
 
-.navbar-light .navbar-brand:hover,
-.navbar-light .navbar-brand:focus {
+.navbar-light .navbar-brand-expert:hover,
+.navbar-light .navbar-brand-expert:focus {
     color: rgba(0, 0, 0, 0.9);
 }
 
@@ -4874,12 +4874,12 @@ fieldset:disabled .btn {
     color: rgba(0, 0, 0, 0.9);
 }
 
-.navbar-dark .navbar-brand {
+.navbar-dark .navbar-brand-expert {
     color: #fff;
 }
 
-.navbar-dark .navbar-brand:hover,
-.navbar-dark .navbar-brand:focus {
+.navbar-dark .navbar-brand-expert:hover,
+.navbar-dark .navbar-brand-expert:focus {
     color: #fff;
 }
 

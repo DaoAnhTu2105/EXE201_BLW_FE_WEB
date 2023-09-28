@@ -20,6 +20,7 @@ import MenuItem from "@mui/material/MenuItem";
 import imgUser from "../../image/user.jpg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useNavigate } from "react-router-dom";
+import imgLogo from "../../image/logo.jpg"
 
 const style = {
   position: "absolute",
@@ -73,12 +74,15 @@ const Navbar = () => {
           style={{ paddingTop: 20, paddingBottom: 10 }}
         >
           <div className="navbar-brand">
-            <a className="navbar-item" href="https://bulma.io">
+            <a href="/" style={{ letterSpacing: '.5rem', fontSize: "40px", color: "#6FCB9F", fontWeight: '600', fontFamily: 'Houstander Font Duo, cursive', padding: "0 0 20px 5px" }}>
               <img
-                src="https://bulma.io/images/bulma-logo.png"
-                width="112"
-                height="28"
+                src={imgLogo}
+
+                width="80"
+                height="80"
               />
+
+              Blw
             </a>
             <a
               role="button"
