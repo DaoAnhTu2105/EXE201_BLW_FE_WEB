@@ -74,7 +74,7 @@ const Navbar = () => {
           style={{ paddingTop: 20, paddingBottom: 10 }}
         >
           <div className="navbar-brand">
-            <a href="/" style={{ letterSpacing: '.5rem', fontSize: "40px", color: "#6FCB9F", fontWeight: '600', fontFamily: 'Houstander Font Duo, cursive', padding: "0 0 20px 5px" }}>
+            <a href="/" style={{ letterSpacing: '.5rem', fontSize: "40px", color: "#6FCB9F", fontWeight: '600', fontFamily: 'Houstander Font Duo, cursive', paddingRight:"20px" }}>
               <img
                 src={imgLogo}
 
