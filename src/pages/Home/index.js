@@ -1,19 +1,55 @@
 import React from "react";
 import "./home.css";
+import "./home.scss";
 import recipe from "../../image/recipe1.jpg";
 import Rating from "@mui/material/Rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import home1 from "../../image/home1.png";
 
 const Home = () => {
   return (
     <>
       <div style={{ marginBottom: "30px", marginTop: 20 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <article id="intro-card">
+            <img src={home1} alt="Avatar wallpaper" />
+            <div className="content">
+              <h1>Chào mừng các bạn đã đến với Baby Led Weaning</h1>
+              <div className="infos"></div>
+            </div>
+          </article>
+        </div>
+
+        <h4 className="title is-4" style={{ textAlign: "center" }}>
+          Khám phá
+        </h4>
+
+        <div className="home-explore-container">
+          <figure className="home-explore">
+            <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
+            <figcaption className="home-explore-title">Thực đơn</figcaption>
+          </figure>
+          <figure className="home-explore">
+            <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
+            <figcaption className="home-explore-title">Kế hoạch</figcaption>
+          </figure>
+          <figure className="home-explore">
+            <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
+            <figcaption className="home-explore-title">Chuyên gia</figcaption>
+          </figure>
+        </div>
+
         <h4 className="title is-4" style={{ textAlign: "center" }}>
           Thực đơn được ưa chuộng nhất
         </h4>
-
         <div
           style={{
             display: "flex",
@@ -26,7 +62,7 @@ const Home = () => {
               <div className="grid-item">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "370px" }}
+                  style={{ width: "290px", height: "370px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -130,7 +166,7 @@ const Home = () => {
               <div className="grid-item">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "370px" }}
+                  style={{ width: "290px", height: "370px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -234,7 +270,7 @@ const Home = () => {
               <div className="grid-item">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "370px" }}
+                  style={{ width: "290px", height: "370px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -358,7 +394,7 @@ const Home = () => {
               <Link to="/recipeDetail">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "370px" }}
+                  style={{ width: "290px", height: "370px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -446,7 +482,7 @@ const Home = () => {
               </Link>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "300px", height: "370px" }}>
+              <div className="card" style={{ width: "290px", height: "370px" }}>
                 <div className="card-image">
                   <figure className="image is-3by2">
                     <img src={recipe} alt="Placeholder" />
@@ -530,7 +566,7 @@ const Home = () => {
               </div>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "300px", height: "370px" }}>
+              <div className="card" style={{ width: "290px", height: "370px" }}>
                 <div className="card-image">
                   <figure className="image is-3by2">
                     <img src={recipe} alt="Placeholder" />
@@ -614,7 +650,7 @@ const Home = () => {
               </div>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "300px", height: "370px" }}>
+              <div className="card" style={{ width: "290px", height: "370px" }}>
                 <div className="card-image">
                   <figure className="image is-3by2">
                     <img src={recipe} alt="Placeholder" />
@@ -698,7 +734,7 @@ const Home = () => {
               </div>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "300px", height: "370px" }}>
+              <div className="card" style={{ width: "290px", height: "370px" }}>
                 <div className="card-image">
                   <figure className="image is-3by2">
                     <img src={recipe} alt="Placeholder" />
@@ -782,7 +818,7 @@ const Home = () => {
               </div>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "300px", height: "370px" }}>
+              <div className="card" style={{ width: "290px", height: "370px" }}>
                 <div className="card-image">
                   <figure className="image is-3by2">
                     <img src={recipe} alt="Placeholder" />
