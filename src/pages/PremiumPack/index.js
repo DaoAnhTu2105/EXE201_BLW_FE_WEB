@@ -41,9 +41,9 @@ const PremiumPack = () => {
 
                 <div class="wrapper">
                     <div class="package">
-                        <div class="name">Limited</div>
+                        <div class="name">Gói 1 tháng</div>
                         <div class="price-for-month">49.000đ</div>
-                        <div class="trial">Available for a month</div>
+                        <div class="trial">Sau tháng đầu tiên 120.000đ</div>
                         <hr />
                         <ul>
                             <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>8</strong> team members</li>
@@ -52,22 +52,20 @@ const PremiumPack = () => {
                         </ul>
                     </div>
                     <div class="package brilliant">
-                        <div class="name">Brilliant</div>
-                        <div class="price-for-year">€5</div>
-                        <div class="trial">Free 7 day trial</div>
+                        <div class="name">Gói 1 năm</div>
+                        <div class="price-for-year">899.000đ</div>
+                        <div class="trial">Tiết kiệm tới 42%</div>
                         <hr />
                         <ul>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<i class="fa-solid fa-check"></i><strong>Unlimited</strong> team members</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>Unlimited</strong> team playlists</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>Unlimited</strong> public playlists</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;Team analytics</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;Send files</li>
+                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<i class="fa-solid fa-check"></i><strong>300+</strong>thực đơn cho bé</li>
+                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>Lưu </strong> các công thức yêu thích</li>
+                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>Lập lịch trình </strong> cho bé theo từng tháng tuổi </li>
                         </ul>
                     </div>
                     <div class="package brilliant">
                         <div class="name">Basic</div>
-                        <div class="price-for-6-month">€0</div>
-                        <div class="trial">Totally free</div>
+                        <div class="price-for-6-month">499.000đ</div>
+                        <div class="trial">7 ngày dùng thử miễn phí</div>
                         <hr />
                         <ul>
                             <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp; <strong>5</strong> team members</li>
