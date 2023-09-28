@@ -71,18 +71,19 @@ const Navbar = () => {
           className="navbar"
           role="navigation"
           aria-label="main navigation"
-          style={{ paddingTop: 20, paddingBottom: 10 }}
+          style={{ paddingTop: "0", paddingBottom: "0", borderBottom: "3px solid #eeeeee"}}
         >
           <div className="navbar-brand">
-            <a href="/" style={{ letterSpacing: '.5rem', fontSize: "40px", color: "#6FCB9F", fontWeight: '600', fontFamily: 'Houstander Font Duo, cursive', paddingRight:"20px" }}>
+            <a href="/" style={{ paddingLeft: "40px" }} maxWidth="100" height="100">
+              {/* style={{ letterSpacing: '.5rem', fontSize: "40px", color: "#00d1b2", fontWeight: '600', fontFamily: 'Houstander Font Duo, cursive', paddingRight:"20px" }} */}
               <img
                 src={imgLogo}
-
-                width="80"
-                height="80"
+                style={{ borderRadius: "50%" }}
+                width="130"
+                height="130"
               />
 
-              Blw
+              {/* Blw */}
             </a>
             <a
               role="button"
@@ -194,7 +195,7 @@ const Navbar = () => {
                     </Box>
                   )}
 
-                  <div>
+                  <div >
                     <button
                       className="button is-warning"
                       onMouseLeave={() => {
@@ -223,7 +224,7 @@ const Navbar = () => {
         <div
           style={{
             backgroundColor: "rgba(0, 0, 0, 0.6)",
-            marginTop: 5,
+            marginTop: 15,
             width: 380,
             borderRadius: "10px",
             top: 80,
@@ -247,6 +248,7 @@ const Navbar = () => {
               paddingLeft: "30px",
               paddingRight: "30px",
               paddingBottom: 10,
+
             }}
           >
             <Link to="/pack">
