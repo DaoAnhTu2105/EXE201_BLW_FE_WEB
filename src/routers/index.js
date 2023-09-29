@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import AdminRouters from './adminRouter'
+import AdminRouters from "./adminRouter";
 
 import DefaultLayout from "../components/DefaultLayout";
 import Home from "../pages/Home";
@@ -19,6 +19,7 @@ import PlanDetail from "../pages/Detail/PlanDetail";
 import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
 import AdminLogin from "../pages/Admin/login";
+import ListExpert from "../pages/ListExpert";
 
 export const publicRouters = [
   {
@@ -93,7 +94,13 @@ export const publicRouters = [
     path: "/admin/login",
     name: "adminlogin",
     component: AdminLogin,
-  }
+  },
+  {
+    path: "/list-expert",
+    name: "list-expert",
+    component: ListExpert,
+    layout: LayoutWithoutSearch,
+  },
 ];
 
 export const privateRouters = [];
@@ -115,13 +122,12 @@ function ScrollToTop() {
 
 export const adminRouters = [
   {
-    path: '/user-list',
-    name: 'user-list',
+    path: "/user-list",
+    name: "user-list",
     component: Admin,
     layout: LayoutWithoutSearch,
   },
-
-]
+];
 
 export const RouterComponents = () => {
   return (
@@ -173,12 +179,12 @@ export const RouterComponents = () => {
           </Route> */}
           <Route exact path="/" element={<AdminRouters />}>
             {adminRouters.map((route, index) => {
-              const Page = route.component
-              let Layout = DefaultLayout
+              const Page = route.component;
+              let Layout = DefaultLayout;
               if (route.layout) {
-                Layout = route.layout
+                Layout = route.layout;
               } else if (route.layout === null) {
-                Layout = Fragment
+                Layout = Fragment;
               }
               return (
                 <Route
@@ -190,7 +196,7 @@ export const RouterComponents = () => {
                     </Layout>
                   }
                 />
-              )
+              );
             })}
           </Route>
           {/* <Route exact path="/" element={<UserRouters />}>

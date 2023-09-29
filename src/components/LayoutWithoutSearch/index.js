@@ -6,7 +6,7 @@ const LayoutWithoutSearch = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div style={{ paddingTop: 100 }}>
+      <div style={{ paddingTop: 130 }}>
         <div>{children}</div>
       </div>
       <Footer />
