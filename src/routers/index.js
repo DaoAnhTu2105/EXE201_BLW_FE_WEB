@@ -18,6 +18,7 @@ import LayoutWithoutSearch from "../components/LayoutWithoutSearch";
 import PlanDetail from "../pages/Detail/PlanDetail";
 import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
+import AdminLogin from "../pages/Admin/login";
 
 export const publicRouters = [
   {
@@ -85,9 +86,13 @@ export const publicRouters = [
   },
   {
     path: "/admin/dashboard",
-    name:"dashboard",
+    name: "dashboard",
     component: Admin,
-    layout: LayoutWithoutSearch,
+  },
+  {
+    path: "/admin/login",
+    name: "adminlogin",
+    component: AdminLogin,
   }
 ];
 
@@ -115,7 +120,7 @@ export const adminRouters = [
     component: Admin,
     layout: LayoutWithoutSearch,
   },
-  
+
 ]
 
 export const RouterComponents = () => {
