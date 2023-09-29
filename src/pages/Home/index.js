@@ -34,15 +34,27 @@ const Home = () => {
 
         <div className="home-explore-container">
           <figure className="home-explore">
-            <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
+            <img
+              src={home1}
+              alt="Mountains"
+              style={{ width: "250px", height: "300px", objectFit: "cover" }}
+            />
             <figcaption className="home-explore-title">Thực đơn</figcaption>
           </figure>
           <figure className="home-explore">
-            <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
+            <img
+              src={home1}
+              alt="Mountains"
+              style={{ width: "250px", height: "300px", objectFit: "cover" }}
+            />
             <figcaption className="home-explore-title">Kế hoạch</figcaption>
           </figure>
           <figure className="home-explore">
-            <img src="https://picsum.photos/id/287/250/300" alt="Mountains" />
+            <img
+              src={home1}
+              alt="Mountains"
+              style={{ width: "250px", height: "300px", objectFit: "cover" }}
+            />
             <figcaption className="home-explore-title">Chuyên gia</figcaption>
           </figure>
         </div>
