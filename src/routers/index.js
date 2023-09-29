@@ -18,6 +18,7 @@ import LayoutWithoutSearch from "../components/LayoutWithoutSearch";
 import PlanDetail from "../pages/Detail/PlanDetail";
 import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
+import AdminLogin from "../pages/Admin/login";
 import ListExpert from "../pages/ListExpert";
 
 export const publicRouters = [
@@ -88,7 +89,11 @@ export const publicRouters = [
     path: "/admin/dashboard",
     name: "dashboard",
     component: Admin,
-    layout: LayoutWithoutSearch,
+  },
+  {
+    path: "/admin/login",
+    name: "adminlogin",
+    component: AdminLogin,
   },
   {
     path: "/list-expert",
