@@ -92,7 +92,7 @@ const Login = () => {
     <>
       <div className="login-grid">
         <div className="bg-image"></div>
-        <div className="content">
+        <div className="login-content">
           <form style={{ marginTop: 50 }} onSubmit={handleSubmit}>
             <div>
               <h1 className="title" style={{ marginTop: 50 }}>
