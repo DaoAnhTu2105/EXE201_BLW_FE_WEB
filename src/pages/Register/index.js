@@ -91,7 +91,7 @@ const Register = () => {
     <>
       <div className="register-grid">
         <div className="bg-image"></div>
-        <div className="content">
+        <div className="register-content">
           <form style={{ marginTop: 50 }} onSubmit={handleSubmit}>
             <div>
               <h1 className="title" style={{ marginTop: 50 }}>

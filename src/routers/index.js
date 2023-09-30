@@ -54,7 +54,7 @@ export const publicRouters = [
     path: "/recipeDetail",
     name: "recipeDetail",
     component: RecipeDetail,
-    layout: LayoutNavSearchFooter,
+    layout: LayoutWithoutSearch,
   },
   {
     path: "/payment",
