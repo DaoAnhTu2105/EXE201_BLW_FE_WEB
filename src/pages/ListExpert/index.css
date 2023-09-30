@@ -1,0 +1,7 @@
+.grid-container-list-expert{
+    display: grid;
+    gap: 50px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    padding: 10px;
+}

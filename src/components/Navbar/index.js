@@ -20,7 +20,7 @@ import MenuItem from "@mui/material/MenuItem";
 import imgUser from "../../image/user.jpg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useNavigate } from "react-router-dom";
-import imgLogo from "../../image/logo.jpg"
+import imgLogo from "../../image/logo.jpg";
 
 const style = {
   position: "absolute",
@@ -71,10 +71,19 @@ const Navbar = () => {
           className="navbar"
           role="navigation"
           aria-label="main navigation"
-          style={{ paddingTop: "0", paddingBottom: "0", borderBottom: "3px solid #eeeeee"}}
+          style={{
+            paddingTop: "0",
+            paddingBottom: "0",
+            borderBottom: "3px solid #eeeeee",
+          }}
         >
           <div className="navbar-brand">
-            <a href="/" style={{ paddingLeft: "40px" }} maxWidth="100" height="100">
+            <a
+              href="/"
+              style={{ paddingLeft: "40px" }}
+              maxWidth="100"
+              height="100"
+            >
               {/* style={{ letterSpacing: '.5rem', fontSize: "40px", color: "#00d1b2", fontWeight: '600', fontFamily: 'Houstander Font Duo, cursive', paddingRight:"20px" }} */}
               <img
                 src={imgLogo}
@@ -107,7 +116,7 @@ const Navbar = () => {
               <Link className="navbar-item" to="/plan">
                 <span className="navbar-item-text">Kế hoạch</span>
               </Link>
-              <Link className="navbar-item" to="/expert">
+              <Link className="navbar-item" to="/list-expert">
                 <span className="navbar-item-text">Chuyên gia</span>
               </Link>
               <a
@@ -195,7 +204,7 @@ const Navbar = () => {
                     </Box>
                   )}
 
-                  <div >
+                  <div>
                     <button
                       className="button is-warning"
                       onMouseLeave={() => {
@@ -233,10 +242,10 @@ const Navbar = () => {
             position: "fixed",
           }}
           onMouseEnter={() => {
-            setMouseLeftContent(false)
+            setMouseLeftContent(false);
           }}
           onMouseLeave={() => {
-            setMouseLeftContent(true)
+            setMouseLeftContent(true);
           }}
         >
           <div
@@ -248,7 +257,6 @@ const Navbar = () => {
               paddingLeft: "30px",
               paddingRight: "30px",
               paddingBottom: 10,
-
             }}
           >
             <Link to="/pack">
@@ -256,13 +264,15 @@ const Navbar = () => {
                 className="title is-6 mb-0"
                 style={{ color: "rgba(245, 245, 245, 0.8", paddingTop: "10px" }}
               >
-                Quyền lợi thành viên<FontAwesomeIcon
+                Quyền lợi thành viên
+                <FontAwesomeIcon
                   icon={faChevronRight}
-                  style={{ color: "rgba(245, 245, 245, 0.8", paddingLeft: "150px" }}
+                  style={{
+                    color: "rgba(245, 245, 245, 0.8",
+                    paddingLeft: "150px",
+                  }}
                 />
               </p>
-
-
             </Link>
           </div>
           <div style={{ marginTop: 10 }}>
