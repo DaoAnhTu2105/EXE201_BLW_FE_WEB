@@ -3,6 +3,7 @@ import "bulma/css/bulma.min.css";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import "./App.css";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,12 +12,13 @@ import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
   apiKey: "AIzaSyAFy-uVEA6kDsFJoyFc5W4vzpmSAY6tx6o",
   authDomain: "exe201-398306.firebaseapp.com",
-  databaseURL: "https://exe201-398306-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseURL:
+    "https://exe201-398306-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "exe201-398306",
   storageBucket: "exe201-398306.appspot.com",
   messagingSenderId: "821403486513",
   appId: "1:821403486513:web:8cba3de537662f0b3ec810",
-  measurementId: "G-8CD4YKFPEK"
+  measurementId: "G-8CD4YKFPEK",
 };
 
 // Initialize Firebase
@@ -25,7 +27,7 @@ const analytics = getAnalytics(app);
 
 function App() {
   return (
-    <div style={{position:"relative"}}>
+    <div style={{ position: "relative" }} className="App">
       <RouterComponents />
     </div>
   );
