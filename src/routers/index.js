@@ -6,7 +6,7 @@ import AdminRouters from "./adminRouter";
 import DefaultLayout from "../components/DefaultLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
+// import Register from "../pages/Register";
 import LayoutNavSearchFooter from "../components/LayoutNavSearchFooter";
 import Payment from "../pages/Payment";
 import Recipe from "../pages/Recipe";
@@ -20,6 +20,7 @@ import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
 import AdminLogin from "../pages/Admin/login";
 import ListExpert from "../pages/ListExpert";
+import PrivateRouters from "./PrivateRouter";
 
 export const publicRouters = [
   {
@@ -33,11 +34,11 @@ export const publicRouters = [
     name: "login",
     component: Login,
   },
-  {
-    path: "/register",
-    name: "register",
-    component: Register,
-  },
+  // {
+  //   path: "/register",
+  //   name: "register",
+  //   component: Register,
+  // },
   {
     path: "/recipe",
     name: "recipe",
@@ -80,12 +81,6 @@ export const publicRouters = [
     layout: LayoutNavSearchFooter,
   },
   {
-    path: "/profile",
-    name: "profile",
-    component: Profile,
-    layout: LayoutNavSearchFooter,
-  },
-  {
     path: "/admin/dashboard",
     name: "dashboard",
     component: Admin,
@@ -103,7 +98,14 @@ export const publicRouters = [
   },
 ];
 
-export const privateRouters = [];
+export const privateRouters = [
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
+    layout: LayoutWithoutSearch,
+  },
+];
 
 export const cookerRouters = [];
 
@@ -155,14 +157,14 @@ export const RouterComponents = () => {
               />
             );
           })}
-          {/* <Route exact path="/" element={<PrivateRouters />}>
+          <Route exact path="/" element={<PrivateRouters />}>
             {privateRouters.map((route, index) => {
-              const Page = route.component
-              let Layout = DefaultLayout
+              const Page = route.component;
+              let Layout = DefaultLayout;
               if (route.layout) {
-                Layout = route.layout
+                Layout = route.layout;
               } else if (route.layout === null) {
-                Layout = Fragment
+                Layout = Fragment;
               }
               return (
                 <Route
@@ -174,9 +176,9 @@ export const RouterComponents = () => {
                     </Layout>
                   }
                 />
-              )
+              );
             })}
-          </Route> */}
+          </Route>
           <Route exact path="/" element={<AdminRouters />}>
             {adminRouters.map((route, index) => {
               const Page = route.component;
