@@ -144,12 +144,16 @@ const Navbar = () => {
               <div className="navbar-item">
                 <div className="buttons">
                   {!user && (
-                    <div style={{ marginRight: 10 }}>
-                      <Link className="button is-primary" to="/register">
+                    <div style={{ marginRight: 40, width: "100px" }}>
+                      {/* <Link className="button is-primary" to="/register">
                         <strong>Sign up</strong>
-                      </Link>
-                      <Link className="button is-light" to="/login">
-                        Log in
+                      </Link> */}
+                      <Link
+                        className="button is-primary"
+                        to="/login"
+                        style={{ width: "120px" }}
+                      >
+                        Đăng nhập
                       </Link>
                     </div>
                   )}

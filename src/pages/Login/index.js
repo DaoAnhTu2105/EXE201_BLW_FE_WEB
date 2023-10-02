@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
+import chibi from "../../image/login-chibi.png";
+import chibi1 from "../../image/login-chibi1.png";
 
 const Login = () => {
-  const [phone, setPhone] = useState("");
-  const [pass, setPass] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [pass, setPass] = useState("");
+  // const baseUrl = `https://blw-api.azurewebsites.net/api/Customers/LoginPhone`;
   const navigate = useNavigate();
-  const baseUrl = `https://blw-api.azurewebsites.net/api/Customers/LoginPhone`;
   const ggLogin = `https://blw-api.azurewebsites.net/api/Customers/LoginEmail`;
 
   const handleCredentialResponse = async (response) => {
@@ -54,46 +56,47 @@ const Login = () => {
     google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
       theme: "outline",
       size: "large",
+      width: "300px",
     });
     google.accounts.id.prompt();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(baseUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ phone, password: pass }),
-      });
-      const dataLogin = await response.json();
-      if (response.status === 400) {
-        await Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${dataLogin.errorMessage}`,
-        });
-      } else if (response.ok) {
-        localStorage.setItem("user", JSON.stringify(dataLogin));
-        await Swal.fire({
-          icon: "success",
-          title: "Đăng nhập thành công",
-        });
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Lỗi khi gửi yêu cầu đăng ký:", error);
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch(baseUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ phone, password: pass }),
+  //     });
+  //     const dataLogin = await response.json();
+  //     if (response.status === 400) {
+  //       await Swal.fire({
+  //         icon: "error",
+  //         title: "Oops...",
+  //         text: `${dataLogin.errorMessage}`,
+  //       });
+  //     } else if (response.ok) {
+  //       localStorage.setItem("user", JSON.stringify(dataLogin));
+  //       await Swal.fire({
+  //         icon: "success",
+  //         title: "Đăng nhập thành công",
+  //       });
+  //       navigate("/");
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi khi gửi yêu cầu đăng ký:", error);
+  //   }
+  // };
 
   return (
     <>
       <div className="login-grid">
         <div className="bg-image"></div>
         <div className="login-content">
-          <form style={{ marginTop: 50 }} onSubmit={handleSubmit}>
+          {/* <form style={{ marginTop: 50 }} onSubmit={handleSubmit}>
             <div>
               <h1 className="title" style={{ marginTop: 50 }}>
                 Đăng Nhập
@@ -141,33 +144,56 @@ const Login = () => {
                 </Link>
               </p>
             </div>
+          </form> */}
+          <div style={{ width: 400, position: "relative", marginTop: 20 }}>
+            <div className="login-user">
+              <h1 className="title is-1 has-text-primary">Đăng Nhập</h1>
+              <p className="subtitle is-4" style={{ marginTop: 30 }}>
+                Tự tin bắt đầu với{" "}
+                <strong className="has-text-primary">BLW</strong> , nơi bé yêu
+                <strong className="has-text-primary">
+                  {" "}
+                  tự do khám phá
+                </strong>{" "}
+                thế giới ẩm thực!
+              </p>
+            </div>
             <div
-              className="field"
               style={{
-                textAlign: "center",
-                marginTop: 20,
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: 30,
               }}
             >
-              <p className="line-text-center">Hoặc</p>
+              <div id="buttonDiv" style={{ width: 300 }}></div>
             </div>
-
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div id="buttonDiv"></div>
+            <p className="line-text-center">Hoặc</p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: 30,
+              }}
+            >
+              <button className="facebook-button" style={{ width: 300 }}>
+                Đăng nhập với Facebook
+              </button>
             </div>
+            <img
+              src={chibi}
+              style={{ position: "absolute", top: 235, left: 90 }}
+            />
+            <img
+              src={chibi1}
+              style={{ position: "absolute", top: 235, right: 50 }}
+            />
+          </div>
 
-            {/* <div className="field">
+          {/* <div className="field">
               <div className="button-container">
                 <button className="google-button">Đăng nhập với Google</button>
               </div>
             </div> */}
-            <div className="field">
-              <div className="button-container">
-                <button className="facebook-button">
-                  Đăng nhập với Facebook
-                </button>
-              </div>
-            </div>
-          </form>
         </div>
       </div>
     </>
