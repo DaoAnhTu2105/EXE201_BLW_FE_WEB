@@ -3,30 +3,28 @@ import './css/sidebar.css'
 const SideBar = () => {
     return (
         <div id="nav-bar"><input id="nav-toggle" type="checkbox" />
-            <div id="nav-header"><a id="nav-title" href="/admin/dashboard">&nbsp;DASHBOARD</a><label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+            <div id="nav-header"><a id="nav-title" href="/admin/dashboard"><i className="fa-solid fa-crop-simple"></i>&nbsp;DASHBOARD</a>
                 <hr />
             </div>
             <div id="nav-content">
-                <div class="nav-button"><i class="fas fa-palette"></i><span>Your Work</span></div>
-                <div class="nav-button"><i class="fas fa-images"></i><span>Assets</span></div>
-                <div class="nav-button"><i class="fas fa-thumbtack"></i><span>Pinned Items</span></div>
+                <div id="tab-admin" className="nav-button active"><i className="fas fa-palette"></i><span>Admin</span></div>
+                <div id="tab-cus" className="nav-button"><i className="fas fa-user"></i><span>Customer</span></div>
+                <div id="tab-expert" className="nav-button"><i className="fas fa-user-tie"></i><span>Expert</span></div>
                 <hr />
-                <div class="nav-button"><i class="fas fa-heart"></i><span>Following</span></div>
-                <div class="nav-button"><i class="fas fa-chart-line"></i><span>Trending</span></div>
-                <div class="nav-button"><i class="fas fa-fire"></i><span>Challenges</span></div>
-                <div class="nav-button"><i class="fas fa-magic"></i><span>Spark</span></div>
+                <div id="tab-recipe" className="nav-button"><i className="fas fa-utensils"></i><span>Recipe</span></div>
+                <div id="tab-food" className="nav-button"><i className="fas fa-burger"></i><span>Food</span></div>
                 <hr />
-                <div class="nav-button"><i class="fas fa-gem"></i><span>Codepen Pro</span></div>
+
                 <div id="nav-content-highlight"></div>
             </div><input id="nav-footer-toggle" type="checkbox" />
             <div id="nav-footer">
                 <div id="nav-footer-heading">
-                    <div class="nav-button"><i class="fas fa-magic"></i>&nbsp;&nbsp;&nbsp;<span>Admin</span></div>
-                    {/* <div id="nav-footer-titlebox"><a id="nav-footer-title" href="#"></a><span id="nav-footer-subtitle">Admin</span></div><label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label> */}
+                    <div className="nav-button"><i className="fas fa-magic"></i>&nbsp;&nbsp;&nbsp;<span>Admin</span></div>
+                    {/* <div id="nav-footer-titlebox"><a id="nav-footer-title" href="#"></a><span id="nav-footer-subtitle">Admin</span></div><label for="nav-footer-toggle"><i className="fas fa-caret-up"></i></label> */}
                 </div>
-                <div id="nav-footer-content">
+                {/* <div id="nav-footer-content">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
+                </div> */}
             </div>
         </div>
     )

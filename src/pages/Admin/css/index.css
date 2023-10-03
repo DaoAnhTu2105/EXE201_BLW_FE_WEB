@@ -1,3 +1,24 @@
 .container-admin {
     height: 100vh;
+    display: flex;
+    justify-content: start
+}
+
+
+.admin-tab-active {
+    display: block;
+}
+
+.pay-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.bread-crumb{
+    font-family: "Nunito";
 }
