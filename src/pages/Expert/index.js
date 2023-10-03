@@ -178,7 +178,7 @@ const Expert = () => {
                                     <div className="card-expert-header px-3 py-2">
                                         <div className="d-flex justify-content-between">
                                             <div>
-                                                <h3 className="h5 mb-1">App Development</h3>
+                                                <h3 className="h5 mb-1">Chuyên khoa sức khoẻ</h3>
                                                 <div className="text-muted text-small">MakeMyApp LLC. <small>(2015-2018)</small></div>
                                             </div><img src={exerienceIcon1} width="48" height="48" alt="app development" />
                                         </div>
@@ -194,7 +194,7 @@ const Expert = () => {
                                     <div className="card-expert-header px-3 py-2">
                                         <div className="d-flex justify-content-between">
                                             <div>
-                                                <h3 className="h5 mb-1">Web Design</h3>
+                                                <h3 className="h5 mb-1">Chuyên gia</h3>
                                                 <div className="text-muted text-small">Webbie LLC. <small>(2018-2020)</small></div>
                                             </div><img src={experienceIcon2} width="48" height="48" alt="web design" />
                                         </div>
@@ -210,7 +210,7 @@ const Expert = () => {
                                     <div className="card-expert-header px-3 py-2">
                                         <div className="d-flex justify-content-between">
                                             <div>
-                                                <h3 className="h5 mb-1">Full Stack Development</h3>
+                                                <h3 className="h5 mb-1">Chuyên gia</h3>
                                                 <div className="text-muted text-small">Coder Inc. <small>(2020-2021)</small></div>
                                             </div><img src={experienceIcon3} width="48" height="48" alt="full stack" />
                                         </div>

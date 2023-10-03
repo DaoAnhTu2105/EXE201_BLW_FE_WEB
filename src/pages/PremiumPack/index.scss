@@ -11,9 +11,10 @@
 $accent-color: #33c4b6;
 
 .wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    padding-top: 50px;
+    position: relative;
+    // top: 50%;
+    // left: 50%;
     margin: -190px 0 0 -468px;
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
@@ -25,10 +26,11 @@ $accent-color: #33c4b6;
     width: 301px;
     height: 380px;
     border: 3px solid #e8e8e8;
-    border-radius: 7px;
+    border-radius: 25px;
     display: inline-block;
     padding: 24px;
     text-align: center;
+    cursor: pointer;
     float: left;
     transition: margin-top 0.5s linear;
     position: relative;
@@ -41,7 +43,7 @@ $accent-color: #33c4b6;
 }
 .name {
     color: #565656;
-    font-weight: 300;
+    font-weight: 200;
     font-size: 3rem;
     margin-top: -5px;
 }
