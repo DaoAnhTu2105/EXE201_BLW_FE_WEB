@@ -19,9 +19,9 @@ const Home = () => {
             marginBottom: "20px",
           }}
         >
-          <article id="intro-card">
+          <article id="intro-card-welcome">
             <img src={home1} alt="Avatar wallpaper" />
-            <div className="content">
+            <div className="content-welcome">
               <h1>Chào mừng các bạn đã đến với Baby Led Weaning</h1>
               <div className="infos"></div>
             </div>

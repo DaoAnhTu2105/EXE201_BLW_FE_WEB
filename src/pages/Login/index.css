@@ -5,6 +5,22 @@
   height: 100vh;
 }
 
+.login-user{
+  position: absolute;
+  top: -200px;
+}
+
+.facebook-button {
+  width: 200px;
+  background-color: #1877f2;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
 
 .bg-image {
   height: 100vh;
@@ -15,15 +31,12 @@
 }
 
 .login-content {
-  padding: 10px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.column{
-  max-height: 100vh;
-}
+
 .line-text-center {
   display: flex;
   flex-direction: row;
@@ -40,21 +53,6 @@
   border-bottom: 1px solid;
   margin: 0 10px;
 }
-  .button-container {
-    margin-left: 100px;
-  }
-
-  .google-button,
-  .facebook-button {
-    width: 200px;
-    background-color: #1877f2;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin: 10px 0;
-    cursor: pointer;
-  }
 @media (max-width: 768px) {
     
   .line-text-center {
@@ -67,9 +65,5 @@
   .columns{
     margin: 0px !important;
   }
-  .button-container {
-    margin-left: 0; 
-    margin-top: 20px; 
-    text-align: center;
-  }
+
   }
