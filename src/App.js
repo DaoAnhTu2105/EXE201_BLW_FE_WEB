@@ -37,18 +37,12 @@ const analytics = getAnalytics(app);
 const queryClient = new QueryClient()
 function App() {
   return (
-<<<<<<< HEAD
     <QueryClientProvider client={queryClient}>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative" }} className="App">
         <RouterComponents />
       </div>
     </QueryClientProvider>
 
-=======
-    <div style={{ position: "relative" }} className="App">
-      <RouterComponents />
-    </div>
->>>>>>> 8118ef15a828b6b56aeeb00d7995a0cba22c43ed
   );
 }
 
