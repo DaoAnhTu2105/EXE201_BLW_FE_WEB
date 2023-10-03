@@ -3,6 +3,13 @@ import "bulma/css/bulma.min.css";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider
+} from 'react-query'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,12 +29,15 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
+const queryClient = new QueryClient()
 function App() {
   return (
-    <div style={{position:"relative"}}>
-      <RouterComponents />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div style={{ position: "relative" }}>
+        <RouterComponents />
+      </div>
+    </QueryClientProvider>
+
   );
 }
 

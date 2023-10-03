@@ -101,6 +101,12 @@ export const publicRouters = [
     component: ListExpert,
     layout: LayoutWithoutSearch,
   },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: ListExpert,
+    layout: LayoutWithoutSearch,
+  },
 ];
 
 export const privateRouters = [];

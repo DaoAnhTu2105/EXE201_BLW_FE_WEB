@@ -80,8 +80,7 @@ const Navbar = () => {
           <div className="navbar-brand">
             <a
               href="/"
-              style={{ paddingLeft: "40px" }}
-              maxWidth="100"
+              style={{ paddingLeft: "40px", maxWidth: 100 }}
               height="100"
             >
               {/* style={{ letterSpacing: '.5rem', fontSize: "40px", color: "#00d1b2", fontWeight: '600', fontFamily: 'Houstander Font Duo, cursive', paddingRight:"20px" }} */}
