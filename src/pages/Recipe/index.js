@@ -37,7 +37,7 @@ const Recipe = () => {
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
             className="mySwiper"
-            style={{ width: "1200px", height: "600px" }}
+            style={{ width: "1000px", height: "300px" }}
           >
             <SwiperSlide>
               <img src={carrot} alt="" />
