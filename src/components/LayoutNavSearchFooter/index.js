@@ -7,7 +7,7 @@ const LayoutNavSearchFooter = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div style={{ paddingTop: 140 }}>
+      <div style={{ paddingTop: 70 }}>
         <Filter />
         <div>{children}</div>
       </div>

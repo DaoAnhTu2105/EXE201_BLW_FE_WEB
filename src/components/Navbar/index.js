@@ -236,10 +236,10 @@ const Navbar = () => {
         <div
           style={{
             backgroundColor: "rgba(0, 0, 0, 0.6)",
-            marginTop: 15,
+            marginTop: 5,
             width: 380,
             borderRadius: "10px",
-            top: 80,
+            top: 60,
             right: 0,
             zIndex: 1000,
             position: "fixed",
@@ -302,7 +302,7 @@ const Navbar = () => {
                   className="subtitle is-6 mb-0"
                   style={{ color: "rgba(245, 245, 245, 0.8" }}
                 >
-                  Hỗ trợ đa nền tảng
+                300+ món ăn dinh dưỡng
                 </span>
               </div>
               <div style={{ display: "flex" }}>
@@ -327,69 +327,17 @@ const Navbar = () => {
                   className="subtitle is-6 mb-0"
                   style={{ color: "rgba(245, 245, 245, 0.8" }}
                 >
-                  1080P
-                </span>
-              </div>
-            </div>
-            <div style={{ display: "flex", paddingLeft: 50, marginTop: 20 }}>
-              <div style={{ display: "flex", width: 140, marginLeft: 5 }}>
-                <div
-                  style={{
-                    borderRadius: "50%",
-                    backgroundColor: "rgba(251, 227, 0, 0.2)",
-                    width: 35,
-                    height: 25,
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faFire}
-                    style={{
-                      color: "rgba(251, 227, 0, 0.8",
-                      paddingLeft: 6,
-                    }}
-                  />
-                </div>
-                &nbsp;
-                <span
-                  className="subtitle is-6 mb-0"
-                  style={{ color: "rgba(245, 245, 245, 0.8" }}
-                >
-                  Nội dung độc quyền
-                </span>
-              </div>
-              <div style={{ display: "flex", width: 140, marginLeft: 95 }}>
-                <div
-                  style={{
-                    borderRadius: "50%",
-                    backgroundColor: "rgba(251, 227, 0, 0.2)",
-                    width: 35,
-                    height: 25,
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faAdversal}
-                    style={{
-                      color: "rgba(251, 227, 0, 0.8",
-                      paddingLeft: 7,
-                    }}
-                  />
-                </div>
-                &nbsp;
-                <span
-                  className="subtitle is-6 mb-0"
-                  style={{ color: "rgba(245, 245, 245, 0.8" }}
-                >
-                  Không quảng cáo
+                 Lên thực đơn cho bữa ăn
                 </span>
               </div>
             </div>
           </div>
-          <div className="mt-5" style={{ textAlign: "center" }}>
+          <div className="mt-5" style={{ textAlign: "center", paddingBottom: "15px" }}>
             <button
               class="button is-warning"
               style={{ color: "black", width: 300 }}
             >
-              Đăng kí VIP, tận hưởng nội dung,...
+              Đăng kí gói hội viên
             </button>
           </div>
         </div>
