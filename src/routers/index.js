@@ -43,13 +43,13 @@ export const publicRouters = [
     path: "/recipe",
     name: "recipe",
     component: Recipe,
-    layout: LayoutNavSearchFooter,
+    layout: LayoutWithoutSearch,
   },
   {
     path: "/plan",
     name: "plan",
     component: Plan,
-    layout: LayoutNavSearchFooter,
+    layout: LayoutWithoutSearch,
   },
   {
     path: "/recipeDetail",
