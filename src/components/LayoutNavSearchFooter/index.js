@@ -19,8 +19,10 @@ const LayoutNavSearchFooter = ({ children }) => {
             ></article>
           </div>
           <div className="layout-main-content">{children}</div>
-          <div className="layout-ads">
-            <Advertisement />
+          <div className="layout-sidebar">
+            <div className="layout-ads">
+              <Advertisement />
+            </div>
           </div>
         </div>
       </div>

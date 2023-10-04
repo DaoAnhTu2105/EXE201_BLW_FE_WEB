@@ -589,7 +589,7 @@ const PlanDetail = () => {
               />
             </div>
           </div>
-          <div>
+          <div style={{ width: 1000 }}>
             <h2
               className="title is-2 mt-5"
               style={{ textAlign: "center", marginTop: 20, marginBottom: 20 }}

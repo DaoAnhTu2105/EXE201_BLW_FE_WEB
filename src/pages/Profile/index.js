@@ -13,6 +13,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import rabbit from "../../image/rabbit.gif";
+import penguin from "../../image/penguin.gif";
 
 const Profile = () => {
   const [active, setActive] = useState("account");
@@ -103,111 +105,112 @@ const Profile = () => {
   return (
     <div className="container is-max-widescreen mt-5 mb-5">
       <div className="columns">
-        <div
-          className="column is-one-quarter"
-          style={{
-            border: "2px solid hsl(171, 100%, 41%)",
-            borderRadius: "10px",
-            width: "267px",
-            height: "300px",
-          }}
-        >
-          <h4 className="title is-4">Thông tin tài khoản</h4>
-          <ul>
-            <li
-              style={{
-                display: "flex",
-                cursor: "pointer",
-              }}
-              onClick={() => handleActive("account")}
-            >
-              <FontAwesomeIcon
-                icon={faUser}
-                size="lg"
-                className="has-text-primary"
-              />
-              <span
-                className="title is-5 pl-4"
-                style={{
-                  color: active === "account" ? "hsl(171, 100%, 41%)" : "",
-                }}
-              >
-                Tài khoản
-              </span>
-            </li>
-            <hr className="is-divider mt-3 mb-3" />
-            <li
-              style={{
-                display: "flex",
-                cursor: "pointer",
-              }}
-              onClick={() => handleActive("favorite")}
-            >
-              <FontAwesomeIcon
-                icon={faHeart}
-                size="lg"
-                className="has-text-primary"
-              />
-              <span
-                className="title is-5 pl-4"
-                style={{
-                  color: active === "favorite" ? "hsl(171, 100%, 41%)" : "",
-                }}
-              >
-                Yêu thích
-              </span>
-            </li>
-            <hr className="is-divider mt-3 mb-3" />
-            <li
-              style={{
-                display: "flex",
-                cursor: "pointer",
-              }}
-              onClick={() => handleActive("premium")}
-            >
-              <FontAwesomeIcon
-                icon={faMoneyCheck}
-                size="lg"
-                className="has-text-primary"
-              />
-              <span
-                className="title is-5 pl-4"
-                style={{
-                  color: active === "premium" ? "hsl(171, 100%, 41%)" : "",
-                }}
-              >
-                Gói cao cấp
-              </span>
-            </li>
-            <hr className="is-divider mt-3 mb-3" />
-            <a
-              href="https://www.facebook.com/profile.php?id=100095496554189&mibextid=LQQJ4d"
-              target="_blank"
-              rel="noreferrer"
-            >
+        <div className="settings-user">
+          <div
+            className="column is-one-quarter"
+            style={{
+              border: "2px solid hsl(171, 100%, 41%)",
+              borderRadius: "10px",
+              width: "267px",
+              height: "300px",
+            }}
+          >
+            <h4 className="title is-4">Thông tin tài khoản</h4>
+            <ul>
               <li
                 style={{
                   display: "flex",
                   cursor: "pointer",
                 }}
+                onClick={() => handleActive("account")}
               >
                 <FontAwesomeIcon
-                  icon={faFacebook}
+                  icon={faUser}
                   size="lg"
                   className="has-text-primary"
                 />
                 <span
                   className="title is-5 pl-4"
                   style={{
-                    color: active === "contact" ? "hsl(171, 100%, 41%)" : "",
+                    color: active === "account" ? "hsl(171, 100%, 41%)" : "",
                   }}
                 >
-                  Liên hệ
+                  Tài khoản
                 </span>
               </li>
-            </a>
+              <hr className="is-divider mt-3 mb-3" />
+              <li
+                style={{
+                  display: "flex",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleActive("favorite")}
+              >
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  size="lg"
+                  className="has-text-primary"
+                />
+                <span
+                  className="title is-5 pl-4"
+                  style={{
+                    color: active === "favorite" ? "hsl(171, 100%, 41%)" : "",
+                  }}
+                >
+                  Yêu thích
+                </span>
+              </li>
+              <hr className="is-divider mt-3 mb-3" />
+              <li
+                style={{
+                  display: "flex",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleActive("premium")}
+              >
+                <FontAwesomeIcon
+                  icon={faMoneyCheck}
+                  size="lg"
+                  className="has-text-primary"
+                />
+                <span
+                  className="title is-5 pl-4"
+                  style={{
+                    color: active === "premium" ? "hsl(171, 100%, 41%)" : "",
+                  }}
+                >
+                  Gói cao cấp
+                </span>
+              </li>
+              <hr className="is-divider mt-3 mb-3" />
+              <a
+                href="https://www.facebook.com/profile.php?id=100095496554189&mibextid=LQQJ4d"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <li
+                  style={{
+                    display: "flex",
+                    cursor: "pointer",
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faFacebook}
+                    size="lg"
+                    className="has-text-primary"
+                  />
+                  <span
+                    className="title is-5 pl-4"
+                    style={{
+                      color: active === "contact" ? "hsl(171, 100%, 41%)" : "",
+                    }}
+                  >
+                    Liên hệ
+                  </span>
+                </li>
+              </a>
 
-            {/* <hr className="is-divider mt-3 mb-3" />
+              {/* <hr className="is-divider mt-3 mb-3" />
             <li
               style={{
                 display: "flex",
@@ -229,30 +232,39 @@ const Profile = () => {
                 Cài đặt
               </span>
             </li> */}
-            <hr className="is-divider mt-3 mb-3" />
-            <li
-              style={{
-                display: "flex",
-                cursor: "pointer",
-              }}
-              onClick={() => handleActive("help")}
-            >
-              <FontAwesomeIcon
-                icon={faQuestionCircle}
-                size="lg"
-                className="has-text-primary"
-              />
-              <span
-                className="title is-5 pl-4"
+              <hr className="is-divider mt-3 mb-3" />
+              <li
                 style={{
-                  color: active === "help" ? "hsl(171, 100%, 41%)" : "",
+                  display: "flex",
+                  cursor: "pointer",
                 }}
+                onClick={() => handleActive("help")}
               >
-                Trợ giúp & FAQS
-              </span>
-            </li>
-          </ul>
+                <FontAwesomeIcon
+                  icon={faQuestionCircle}
+                  size="lg"
+                  className="has-text-primary"
+                />
+                <span
+                  className="title is-5 pl-4"
+                  style={{
+                    color: active === "help" ? "hsl(171, 100%, 41%)" : "",
+                  }}
+                >
+                  Trợ giúp & FAQS
+                </span>
+              </li>
+            </ul>
+          </div>
+          {dataAccount.data && (
+            <img
+              src={rabbit}
+              alt="#"
+              style={{ position: "absolute", top: 350 }}
+            />
+          )}
         </div>
+
         <div>
           {active === "account" ? (
             !dataAccount.data ? (
@@ -269,7 +281,20 @@ const Profile = () => {
                 <CircularProgress />
               </div>
             ) : (
-              <form style={{ paddingLeft: 15 }} onSubmit={handleSubmit}>
+              <form
+                style={{ paddingLeft: 15, position: "relative" }}
+                onSubmit={handleSubmit}
+              >
+                <img
+                  src={penguin}
+                  alt="penguin"
+                  style={{
+                    position: "absolute",
+                    width: 400,
+                    left: 700,
+                    top: 200,
+                  }}
+                />
                 <h2 className="title is-2">Thông tin cá nhân</h2>
                 <h6 className="title is-6">
                   Đây là chi tiết thông tin cá nhân của bạn vui lòng không chia
@@ -459,12 +484,22 @@ const Profile = () => {
               </div>
             </div>
           ) : active === "premium" ? (
-            <div style={{ paddingLeft: 15 }}>
-              <h2 className="subtitle is-2">Chi tiết gói</h2>
+            <div style={{ paddingLeft: 15, position: "relative" }}>
+              <img
+                src={penguin}
+                alt="penguin"
+                style={{
+                  position: "absolute",
+                  width: 350,
+                  left: 785,
+                  top: 200,
+                }}
+              />
+              <h2 className="title is-2">Chi tiết gói</h2>
               <div className="notification is-primary is-light">
-                Bạn đã mua gói 365 ngày vào lúc <strong>12h</strong> ngày
-                <strong>17/9/2023</strong>, gói sẽ hết hạn vào lúc
-                <strong>12h</strong> ngày <strong> 17/9/2024 </strong>
+                Bạn đã mua gói 365 ngày vào lúc <strong> 12h</strong> ngày
+                <strong> 17/9/2023</strong>, gói sẽ hết hạn vào lúc
+                <strong> 12h</strong> ngày <strong> 17/9/2024 </strong>
               </div>
               <h4 className="subtitle is-4">Lịch sử mua hàng</h4>
               <div className="table-container">
