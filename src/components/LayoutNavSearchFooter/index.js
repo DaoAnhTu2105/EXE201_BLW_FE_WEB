@@ -9,7 +9,7 @@ const LayoutNavSearchFooter = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div style={{ paddingTop: 50 }}>
+      <div style={{ paddingTop: 70 }}>
         <Search />
         <div className="layout-container">
           <div className="layout-sidebar">

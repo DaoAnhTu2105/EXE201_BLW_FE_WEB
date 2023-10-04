@@ -35,3 +35,12 @@
     flex-shrink: 0;
     text-align: center;
 }
+
+#transition-modal-title {
+    margin: 0px;
+    font-size: 17px;
+    font-weight: 500;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+}

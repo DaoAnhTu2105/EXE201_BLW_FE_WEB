@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.css'
+import './index.scss'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
@@ -47,7 +48,7 @@ const PremiumPack = () => {
 
     return (
         <>
-            <div className="pack-container" style={{ paddingTop: "40px" }} >
+            <div className="pack-container" style={{ width: "70%", paddingLeft: "200px", paddingRight: "200px", backgroundColor: "#eeeeee" }} >
                 <div style={{ display: "flex", justifyContent: "center", paddingBottom: "20px" }}>
                     <div className="pack-table">
                         <table className="table is-striped ">
@@ -88,32 +89,21 @@ const PremiumPack = () => {
                         </table>
                     </div>
                 </div>
-
-                <div style={{ paddingTop: "50px", marginBottom: "100px" }} className="wrapper">
-
-                    <div className="package" onClick={handleOpen}>
+                <div style={{ paddingTop: "50px", display: "flex", justifyContent: "center", paddingRight:"25px" }}>
+                    <div className="package-1" onClick={handleOpen}>
                         <div className="name">Gói tháng</div>
                         <div className="price-for-month">49.000đ</div>
                         <div className="trial">Sau tháng đầu tiên 120.000đ</div>
                         <hr />
-                        <ul>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>8</strong> team members</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>6</strong> team playlists</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp;<strong>Unlimited</strong> public playlists</li>
-                        </ul>
                     </div>
-                    <div className="package" >
+                    <div className="package-2" >
                         <div className="name">Gói nửa năm</div>
                         <div className="price-for-6-month">499.000đ</div>
                         <div className="trial">7 ngày dùng thử miễn phí</div>
                         <hr />
-                        <ul>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp; <strong>5</strong> team members</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp; <strong>3</strong> team playlists</li>
-                            <li><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /> &nbsp; <strong>Unlimited</strong> public playlists</li>
-                        </ul>
                     </div>
                 </div>
+
             </div >
 
 
