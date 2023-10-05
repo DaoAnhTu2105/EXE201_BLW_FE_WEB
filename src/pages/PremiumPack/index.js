@@ -48,7 +48,7 @@ const PremiumPack = () => {
 
     return (
         <>
-            <div className="pack-container" style={{ width: "70%", paddingLeft: "200px", paddingRight: "200px", backgroundColor: "#eeeeee" }} >
+            <div className="pack-container" style={{ width: "70%", backgroundColor: "#eeeeee", padding: "20px 200px 0 200px" }} >
                 <div style={{ display: "flex", justifyContent: "center", paddingBottom: "20px" }}>
                     <div className="pack-table">
                         <table className="table is-striped ">
@@ -89,7 +89,7 @@ const PremiumPack = () => {
                         </table>
                     </div>
                 </div>
-                <div style={{ paddingTop: "50px", display: "flex", justifyContent: "center", paddingRight:"25px" }}>
+                <div style={{ paddingTop: "50px", display: "flex", justifyContent: "center", paddingRight: "25px" }}>
                     <div className="package-1" onClick={handleOpen}>
                         <div className="name">Gói tháng</div>
                         <div className="price-for-month">49.000đ</div>

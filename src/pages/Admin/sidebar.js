@@ -10,10 +10,12 @@ const SideBar = () => {
                 <div id="tab-admin" className="nav-button active"><i className="fas fa-palette"></i><span>Admin</span></div>
                 <div id="tab-cus" className="nav-button"><i className="fas fa-user"></i><span>Customer</span></div>
                 <div id="tab-expert" className="nav-button"><i className="fas fa-user-tie"></i><span>Expert</span></div>
+                <div id="tab-food" className="nav-button"><i className="fas fa-hand-holding-dollar"></i><span>Transactions</span></div>
                 <hr />
                 <div id="tab-recipe" className="nav-button"><i className="fas fa-utensils"></i><span>Recipe</span></div>
                 <div id="tab-food" className="nav-button"><i className="fas fa-burger"></i><span>Food</span></div>
                 <hr />
+
 
                 <div id="nav-content-highlight"></div>
             </div><input id="nav-footer-toggle" type="checkbox" />
