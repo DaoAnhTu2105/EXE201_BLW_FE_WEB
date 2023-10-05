@@ -141,7 +141,7 @@ const Home = () => {
                               </button>
                             </Link>
                             &nbsp;
-                            <h6 className="subtitle is-6 mb-0">1200</h6>
+                            <h6 className="title is-6 mb-0">1200</h6>
                           </div>
                         </p>
 
@@ -149,7 +149,6 @@ const Home = () => {
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            paddingLeft: 5,
                           }}
                         >
                           <Rating
@@ -160,32 +159,24 @@ const Home = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span style={{ color: "black" }}>4.5/5</span>
+                          <span
+                            style={{ color: "black" }}
+                            className="title is-6"
+                          >
+                            4.5/5
+                          </span>
                         </div>
-                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cá
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Bột
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cà chua
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Hành tây
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Thịt lợn
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Tôm hùm
-                          </button>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
                         </p>
                       </div>
                     </div>
@@ -245,7 +236,7 @@ const Home = () => {
                               </button>
                             </Link>
                             &nbsp;
-                            <h6 className="subtitle is-6 mb-0">1200</h6>
+                            <h6 className="title is-6 mb-0">1200</h6>
                           </div>
                         </p>
 
@@ -253,7 +244,6 @@ const Home = () => {
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            paddingLeft: 5,
                           }}
                         >
                           <Rating
@@ -264,32 +254,24 @@ const Home = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span style={{ color: "black" }}>4.5/5</span>
+                          <span
+                            style={{ color: "black" }}
+                            className="title is-6"
+                          >
+                            4.5/5
+                          </span>
                         </div>
-                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cá
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Bột
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cà chua
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Hành tây
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Thịt lợn
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Tôm hùm
-                          </button>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6">
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
                         </p>
                       </div>
                     </div>
@@ -349,7 +331,7 @@ const Home = () => {
                               </button>
                             </Link>
                             &nbsp;
-                            <h6 className="subtitle is-6 mb-0">1200</h6>
+                            <h6 className="title is-6 mb-0">1200</h6>
                           </div>
                         </p>
 
@@ -357,7 +339,6 @@ const Home = () => {
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            paddingLeft: 5,
                           }}
                         >
                           <Rating
@@ -368,32 +349,24 @@ const Home = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span style={{ color: "black" }}>4.5/5</span>
+                          <span
+                            style={{ color: "black" }}
+                            className="title is-6"
+                          >
+                            4.5/5
+                          </span>
                         </div>
-                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cá
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Bột
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cà chua
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Hành tây
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Thịt lợn
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Tôm hùm
-                          </button>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6">
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
                         </p>
                       </div>
                     </div>
@@ -425,7 +398,7 @@ const Home = () => {
               <Link to="/recipeDetail">
                 <div
                   className="card"
-                  style={{ width: "290px", height: "370px" }}
+                  style={{ width: "290px", height: "380px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -476,35 +449,30 @@ const Home = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span>4.5/5</span>
+                          <span className="title is-6">4.5/5</span>
                         </div>
                         <div style={{ marginTop: 5 }}>
-                          <p>Ngày cập nhật: 10/9/2023</p>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
                         </div>
-                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cá
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Bột
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cà chua
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Hành tây
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Thịt lợn
-                          </button>
-                          &nbsp; &nbsp;
-                          <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                            Tôm hùm
-                          </button>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
+                        >
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
                         </p>
                       </div>
                     </div>
@@ -513,424 +481,348 @@ const Home = () => {
               </Link>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "290px", height: "370px" }}>
-                <div className="card-image">
-                  <figure className="image is-3by2">
-                    <img src={recipe} alt="Placeholder" />
-                  </figure>
-                </div>
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p
-                        className="title is-5"
-                        style={{
-                          marginBottom: 10,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-evenly",
-                        }}
-                      >
-                        <span
+              <Link to="/recipeDetail">
+                <div
+                  className="card"
+                  style={{ width: "290px", height: "380px" }}
+                >
+                  <div className="card-image">
+                    <figure className="image is-3by2">
+                      <img src={recipe} alt="Placeholder" />
+                    </figure>
+                  </div>
+                  <div className="card-content">
+                    <div className="media">
+                      <div className="media-content">
+                        <p
+                          className="title is-5"
                           style={{
-                            width: "160px",
-                            height: "23px",
-                            overflow: "hidden",
+                            marginBottom: 10,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-evenly",
                           }}
                         >
-                          Thực đơn 1
-                        </span>
-                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <button
-                          className="button is-primary"
-                          style={{
-                            borderRadius: "50%",
-                            width: "10px",
-                            height: "30px",
-                          }}
+                          <span
+                            style={{
+                              width: "160px",
+                              height: "23px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            Thực đơn 1
+                          </span>
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          <Link to="/">
+                            <button
+                              className="button is-primary"
+                              style={{
+                                borderRadius: "50%",
+                                width: "10px",
+                                height: "30px",
+                              }}
+                            >
+                              <FontAwesomeIcon icon={faHeart} />
+                            </button>
+                          </Link>
+                        </p>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                          />
+                          &nbsp; &nbsp;
+                          <span className="title is-6">4.5/5</span>
+                        </div>
+                        <div style={{ marginTop: 5 }}>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
+                        </div>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
                         >
-                          <FontAwesomeIcon icon={faHeart} />
-                        </button>
-                      </p>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <Rating
-                          name="half-rating-read"
-                          defaultValue={4.5}
-                          precision={0.5}
-                          readOnly
-                          size="small"
-                        />
-                        &nbsp; &nbsp;
-                        <span>4.5/5</span>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
+                        </p>
                       </div>
-                      <div style={{ marginTop: 5 }}>
-                        <p>Ngày cập nhật: 10/9/2023</p>
-                      </div>
-                      <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cá
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Bột
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cà chua
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Hành tây
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Thịt lợn
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Tôm hùm
-                        </button>
-                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "290px", height: "370px" }}>
-                <div className="card-image">
-                  <figure className="image is-3by2">
-                    <img src={recipe} alt="Placeholder" />
-                  </figure>
-                </div>
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p
-                        className="title is-5"
-                        style={{
-                          marginBottom: 10,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-evenly",
-                        }}
-                      >
-                        <span
+              <Link to="/recipeDetail">
+                <div
+                  className="card"
+                  style={{ width: "290px", height: "380px" }}
+                >
+                  <div className="card-image">
+                    <figure className="image is-3by2">
+                      <img src={recipe} alt="Placeholder" />
+                    </figure>
+                  </div>
+                  <div className="card-content">
+                    <div className="media">
+                      <div className="media-content">
+                        <p
+                          className="title is-5"
                           style={{
-                            width: "160px",
-                            height: "23px",
-                            overflow: "hidden",
+                            marginBottom: 10,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-evenly",
                           }}
                         >
-                          Thực đơn 1
-                        </span>
-                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <button
-                          className="button is-primary"
-                          style={{
-                            borderRadius: "50%",
-                            width: "10px",
-                            height: "30px",
-                          }}
+                          <span
+                            style={{
+                              width: "160px",
+                              height: "23px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            Thực đơn 1
+                          </span>
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          <Link to="/">
+                            <button
+                              className="button is-primary"
+                              style={{
+                                borderRadius: "50%",
+                                width: "10px",
+                                height: "30px",
+                              }}
+                            >
+                              <FontAwesomeIcon icon={faHeart} />
+                            </button>
+                          </Link>
+                        </p>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                          />
+                          &nbsp; &nbsp;
+                          <span className="title is-6">4.5/5</span>
+                        </div>
+                        <div style={{ marginTop: 5 }}>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
+                        </div>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
                         >
-                          <FontAwesomeIcon icon={faHeart} />
-                        </button>
-                      </p>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <Rating
-                          name="half-rating-read"
-                          defaultValue={4.5}
-                          precision={0.5}
-                          readOnly
-                          size="small"
-                        />
-                        &nbsp; &nbsp;
-                        <span>4.5/5</span>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
+                        </p>
                       </div>
-                      <div style={{ marginTop: 5 }}>
-                        <p>Ngày cập nhật: 10/9/2023</p>
-                      </div>
-                      <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cá
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Bột
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cà chua
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Hành tây
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Thịt lợn
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Tôm hùm
-                        </button>
-                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "290px", height: "370px" }}>
-                <div className="card-image">
-                  <figure className="image is-3by2">
-                    <img src={recipe} alt="Placeholder" />
-                  </figure>
-                </div>
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p
-                        className="title is-5"
-                        style={{
-                          marginBottom: 10,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-evenly",
-                        }}
-                      >
-                        <span
+              <Link to="/recipeDetail">
+                <div
+                  className="card"
+                  style={{ width: "290px", height: "380px" }}
+                >
+                  <div className="card-image">
+                    <figure className="image is-3by2">
+                      <img src={recipe} alt="Placeholder" />
+                    </figure>
+                  </div>
+                  <div className="card-content">
+                    <div className="media">
+                      <div className="media-content">
+                        <p
+                          className="title is-5"
                           style={{
-                            width: "160px",
-                            height: "23px",
-                            overflow: "hidden",
+                            marginBottom: 10,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-evenly",
                           }}
                         >
-                          Thực đơn 1
-                        </span>
-                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <button
-                          className="button is-primary"
-                          style={{
-                            borderRadius: "50%",
-                            width: "10px",
-                            height: "30px",
-                          }}
+                          <span
+                            style={{
+                              width: "160px",
+                              height: "23px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            Thực đơn 1
+                          </span>
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          <Link to="/">
+                            <button
+                              className="button is-primary"
+                              style={{
+                                borderRadius: "50%",
+                                width: "10px",
+                                height: "30px",
+                              }}
+                            >
+                              <FontAwesomeIcon icon={faHeart} />
+                            </button>
+                          </Link>
+                        </p>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                          />
+                          &nbsp; &nbsp;
+                          <span className="title is-6">4.5/5</span>
+                        </div>
+                        <div style={{ marginTop: 5 }}>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
+                        </div>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
                         >
-                          <FontAwesomeIcon icon={faHeart} />
-                        </button>
-                      </p>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <Rating
-                          name="half-rating-read"
-                          defaultValue={4.5}
-                          precision={0.5}
-                          readOnly
-                          size="small"
-                        />
-                        &nbsp; &nbsp;
-                        <span>4.5/5</span>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
+                        </p>
                       </div>
-                      <div style={{ marginTop: 5 }}>
-                        <p>Ngày cập nhật: 10/9/2023</p>
-                      </div>
-                      <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cá
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Bột
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cà chua
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Hành tây
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Thịt lợn
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Tôm hùm
-                        </button>
-                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="grid-item">
-              <div className="card" style={{ width: "290px", height: "370px" }}>
-                <div className="card-image">
-                  <figure className="image is-3by2">
-                    <img src={recipe} alt="Placeholder" />
-                  </figure>
-                </div>
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p
-                        className="title is-5"
-                        style={{
-                          marginBottom: 10,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-evenly",
-                        }}
-                      >
-                        <span
+              <Link to="/recipeDetail">
+                <div
+                  className="card"
+                  style={{ width: "290px", height: "380px" }}
+                >
+                  <div className="card-image">
+                    <figure className="image is-3by2">
+                      <img src={recipe} alt="Placeholder" />
+                    </figure>
+                  </div>
+                  <div className="card-content">
+                    <div className="media">
+                      <div className="media-content">
+                        <p
+                          className="title is-5"
                           style={{
-                            width: "160px",
-                            height: "23px",
-                            overflow: "hidden",
+                            marginBottom: 10,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-evenly",
                           }}
                         >
-                          Thực đơn 1
-                        </span>
-                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <button
-                          className="button is-primary"
-                          style={{
-                            borderRadius: "50%",
-                            width: "10px",
-                            height: "30px",
-                          }}
+                          <span
+                            style={{
+                              width: "160px",
+                              height: "23px",
+                              overflow: "hidden",
+                            }}
+                          >
+                            Thực đơn 1
+                          </span>
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          <Link to="/">
+                            <button
+                              className="button is-primary"
+                              style={{
+                                borderRadius: "50%",
+                                width: "10px",
+                                height: "30px",
+                              }}
+                            >
+                              <FontAwesomeIcon icon={faHeart} />
+                            </button>
+                          </Link>
+                        </p>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Rating
+                            name="half-rating-read"
+                            defaultValue={4.5}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                          />
+                          &nbsp; &nbsp;
+                          <span className="title is-6">4.5/5</span>
+                        </div>
+                        <div style={{ marginTop: 5 }}>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
+                        </div>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
                         >
-                          <FontAwesomeIcon icon={faHeart} />
-                        </button>
-                      </p>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <Rating
-                          name="half-rating-read"
-                          defaultValue={4.5}
-                          precision={0.5}
-                          readOnly
-                          size="small"
-                        />
-                        &nbsp; &nbsp;
-                        <span>4.5/5</span>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
+                        </p>
                       </div>
-                      <div style={{ marginTop: 5 }}>
-                        <p>Ngày cập nhật: 10/9/2023</p>
-                      </div>
-                      <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cá
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Bột
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cà chua
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Hành tây
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Thịt lợn
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Tôm hùm
-                        </button>
-                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="grid-item">
-              <div className="card" style={{ width: "290px", height: "370px" }}>
-                <div className="card-image">
-                  <figure className="image is-3by2">
-                    <img src={recipe} alt="Placeholder" />
-                  </figure>
-                </div>
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-content">
-                      <p
-                        className="title is-5"
-                        style={{
-                          marginBottom: 10,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-evenly",
-                        }}
-                      >
-                        <span
-                          style={{
-                            width: "160px",
-                            height: "23px",
-                            overflow: "hidden",
-                          }}
-                        >
-                          Thực đơn 1
-                        </span>
-                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <button
-                          className="button is-primary"
-                          style={{
-                            borderRadius: "50%",
-                            width: "10px",
-                            height: "30px",
-                          }}
-                        >
-                          <FontAwesomeIcon icon={faHeart} />
-                        </button>
-                      </p>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <Rating
-                          name="half-rating-read"
-                          defaultValue={4.5}
-                          precision={0.5}
-                          readOnly
-                          size="small"
-                        />
-                        &nbsp; &nbsp;
-                        <span>4.5/5</span>
-                      </div>
-                      <div style={{ marginTop: 5 }}>
-                        <p>Ngày cập nhật: 10/9/2023</p>
-                      </div>
-                      <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cá
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Bột
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Cà chua
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Hành tây
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Thịt lợn
-                        </button>
-                        &nbsp; &nbsp;
-                        <button className="button is-primary is-light is-small is-0-mobile mb-2">
-                          Tôm hùm
-                        </button>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
