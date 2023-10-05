@@ -12,20 +12,6 @@
     cursor: pointer;
   }
 
-  .home-container{
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  padding-left: 140px;
-  }
 
-  .home-sidebar .sidebar-content{
-    width: 250px;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 900;
-    height: 600px; 
-    overflow-y: auto;
-  }
 
 

@@ -21,6 +21,7 @@ import Admin from "../pages/Admin";
 import AdminLogin from "../pages/Admin/login";
 import ListExpert from "../pages/ListExpert";
 import PrivateRouters from "./PrivateRouter";
+import LayoutWithoutAds from "../components/LayoutWithoutAds";
 
 export const publicRouters = [
   {
@@ -55,7 +56,7 @@ export const publicRouters = [
     path: "/recipeDetail",
     name: "recipeDetail",
     component: RecipeDetail,
-    layout: LayoutWithoutSearch,
+    layout: LayoutWithoutAds,
   },
   {
     path: "/payment",
@@ -72,13 +73,13 @@ export const publicRouters = [
     path: "/expert",
     name: "expert",
     component: Expert,
-    layout: LayoutWithoutSearch,
+    layout: LayoutWithoutAds,
   },
   {
     path: "/planDetail",
     name: "planDetail",
     component: PlanDetail,
-    layout: LayoutNavSearchFooter,
+    layout: LayoutWithoutSearch,
   },
   {
     path: "/admin/dashboard",
@@ -94,7 +95,7 @@ export const publicRouters = [
     path: "/list-expert",
     name: "list-expert",
     component: ListExpert,
-    layout: LayoutWithoutSearch,
+    layout: LayoutWithoutAds,
   },
   {
     path: "/checkout",
@@ -109,7 +110,7 @@ export const privateRouters = [
     path: "/profile",
     name: "profile",
     component: Profile,
-    layout: LayoutWithoutSearch,
+    layout: LayoutWithoutAds,
   },
 ];
 

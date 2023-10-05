@@ -109,7 +109,7 @@ const Recipe = () => {
                             <FontAwesomeIcon icon={faHeart} />
                           </button>
                           &nbsp;
-                          <h6 className="subtitle is-6 mb-0">1200</h6>
+                          <h6 className="title is-6 mb-0">1200</h6>
                         </div>
                       </p>
 
@@ -129,7 +129,7 @@ const Recipe = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span>4.5/5</span>
+                          <span className="title is-6">4.5/5</span>
                         </div>
                         <div>
                           &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -186,7 +186,7 @@ const Recipe = () => {
                             <FontAwesomeIcon icon={faHeart} />
                           </button>
                           &nbsp;
-                          <h6 className="subtitle is-6 mb-0">1200</h6>
+                          <h6 className="title is-6 mb-0">1200</h6>
                         </div>
                       </p>
 
@@ -206,7 +206,7 @@ const Recipe = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span>4.5/5</span>
+                          <span className="title is-6">4.5/5</span>
                         </div>
                         <div>
                           &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -263,7 +263,7 @@ const Recipe = () => {
                             <FontAwesomeIcon icon={faHeart} />
                           </button>
                           &nbsp;
-                          <h6 className="subtitle is-6 mb-0">1200</h6>
+                          <h6 className="title is-6 mb-0">1200</h6>
                         </div>
                       </p>
 
@@ -283,7 +283,7 @@ const Recipe = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span>4.5/5</span>
+                          <span className="title is-6">4.5/5</span>
                         </div>
                         <div>
                           &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -320,7 +320,7 @@ const Recipe = () => {
               <div className="grid-item-food">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "370px" }}
+                  style={{ width: "300px", height: "380px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -369,35 +369,30 @@ const Recipe = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span>4.5/5</span>
+                          <span className="title is-6">4.5/5</span>
                         </div>
                         <div style={{ marginTop: 5 }}>
-                          <p>Ngày cập nhật: 10/9/2023</p>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
                         </div>
-                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cá
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Bột
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cà chua
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Hành tây
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Thịt lợn
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Tôm hùm
-                          </button>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
+                        >
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
                         </p>
                       </div>
                     </div>
@@ -407,7 +402,7 @@ const Recipe = () => {
               <div className="grid-item-food">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "370px" }}
+                  style={{ width: "300px", height: "380px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -456,35 +451,30 @@ const Recipe = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span>4.5/5</span>
+                          <span className="title is-6">4.5/5</span>
                         </div>
                         <div style={{ marginTop: 5 }}>
-                          <p>Ngày cập nhật: 10/9/2023</p>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
                         </div>
-                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cá
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Bột
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cà chua
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Hành tây
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Thịt lợn
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Tôm hùm
-                          </button>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
+                        >
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
                         </p>
                       </div>
                     </div>
@@ -494,7 +484,7 @@ const Recipe = () => {
               <div className="grid-item-food">
                 <div
                   className="card"
-                  style={{ width: "300px", height: "370px" }}
+                  style={{ width: "300px", height: "380px" }}
                 >
                   <div className="card-image">
                     <figure className="image is-3by2">
@@ -543,35 +533,30 @@ const Recipe = () => {
                             size="small"
                           />
                           &nbsp; &nbsp;
-                          <span>4.5/5</span>
+                          <span className="title is-6">4.5/5</span>
                         </div>
                         <div style={{ marginTop: 5 }}>
-                          <p>Ngày cập nhật: 10/9/2023</p>
+                          <p className="title is-6">
+                            <strong className="subtitle is-6 has-text-primary">
+                              Ngày cập nhật:
+                            </strong>
+                            &nbsp; 10/9/2023
+                          </p>
                         </div>
-                        <p className="subtitle is-6" style={{ marginTop: 10 }}>
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cá
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Bột
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Cà chua
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Hành tây
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Thịt lợn
-                          </button>
-                          &nbsp; &nbsp;
-                          <button class="button is-primary is-light is-small is-0-mobile mb-2">
-                            Tôm hùm
-                          </button>
+                        <p
+                          className="title is-6 mb-0"
+                          style={{ marginTop: 10 }}
+                        >
+                          <strong className="subtitle is-6 has-text-primary">
+                            Loại:
+                          </strong>
+                          &nbsp; Buổi sáng
+                        </p>
+                        <p className="title is-6" style={{ marginTop: 10 }}>
+                          <strong className="subtitle is-6 has-text-primary">
+                            Độ tuổi:
+                          </strong>
+                          &nbsp; 6 tháng tuổi
                         </p>
                       </div>
                     </div>
