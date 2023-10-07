@@ -302,7 +302,7 @@ const Navbar = () => {
                   className="subtitle is-6 mb-0"
                   style={{ color: "rgba(245, 245, 245, 0.8" }}
                 >
-                300+ món ăn dinh dưỡng
+                  300+ món ăn dinh dưỡng
                 </span>
               </div>
               <div style={{ display: "flex" }}>
@@ -327,12 +327,15 @@ const Navbar = () => {
                   className="subtitle is-6 mb-0"
                   style={{ color: "rgba(245, 245, 245, 0.8" }}
                 >
-                 Lên thực đơn cho bữa ăn
+                  Lên thực đơn cho bữa ăn
                 </span>
               </div>
             </div>
           </div>
-          <div className="mt-5" style={{ textAlign: "center", paddingBottom: "15px" }}>
+          <div
+            className="mt-5"
+            style={{ textAlign: "center", paddingBottom: "15px" }}
+          >
             <button
               class="button is-warning"
               style={{ color: "black", width: 300 }}
