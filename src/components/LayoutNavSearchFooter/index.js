@@ -4,6 +4,7 @@ import Search from "../Search";
 import Footer from "../Footer";
 import "./index.css";
 import Advertisement from "../Advertisement";
+import Filter from "../Filter";
 
 const LayoutNavSearchFooter = ({ children }) => {
   return (
@@ -13,10 +14,9 @@ const LayoutNavSearchFooter = ({ children }) => {
         <Search />
         <div className="layout-container">
           <div className="layout-sidebar">
-            <article
-              className="tile is-child notification is-success layout-content"
-              style={{ height: 600 }}
-            ></article>
+            <article className="layout-content" style={{ height: 600 }}>
+              <Filter />
+            </article>
           </div>
           <div className="layout-main-content">{children}</div>
           <div className="layout-sidebar">
