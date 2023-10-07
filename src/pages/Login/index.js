@@ -188,6 +188,23 @@ const Login = () => {
               style={{ position: "absolute", top: 235, right: 50 }}
             />
           </div>
+          <div
+            style={{
+              zIndex: 1001,
+              textAlign: "center",
+              position: "absolute",
+              bottom: 20,
+            }}
+          >
+            <a href="/admin/login">
+              <button
+                className="facebook-button"
+                style={{ fontSize: "15px", width: 110 }}
+              >
+                Admin login
+              </button>
+            </a>
+          </div>
 
           {/* <div className="field">
               <div className="button-container">
