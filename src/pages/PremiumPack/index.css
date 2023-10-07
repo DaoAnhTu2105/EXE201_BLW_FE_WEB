@@ -1,8 +1,7 @@
 .pack-container {
-    width: 60%;
+    width: 1000px;
     height: 100vh;
     text-align: center;
-    margin: 0 auto;
 }
 
 .pack-table {
@@ -43,4 +42,14 @@
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
+}
+
+.pack-header{
+    padding: 50px 0;
+}
+
+.pack-heading{
+    font-size: 45px;
+    font-family: "Nunito";
+    font-weight: 800;
 }

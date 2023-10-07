@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/login.css"
 import imgLogo from "../../image/logo.jpg"
+import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
+    const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const adminLoginAPI_URL = `https://blw-api.azurewebsites.net/api/StaffAccount/LoginAdminOrStaff?username=${username}&password=${password}'`
+    const handleLogin = async () => {
+        try {
+            const response = await fetch(adminLoginAPI_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                navigate('/admin/dashboard')
+            } else {
+                navigate('/admin/dashboard')
+                // Handle login failure, display an error message, etc.
+                setError('Login failed. Please check your credentials.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setError('An error occurred while logging in.');
+        }
+    };
     return (
         <>
 
@@ -24,32 +51,33 @@ const AdminLogin = () => {
                         </div>
                     </div>
 
-                    <div style={{ display: "flex", alignContent: "center", margin: "0", justifyContent: "center" ,paddingTop:"50px"}}>
+                    <div style={{ display: "flex", alignContent: "center", margin: "0", justifyContent: "center", paddingTop: "50px" }}>
                         <p className="login-notice-p">Please login with your username and password!</p>
+                        {error && <p className="error-message">{error}</p>}
                     </div>
 
-                    <div class="form-login-container">
-                        <div class="centered-form column is-6 ">
+                    <div className="form-login-container">
+                        <div className="centered-form column is-6 ">
                             <div style={{ alignContent: "center", margin: "0", justifyContent: "center" }}>
-                                <div class="field column">
-                                    <p class="control has-icons-left">
-                                        <input class="input" type="email" placeholder="Enter Username"></input>
-                                        <span class="icon is-small is-left">
-                                            <i class="fa-solid fa-user"></i>
+                                <div className="field column">
+                                    <p className="control has-icons-left">
+                                        <input className="input" type="email" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)}></input>
+                                        <span className="icon is-small is-left">
+                                            <i className="fa-solid fa-user"></i>
                                         </span>
 
                                     </p>
                                 </div>
-                                <div class="field column">
-                                    <p class="control has-icons-left">
-                                        <input class="input" type="password" placeholder="Enter Password"></input>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-lock"></i>
+                                <div className="field column">
+                                    <p className="control has-icons-left">
+                                        <input className="input" type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)}></input>
+                                        <span className="icon is-small is-left">
+                                            <i className="fas fa-lock"></i>
                                         </span>
                                     </p>
                                 </div>
-                                <div class="buttons" style={{ justifyContent: "center", alignItems: "center", margin: "0" }}>
-                                    <button class="button is-success" style={{ fontFamily: "Nunito", width: "200px", alignContent: "center", alignItems: "center" }}>Login</button>
+                                <div className="buttons" style={{ justifyContent: "center", alignItems: "center", margin: "0" }}>
+                                    <button onClick={handleLogin} className="button is-success" style={{ fontFamily: "Nunito", width: "200px", alignContent: "center", alignItems: "center" }}>Login</button>
                                 </div>
                             </div>
 

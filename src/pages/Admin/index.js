@@ -1,111 +1,58 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Typography from '@mui/material/Typography'
 import SideBar from "./sidebar";
 import { useQuery } from "react-query";
 import "./css/index.css"
-
+import Transactions from "./transactions";
+import CustomersManager from "./customers";
+import RecipesManager from "./recipes";
+import FoodsManager from "./foods";
+import ExpertManager from "./experts";
+import { Link } from "react-router-dom";
 const Admin = () => {
+    const [selectedContentBread, setSelectedContentBread] = useState('Khách hàng')
 
-
-    const [selectedOption, setSelectedOption] = useState('incoming');
-
-    const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
-
-    };
-    const styledSelect =
-        selectedOption === 'success' ? { backgroundColor: "#48c78e" } : { backgroundColor: "#ffe08a" };
-
+    const handleSelectContent = (content) => {
+        setSelectedContentBread(content)
+    }
+    console.log(selectedContentBread)
     return (
         <>
 
             <div className="container-admin">
                 <div style={{ width: "20%" }}>
-                    <SideBar />
+                    <SideBar selectContent={handleSelectContent} />
                 </div>
                 <div style={{ margin: "55px ", width: "70%" }}>
                     <div style={{ backgroundColor: "#f3f6f4", height: "50px" }}>
                         <nav className="breadcrumb" aria-label="breadcrumbs" style={{ display: "flex", justifyContent: "start", alignItems: "center", height: "100%" }}>
                             <ul style={{ display: "flex", alignItems: "center", listStyle: "none", padding: "0", margin: 0 }}>
-                                <li style={{ paddingLeft: "20px" }}><a className="bread-crumb" href="#">Home</a></li>
-                                <li className="is-active"><a href="#" className="bread-crumb" aria-current="page">Admin</a></li>
+                                <li style={{ paddingLeft: "20px" }}><a className="bread-crumb" href="/admin/dashboard">Home</a></li>
+                                <li className="is-active"><a href="#" className="bread-crumb" aria-current="page">{selectedContentBread}</a></li>
                             </ul>
                         </nav>
                     </div>
-                    <hr />
+                    <hr style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }} />
                     <div id="heading-title">
-                        <p id="heading">Transactions</p>
+                        <p id="heading" >{selectedContentBread}</p>
                     </div>
                     <div>
-                        <button disabled> All (3)</button>
+                        <button disabled className="button is-rounded" style={{ border: "1px solid black" }}> All (3)</button>
                     </div>
-                    <section class="ftco-section">
-                        <div class="container-trans">
-                            <div class="row-trans justify-content-center">
-                                <div class="col-md-6 text-center mb-5">
-                                    <h2 class="heading-section">Table #09</h2>
-                                </div>
-                            </div>
-                            <div class="row-trans">
-                                <div class="col-md-12-trans">
-                                    <div class="table-wrap">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Invoce</th>
-                                                    <th>Customer</th>
-                                                    <th>Ship</th>
-                                                    <th>Price</th>
-                                                    <th>Pruchased Price</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row-trans">1001</th>
-                                                    <td>Mark Otto</td>
-                                                    <td>Japan</td>
-                                                    <td>$3000</td>
-                                                    <td>$1200</td>
+                    <section className="ftco-section" style={selectedContentBread === 'Giao dịch' ? {} : { display: 'none' }}>
+                        <Transactions />
+                    </section>
 
-                                                    <td>
-                                                        <div class="select is-rounded">
-                                                            <select class="select is-rounded">
-                                                                <option>
-                                                                    <button class="button is-success">Success</button>
-                                                                </option>
-
-                                                                <option defaultValue>
-                                                                    <button class="button is-danger">Incoming</button>
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr style={{ alignItems: "center" }}>
-                                                    <th scope="row-trans">1001</th>
-                                                    <td>Mark Otto</td>
-                                                    <td>Japan</td>
-                                                    <td>$3000</td>
-                                                    <td>$1200</td>
-
-                                                    <td>
-                                                        <div>
-                                                            <div class="select is-rounded" style={styledSelect}>
-                                                                <select value={selectedOption} onChange={handleSelectChange} >
-                                                                    <option value="success is-success" >Success</option>
-                                                                    <option value="incoming is-warning">Incoming</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div >
-                        </div>
+                    <section className="ftco-section" style={selectedContentBread === 'Khách hàng' ? {} : { display: 'none' }}>
+                        <CustomersManager />
+                    </section>
+                    {/* <section className="ftco-section">
+                        <RecipesManager />
+                    </section>
+                    <section className="ftco-section">
+                        <FoodsManager />
+                    </section> */}
+                    <section className="ftco-section" style={selectedContentBread === 'Chuyên gia' ? {} : { display: 'none' }}>
+                        <ExpertManager />
                     </section>
                 </div>
             </div >

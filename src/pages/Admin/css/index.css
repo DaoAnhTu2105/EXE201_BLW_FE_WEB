@@ -48,13 +48,60 @@ hr {
     margin-left: -15px;
 }
 
-table {
+.table {
     border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+
+
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody+tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table-sm th,
+/* .table-sm td {
+    padding: 0.3rem;
+} */
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+    border-bottom-width: 2px;
+}
+
+.table-borderless th,
+.table-borderless td,
+.table-borderless thead th,
+.table-borderless tbody+tbody {
+    border: 0;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0, 0, 0, 0.05);
 }
+
 
 .table-dark {
     color: #fff;
@@ -96,6 +143,7 @@ table {
 
 .container-trans {
     width: 100%;
+    padding-top: 20px;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -133,9 +181,9 @@ table {
     max-width: 100%;
 }
 
-.table-wrap {
+/* .table-wrap {
     overflow-x: scroll;
-}
+} */
 
 .button {
     border-radius: 50px;

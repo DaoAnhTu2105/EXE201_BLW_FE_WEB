@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.css'
 import './index.scss'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { Box, styled } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
@@ -13,22 +12,19 @@ import { Button } from '@mui/base/Button';
 import Grid from '@mui/material/Grid';
 import momoLogo from '../../image/png/momo_icon_square_pinkbg@3x.png'
 import { useQuery } from "react-query";
-import axios from "axios";
-import QRCode from "react-qr-code";
-import base64js from 'base64-js';
 
-function decodeBase64(base64String) {
-    const bytes = base64js.toByteArray(base64String);
-    const decodedString = new TextDecoder('utf-8').decode(new Uint8Array(bytes));
-    return decodedString;
-}
+// function decodeBase64(base64String) {
+//     const bytes = base64js.toByteArray(base64String);
+//     const decodedString = new TextDecoder('utf-8').decode(new Uint8Array(bytes));
+//     return decodedString;
+// }
 const PremiumPack = () => {
     //-------------------Authenticate-----------------------------
 
     const user = JSON.parse(localStorage.getItem('user'))
     const accessToken = user?.token
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const paymentURL = `https://blw-api.azurewebsites.net/api/Payments/Get?id=175c31954b1c496b9ffc`
 
@@ -48,63 +44,69 @@ const PremiumPack = () => {
 
     return (
         <>
-            <div className="pack-container" style={{ width: "70%", backgroundColor: "#eeeeee", padding: "20px 200px 0 200px" }} >
-                <div style={{ display: "flex", justifyContent: "center", paddingBottom: "20px" }}>
-                    <div className="pack-table">
-                        <table className="table is-striped ">
-                            <thead>
-                                <tr>
-
-                                    <th>Quyền Lợi Thành Viên</th>
-                                    <th>Miễn Phí</th>
-                                    <th>Tiêu Chuẩn</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>Bỏ Qua Quảng Cáo</td>
-                                    <td>-</td>
-                                    <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
-                                </tr>
-                                <tr>
-
-                                    <td>Xem thực đơn bữa ăn</td>
-                                    <td>-</td>
-                                    <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
-                                </tr>
-                                <tr>
-
-                                    <td> 300+ thực đơn cho bé</td>
-                                    <td>-</td>
-                                    <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
-                                </tr>
-                                <tr>
-                                    <td>Xem thực đơn bữa ăn</td>
-                                    <td>-</td>
-                                    <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
+            <div style={{ width: "100%", backgroundColor: "#eeeeee", paddingLeft: "-200px", minHeight: "800px" }} >
+                <div className="pack-container" >
+                    <div className="pack-header">
+                        <h1 className="pack-heading">Tham gia hội viên ngay để nhận nhiều phúc lợi</h1>
                     </div>
-                </div>
-                <div style={{ paddingTop: "50px", display: "flex", justifyContent: "center", paddingRight: "25px" }}>
-                    <div className="package-1" onClick={handleOpen}>
-                        <div className="name">Gói tháng</div>
-                        <div className="price-for-month">49.000đ</div>
-                        <div className="trial">Sau tháng đầu tiên 120.000đ</div>
-                        <hr />
-                    </div>
-                    <div className="package-2" >
-                        <div className="name">Gói nửa năm</div>
-                        <div className="price-for-6-month">499.000đ</div>
-                        <div className="trial">7 ngày dùng thử miễn phí</div>
-                        <hr />
-                    </div>
-                </div>
+                    <div style={{ display: "flex", justifyContent: "center", paddingBottom: "20px" }}>
 
-            </div >
+                        <div className="pack-table">
+                            <table className="table is-striped ">
+                                <thead>
+                                    <tr>
+                                        <th>Quyền lợi thành viên</th>
+                                        <th>Miễn phí</th>
+                                        <th>Hội viên</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td>Bỏ Qua Quảng Cáo</td>
+                                        <td>-</td>
+                                        <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>Xem thực đơn bữa ăn</td>
+                                        <td>-</td>
+                                        <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td> 300+ thực đơn cho bé</td>
+                                        <td>-</td>
+                                        <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Xem thực đơn bữa ăn</td>
+                                        <td>-</td>
+                                        <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center", padding: "50px 25px 0 25px" }}>
+                        <div className="package-1" onClick={handleOpen}>
+                            <div className="name">Gói tháng</div>
+                            <div className="price-for-month">49.000đ</div>
+                            <div className="trial">Sau tháng đầu tiên 120.000đ</div>
+                            <hr />
+                        </div>
+                        <div className="package-2" >
+                            <div className="name">Gói nửa năm</div>
+                            <div className="price-for-6-month">499.000đ</div>
+                            <div className="trial">7 ngày dùng thử miễn phí</div>
+                            <hr />
+                        </div>
+                    </div>
+
+                </div >
+            </div>
+
 
 
             <div>
@@ -118,12 +120,11 @@ const PremiumPack = () => {
                 >
                     <Fade in={open}>
                         <Box sx={style}>
-                            <div style={{ display: "flex" }}>
+                            <div style={{ display: "flex" ,alignItems:"center", paddingBottom:"10px"}}>
                                 <img style={{ width: 32, height: 32 }} src={momoLogo} alt=""></img>
-                                <div style={{ margin: " auto 0", paddingLeft: "20px" }}>
+                                <div style={{ width:"500px",margin: "auto 0", paddingLeft: "20px" }}>
                                     <h2 id="transition-modal-title">Thanh toán bằng ví MoMo</h2>
                                 </div>
-
                                 <hr />
                             </div>
 
