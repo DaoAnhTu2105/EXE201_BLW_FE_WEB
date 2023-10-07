@@ -1,7 +1,7 @@
 .layout-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding-left: 50px;
+    padding-left: 20px;
     gap: 25px;
     }
   
@@ -11,12 +11,12 @@
     }
   
     .layout-sidebar .layout-content{
-      width: 200px;
+      width: 230px;
       position: -webkit-sticky;
       position: sticky;
       top: 0;
       z-index: 900;
-      height: 600px; 
+      min-height: 900px; 
       overflow-y: auto;
     }
 
