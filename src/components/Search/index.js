@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
 
-const Search = () => {
+const Search = ({ handleSearchName, age, meal, rate }) => {
+  const [searchName, setSearchName] = useState("");
+
+  const handleSearch = async (e) => {
+    const result = e.target.value;
+    await setSearchName(result);
+    handleSearchName(result, age, meal, rate);
+  };
+
   return (
     <div
       style={{
@@ -12,19 +20,21 @@ const Search = () => {
       }}
     >
       <div
-        class="field"
+        className="field"
         style={{
           width: "500px",
           marginTop: "30px",
         }}
       >
-        <p class="control has-icons-left has-icons-right">
+        <p className="control has-icons-left has-icons-right">
           <input
-            class="input is-primary"
+            className="input is-primary"
             type="text"
             placeholder="Tìm kiếm ở đây"
+            value={searchName}
+            onChange={handleSearch}
           />
-          <span class="icon is-small is-left">
+          <span className="icon is-small is-left">
             <FontAwesomeIcon icon={faSearch} />
           </span>
         </p>
