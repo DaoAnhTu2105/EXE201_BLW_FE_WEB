@@ -196,7 +196,7 @@ const Recipe = () => {
               </div>
             ) : (
               <div className="grid-container-food">
-                {recipes.data.map((recipe) => (
+                {recipes?.data?.result.map((recipe) => (
                   <div className="grid-item-food" key={recipe.recipeId}>
                     <div
                       className="card"

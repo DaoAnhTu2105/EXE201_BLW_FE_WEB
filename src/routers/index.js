@@ -22,6 +22,7 @@ import AdminLogin from "../pages/Admin/login";
 import ListExpert from "../pages/ListExpert";
 import PrivateRouters from "./PrivateRouter";
 import LayoutWithoutAds from "../components/LayoutWithoutAds";
+import UserRouters from "./UserRouter";
 
 export const publicRouters = [
   {
@@ -53,8 +54,8 @@ export const publicRouters = [
     layout: LayoutWithoutSearch,
   },
   {
-    path: "/recipeDetail",
-    name: "recipeDetail",
+    path: "/recipe-detail/:id",
+    name: "recipe-detail",
     component: RecipeDetail,
     layout: LayoutWithoutAds,
   },
@@ -76,8 +77,8 @@ export const publicRouters = [
     layout: LayoutWithoutAds,
   },
   {
-    path: "/planDetail",
-    name: "planDetail",
+    path: "/plan-detail",
+    name: "plan-detail",
     component: PlanDetail,
     layout: LayoutWithoutSearch,
   },
@@ -113,8 +114,6 @@ export const privateRouters = [
     layout: LayoutWithoutAds,
   },
 ];
-
-export const cookerRouters = [];
 
 export const userRouters = [];
 
@@ -210,12 +209,12 @@ export const RouterComponents = () => {
           </Route>
           {/* <Route exact path="/" element={<UserRouters />}>
             {userRouters.map((route, index) => {
-              const Page = route.component
-              let Layout = DefaultLayout
+              const Page = route.component;
+              let Layout = DefaultLayout;
               if (route.layout) {
-                Layout = route.layout
+                Layout = route.layout;
               } else if (route.layout === null) {
-                Layout = Fragment
+                Layout = Fragment;
               }
               return (
                 <Route
@@ -227,7 +226,7 @@ export const RouterComponents = () => {
                     </Layout>
                   }
                 />
-              )
+              );
             })}
           </Route> */}
         </Routes>
