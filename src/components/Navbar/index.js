@@ -9,9 +9,8 @@ import {
   faCrown,
   faChevronRight,
   faDisplay,
-  faFire,
 } from "@fortawesome/free-solid-svg-icons";
-import { faAdversal, faJs } from "@fortawesome/free-brands-svg-icons";
+import { faJs } from "@fortawesome/free-brands-svg-icons";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
@@ -19,7 +18,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import imgUser from "../../image/user.jpg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { useNavigate } from "react-router-dom";
+
 import imgLogo from "../../image/logo.jpg";
 
 const style = {
@@ -34,11 +33,9 @@ const style = {
 };
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
   const [buttonVip, setButtonVip] = useState(false);
   const [mouseLeftContent, setMouseLeftContent] = useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   console.log("user: ", user);
   useEffect(() => {
@@ -60,7 +57,6 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    navigate("/");
     window.location.reload();
   };
 
@@ -89,6 +85,7 @@ const Navbar = () => {
                 style={{ borderRadius: "50%" }}
                 width="130"
                 height="130"
+                alt="#"
               />
 
               {/* Blw */}
