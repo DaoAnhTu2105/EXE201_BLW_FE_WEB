@@ -35,8 +35,9 @@ const Admin = () => {
                     <div id="heading-title">
                         <p id="heading" >{selectedContentBread}</p>
                     </div>
-                    <div>
-                        <button disabled className="button is-rounded" style={{ border: "1px solid black" }}> All (3)</button>
+                    <div style={{ display: "flex" }}>
+                        <button disabled className="button is-rounded" style={{ border: "1px solid black" }}> All (2)</button>
+                        {selectedContentBread === 'Chuyên gia' ? <button className="button is-primary" style={{ marginLeft: "20px" }}>+ Add new</button> : ''}
                     </div>
                     <section className="ftco-section" style={selectedContentBread === 'Giao dịch' ? {} : { display: 'none' }}>
                         <Transactions />

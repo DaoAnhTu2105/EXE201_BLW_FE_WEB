@@ -87,7 +87,7 @@ export const publicRouters = [
     component: Admin,
   },
   {
-    path: "/admin/login",
+    path: "/blw-manager/login",
     name: "adminlogin",
     component: AdminLogin,
   },

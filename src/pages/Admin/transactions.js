@@ -43,7 +43,7 @@ const Transactions = () => {
                                             <p className="has-text-danger" style={{fontWeight:"700"}}>Chưa duyệt</p>
                                         </td>
                                         <td>
-                                            <button className="button is-rounded" style={{ width: "150px" }}>Chấp nhận</button>
+                                            <button className="button is-link is-rounded" style={{ width: "150px" }}>Chấp nhận</button>
                                         </td>
                                     </tr>
                                 </tbody>

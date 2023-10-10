@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.css'
@@ -8,11 +7,11 @@ import PropTypes from 'prop-types';
 import { Box, styled } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
 import Fade from '@mui/material/Fade';
-import { Button } from '@mui/base/Button';
 import Grid from '@mui/material/Grid';
 import momoLogo from '../../image/png/momo_icon_square_pinkbg@3x.png'
 import { useQuery } from "react-query";
-
+import { QueryClient } from 'react-query'
+import Swal from "sweetalert2";
 // function decodeBase64(base64String) {
 //     const bytes = base64js.toByteArray(base64String);
 //     const decodedString = new TextDecoder('utf-8').decode(new Uint8Array(bytes));
@@ -21,33 +20,54 @@ import { useQuery } from "react-query";
 const PremiumPack = () => {
     //-------------------Authenticate-----------------------------
 
+    const queryClient = new QueryClient()
     const user = JSON.parse(localStorage.getItem('user'))
     const accessToken = user?.token
-
+    const [data, setData] = useState('')
     const [open, setOpen] = useState(false);
+    const handleOpen = async (id) => {
 
-    const paymentURL = `https://blw-api.azurewebsites.net/api/Payments/Get?id=175c31954b1c496b9ffc`
+        if (user) {
+            setOpen(true);
+            const paymentURL = `https://blw-api.azurewebsites.net/api/Payments/Get?id=${id}`
+            const response = await fetch(paymentURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch payment data');
+            }
+            const data = await response.json();
+            setData(data)
+            console.log(data)
+            return data
 
-    const { data, isLoading, isError } = useQuery('paymentAPI', () => fetch(paymentURL, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
+
+        } else {
+            Swal.fire({
+                title: '<div> <strong style="font-family:Nunito">Bạn chưa đăng nhập !</strong></div>',
+                icon: 'info',
+                html: '<a style="font-family:Nunito; text-decoration: underline; color:#00d1b2 " href="/login" >ĐĂNG NHẬP NGAY &nbsp;<i class="fa-solid fa-arrow-right"></i></a>',
+                showCloseButton: true,
+                showCancelButton: false,
+                showConfirmButton: false,
+            })
         }
-    }).then(response => response.json()))
-
-    const handleOpen = () => {
-        setOpen(true);
-        console.log(data)
     }
-    const handleClose = () => setOpen(false);
+
+    const handleClose = () => {
+        setOpen(false)
+    };
 
     return (
         <>
             <div style={{ width: "100%", backgroundColor: "#eeeeee", paddingLeft: "-200px", minHeight: "800px" }} >
                 <div className="pack-container" >
                     <div className="pack-header">
-                        <h1 className="pack-heading">Tham gia hội viên ngay để nhận nhiều phúc lợi</h1>
+                        <h1 className="pack-heading">Tham gia hội viên ngay</h1>
                     </div>
                     <div style={{ display: "flex", justifyContent: "center", paddingBottom: "20px" }}>
 
@@ -67,12 +87,7 @@ const PremiumPack = () => {
                                         <td>-</td>
                                         <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
                                     </tr>
-                                    <tr>
 
-                                        <td>Xem thực đơn bữa ăn</td>
-                                        <td>-</td>
-                                        <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
-                                    </tr>
                                     <tr>
 
                                         <td> 300+ thực đơn cho bé</td>
@@ -80,7 +95,7 @@ const PremiumPack = () => {
                                         <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
                                     </tr>
                                     <tr>
-                                        <td>Xem thực đơn bữa ăn</td>
+                                        <td>Lên thực đơn cho bữa ăn</td>
                                         <td>-</td>
                                         <td><FontAwesomeIcon icon={faCheck} style={{ fontSize: "1.3rem", color: " #33c4b6", marginRight: "3px" }} /></td>
                                     </tr>
@@ -90,18 +105,27 @@ const PremiumPack = () => {
                         </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "center", padding: "50px 25px 0 25px" }}>
-                        <div className="package-1" onClick={handleOpen}>
+
+                        <div className="package-1" onClick={(newValue) => {
+                            newValue = '175c31954b1c496b9ffc'
+                            handleOpen(newValue)
+                        }}>
                             <div className="name">Gói tháng</div>
                             <div className="price-for-month">49.000đ</div>
                             <div className="trial">Sau tháng đầu tiên 120.000đ</div>
                             <hr />
                         </div>
-                        <div className="package-2" >
+
+                        <div className="package-2" onClick={(newValue) => {
+                            newValue = '5b3b672f22294e4e851d'
+                            handleOpen(newValue)
+                        }}>
                             <div className="name">Gói nửa năm</div>
                             <div className="price-for-6-month">499.000đ</div>
                             <div className="trial">7 ngày dùng thử miễn phí</div>
                             <hr />
                         </div>
+
                     </div>
 
                 </div >
@@ -120,9 +144,9 @@ const PremiumPack = () => {
                 >
                     <Fade in={open}>
                         <Box sx={style}>
-                            <div style={{ display: "flex" ,alignItems:"center", paddingBottom:"10px"}}>
+                            <div style={{ display: "flex", alignItems: "center", paddingBottom: "10px" }}>
                                 <img style={{ width: 32, height: 32 }} src={momoLogo} alt=""></img>
-                                <div style={{ width:"500px",margin: "auto 0", paddingLeft: "20px" }}>
+                                <div style={{ width: "500px", margin: "auto 0", paddingLeft: "20px" }}>
                                     <h2 id="transition-modal-title">Thanh toán bằng ví MoMo</h2>
                                 </div>
                                 <hr />
@@ -193,25 +217,6 @@ Backdrop.propTypes = {
     open: PropTypes.bool,
 };
 
-const blue = {
-    200: '#99CCF3',
-    400: '#3399FF',
-    500: '#007FFF',
-};
-
-const grey = {
-    50: '#f6f8fa',
-    100: '#eaeef2',
-    200: '#d0d7de',
-    300: '#afb8c1',
-    400: '#8c959f',
-    500: '#6e7781',
-    600: '#57606a',
-    700: '#424a53',
-    800: '#32383f',
-    900: '#24292f',
-};
-
 const StyledModal = styled(Modal)`
     position: fixed;
     z-index: 1300;
@@ -241,29 +246,3 @@ const style = (theme) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
     boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
 });
-
-const TriggerButton = styled(Button)(
-    ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    box-sizing: border-box;
-    min-height: calc(1.5em + 22px);
-    border-radius: 12px;
-    padding: 6px 12px;
-    line-height: 1.5;
-    background: transparent;
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
-  
-    &:hover {
-      background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-      border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
-    }
-  
-    &:focus-visible {
-      border-color: ${blue[400]};
-      outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-    }
-    `,
-);

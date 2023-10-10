@@ -7,7 +7,7 @@ const AdminLogin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const adminLoginAPI_URL = `https://blw-api.azurewebsites.net/api/StaffAccount/LoginAdminOrStaff?username=${username}&password=${password}'`
+    const adminLoginAPI_URL = `https://blw-api.azurewebsites.net/api/StaffAccount/LoginAdminOrStaff?username=${username}&password=${password}`
     const handleLogin = async () => {
         try {
             const response = await fetch(adminLoginAPI_URL, {
@@ -18,9 +18,14 @@ const AdminLogin = () => {
             });
 
             if (response.ok) {
-                navigate('/admin/dashboard')
+                const data = await response.json();
+                console.log(data)
+                if (data.data.role === 0) {
+                    navigate('/admin/dashboard')
+                }
+
             } else {
-                navigate('/admin/dashboard')
+                // navigate('/admin/dashboard')
                 // Handle login failure, display an error message, etc.
                 setError('Login failed. Please check your credentials.');
             }
@@ -53,7 +58,7 @@ const AdminLogin = () => {
 
                     <div style={{ display: "flex", alignContent: "center", margin: "0", justifyContent: "center", paddingTop: "50px" }}>
                         <p className="login-notice-p">Please login with your username and password!</p>
-                        {error && <p className="error-message">{error}</p>}
+
                     </div>
 
                     <div className="form-login-container">
@@ -61,7 +66,10 @@ const AdminLogin = () => {
                             <div style={{ alignContent: "center", margin: "0", justifyContent: "center" }}>
                                 <div className="field column">
                                     <p className="control has-icons-left">
-                                        <input className="input" type="email" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)}></input>
+                                        <input className="input" type="email" placeholder="Enter Username" onChange={(e) => {
+                                            setUsername(e.target.value)
+                                            setError('')
+                                        }}></input>
                                         <span className="icon is-small is-left">
                                             <i className="fa-solid fa-user"></i>
                                         </span>
@@ -70,13 +78,21 @@ const AdminLogin = () => {
                                 </div>
                                 <div className="field column">
                                     <p className="control has-icons-left">
-                                        <input className="input" type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)}></input>
+                                        <input className="input" type="password" placeholder="Enter Password" onChange={(e) => {
+                                            setPassword(e.target.value)
+                                            setError('')
+                                        }}></input>
                                         <span className="icon is-small is-left">
                                             <i className="fas fa-lock"></i>
                                         </span>
                                     </p>
                                 </div>
-                                <div className="buttons" style={{ justifyContent: "center", alignItems: "center", margin: "0" }}>
+                                {error &&
+                                    <div style={{ display: "flex", justifyContent: "center" }}>
+                                        <p className="error-message" style={{ color: "red" }}>{error}</p>
+                                    </div>
+                                }
+                                <div className="buttons" style={{ justifyContent: "center", alignItems: "center", margin: "0", marginTop: "15px" }}>
                                     <button onClick={handleLogin} className="button is-success" style={{ fontFamily: "Nunito", width: "200px", alignContent: "center", alignItems: "center" }}>Login</button>
                                 </div>
                             </div>
