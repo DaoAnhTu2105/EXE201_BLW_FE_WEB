@@ -19,8 +19,6 @@ import Swal from "sweetalert2";
 // }
 const PremiumPack = () => {
     //-------------------Authenticate-----------------------------
-
-    const queryClient = new QueryClient()
     const user = JSON.parse(localStorage.getItem('user'))
     const accessToken = user?.token
     const [data, setData] = useState('')
@@ -181,8 +179,11 @@ const PremiumPack = () => {
                                                 <b>Quét mã QR</b></p>
                                         </div>
 
-                                        <div className="step-description"><span className="step-number">3</span><p>Quét mã QR ở trang này và thanh toán</p></div>
+                                        <div className="step-description"><span className="step-number">3</span><p>Quét mã QR và nhập mã {data?.privateCode}</p></div>
+                                        <div className="step-description"><span className="step-number">4</span><p>Hoàn tất thanh toán và chọn "tôi đã thanh toán"</p></div>
                                     </Grid>
+
+
                                     <button className="button is-success" style={{
                                         position: "absolute",
                                         bottom: "50px",
