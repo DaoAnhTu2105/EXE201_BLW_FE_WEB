@@ -102,7 +102,10 @@ const Home = ({ results }) => {
             >
               <div className="grid-container">
                 {results?.data.map((result) => (
-                  <Link to="/recipeDetail" key={result.recipeId}>
+                  <Link
+                    to={`/recipe-detail/${result.recipeId}`}
+                    key={result.recipeId}
+                  >
                     <div className="grid-item">
                       <div
                         className="card"
@@ -228,7 +231,10 @@ const Home = ({ results }) => {
               ) : (
                 <div className="grid-container">
                   {recommendRecipes?.data.slice(0, 3).map((recommendRecipe) => (
-                    <Link to="/recipeDetail" key={recommendRecipe.recipeId}>
+                    <Link
+                      to={`/recipe-detail/${recommendRecipe.recipeId}`}
+                      key={recommendRecipe.recipeId}
+                    >
                       <div className="grid-item">
                         <div
                           className="card"
@@ -360,9 +366,9 @@ const Home = ({ results }) => {
                   </div>
                 ) : (
                   <div className="grid-container">
-                    {recipes?.data.slice(0, 3).map((recipe) => (
+                    {recipes?.data?.result.slice(0, 3).map((recipe) => (
                       <div className="grid-item" key={recipe.recipeId}>
-                        <Link to="/recipeDetail">
+                        <Link to={`/recipe-detail/${recipe.recipeId}`}>
                           <div
                             className="card"
                             style={{ width: "290px", height: "380px" }}

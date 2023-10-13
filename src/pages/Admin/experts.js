@@ -18,10 +18,23 @@ const ExpertManager = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
-
-
-
         <>
+            <div style={{ backgroundColor: "#f3f6f4", height: "50px" }}>
+                <nav className="breadcrumb" aria-label="breadcrumbs" style={{ display: "flex", justifyContent: "start", alignItems: "center", height: "100%" }}>
+                    <ul style={{ display: "flex", alignItems: "center", listStyle: "none", padding: "0", margin: 0 }}>
+                        <li style={{ paddingLeft: "20px" }}><a className="bread-crumb" href="/admin/dashboard">Trang chủ</a></li>
+                        <li className="is-active"><a href="#" className="bread-crumb" aria-current="page">Chuyên gia</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <hr style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }} />
+            <div id="heading-title">
+                <p id="heading" >Chuyên gia</p>
+            </div>
+            <div style={{ display: "flex" }}>
+                <button disabled className="button is-rounded" style={{ border: "1px solid black" }}> Tất cả (2)</button>
+                <button style={{ marginLeft: "20px" }} onClick={handleOpen} className="button is-primary">+ Thêm mới</button>
+            </div>
             <div className="container-trans">
                 <div className="row-trans">
                     <div className="col-md-12-trans">
@@ -59,7 +72,6 @@ const ExpertManager = () => {
                 </div >
             </div >
             <div>
-                <Button onClick={handleOpen}>Open modal</Button>
                 <Modal
                     open={open}
                     onClose={handleClose}
@@ -68,10 +80,10 @@ const ExpertManager = () => {
                 >
                     <Box sx={style}>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Text in a modal
+                            Thêm mới chuyên gia
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                            <input class="input is-primary" type="text" placeholder="Primary input"></input>
                         </Typography>
                     </Box>
                 </Modal>
@@ -84,7 +96,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 900,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,

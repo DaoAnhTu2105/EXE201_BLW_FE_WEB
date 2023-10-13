@@ -67,7 +67,7 @@
 }
 
 #nav-bar {
-    position: absolute;
+    position: sticky;
     left: 1vw;
     top: 1vw;
     height: 100vh;

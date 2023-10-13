@@ -12,6 +12,7 @@ import momoLogo from '../../image/png/momo_icon_square_pinkbg@3x.png'
 import { useQuery } from "react-query";
 import { QueryClient } from 'react-query'
 import Swal from "sweetalert2";
+import CircularProgress from '@mui/material/CircularProgress';
 // function decodeBase64(base64String) {
 //     const bytes = base64js.toByteArray(base64String);
 //     const decodedString = new TextDecoder('utf-8').decode(new Uint8Array(bytes));
@@ -23,6 +24,8 @@ const PremiumPack = () => {
     const accessToken = user?.token
     const [data, setData] = useState('')
     const [open, setOpen] = useState(false);
+    console.log("open", open)
+    const [selectedPack, setSelectedPack] = useState('')
     const handleOpen = async (id) => {
 
         if (user) {
@@ -60,6 +63,54 @@ const PremiumPack = () => {
         setOpen(false)
     };
 
+
+
+    const handlePayment = async (packId, privateCode) => {
+        Swal.fire({
+            icon: 'question',
+            title: 'Bạn đã nhập mã ',
+            showDenyButton: false,
+            showCancelButton: true,
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Không'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                console.log("select pack", packId)
+                console.log("code", privateCode)
+                const createPaymentURL = `https://blw-api.azurewebsites.net/api/Payments/CreatePayment?packageId=${packId}&privateCode=${privateCode}`
+
+                const response = await fetch(createPaymentURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    }
+                });
+                if (response.ok) {
+                    handleClose()
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Vui lòng đợi thanh toán của bạn được chấp nhận',
+                        showConfirmButton: false,
+                        timer: 1500,
+
+                    })
+
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thanh toán không thành công',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+
+                }
+            }
+        })
+
+
+    }
     return (
         <>
             <div style={{ width: "100%", backgroundColor: "#eeeeee", paddingLeft: "-200px", minHeight: "800px" }} >
@@ -107,6 +158,7 @@ const PremiumPack = () => {
                         <div className="package-1" onClick={(newValue) => {
                             newValue = '175c31954b1c496b9ffc'
                             handleOpen(newValue)
+                            setSelectedPack('175c31954b1c496b9ffc')
                         }}>
                             <div className="name">Gói tháng</div>
                             <div className="price-for-month">49.000đ</div>
@@ -115,8 +167,9 @@ const PremiumPack = () => {
                         </div>
 
                         <div className="package-2" onClick={(newValue) => {
-                            newValue = '5b3b672f22294e4e851d'
+                            newValue = '0badbceb37a54cba83e7'
                             handleOpen(newValue)
+                            setSelectedPack('0badbceb37a54cba83e7')
                         }}>
                             <div className="name">Gói nửa năm</div>
                             <div className="price-for-6-month">499.000đ</div>
@@ -154,12 +207,18 @@ const PremiumPack = () => {
                             <Box sx={{ flexGrow: 1 }}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={6} md={5}>
-                                        <div style={{ height: "auto", maxWidth: 250, width: "100%" }}>
-                                            {/* {data && <QRCode size={500}
-                                                style={{ height: "auto", maxWidth: "100%", width: "100%" }} value={data} />} */}
-                                            {data && <img src={`data:image/jpeg;base64,${data.imageQR.fileContents}`} />}
-                                        </div>
+                                        <div style={{ height: "auto", maxWidth: 250, width: "100%", paddingTop: "50px" }}>
 
+                                            {data ? (
+                                                <img
+                                                    src={`data:image/jpeg;base64,${data.imageQR.fileContents}`}
+                                                />
+                                            ) : (
+                                                <Box sx={{ display: 'flex', justifyContent: "center", alignContent: "center" }}>
+                                                    <CircularProgress />
+                                                </Box>
+                                            )}
+                                        </div>
                                     </Grid>
                                     <Grid item xs={6} md={7}>
 
@@ -173,14 +232,14 @@ const PremiumPack = () => {
                                             <span className="step-number">1</span>
                                             <p>Mở <b>ứng dụng MoMo</b> trên điện thoại</p>
                                         </div>
-                                        <div className="step-description">
+                                        <div className="step-description" >
                                             <span className="step-number">2</span>
                                             <p>Trên MoMo, chọn biểu tượng<img style={{ margin: "0 5px", width: 24, height: 24 }} src="https://salt.tikicdn.com/ts/upload/03/74/d4/01670f7f9e6a3c86583939eb2494e9cf.png" alt="icon"></img>
                                                 <b>Quét mã QR</b></p>
                                         </div>
 
-                                        <div className="step-description"><span className="step-number">3</span><p>Quét mã QR và nhập mã {data?.privateCode}</p></div>
-                                        <div className="step-description"><span className="step-number">4</span><p>Hoàn tất thanh toán và chọn "tôi đã thanh toán"</p></div>
+                                        <div className="step-description" style={{ alignItems: "center" }}><span className="step-number">3</span><p>Quét mã QR và nhập nội dung chuyển tiền <b> {data?.privateCode}</b></p></div>
+                                        <div className="step-description" style={{ alignItems: "center" }}><span className="step-number">4</span><p>Hoàn tất thanh toán và chọn "tôi đã thanh toán"</p></div>
                                     </Grid>
 
 
@@ -193,7 +252,11 @@ const PremiumPack = () => {
                                         padding: "10px 20px",
                                         borderRadius: "15px",
                                         cursor: "pointer"
-                                    }}>Tôi đã thanh toán</button>
+                                    }}
+                                        onClick={() => {
+                                            handlePayment(selectedPack, data.privateCode)
+                                        }}
+                                    >Tôi đã thanh toán</button>
                                 </Grid>
                             </Box>
                         </Box>
@@ -219,21 +282,21 @@ Backdrop.propTypes = {
 };
 
 const StyledModal = styled(Modal)`
-    position: fixed;
-    z-index: 1300;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
+  position: fixed;
+  z-index: 1300;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const StyledBackdrop = styled(Backdrop)`
-    z-index: -1;
-    position: fixed;
-    inset: 0;
-    background-color: rgb(0 0 0 / 0.5);
-    -webkit-tap-highlight-color: transparent;
-  `;
+  z-index: -1;
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
+  -webkit-tap-highlight-color: transparent;
+`;
 
 const style = (theme) => ({
     position: 'absolute',

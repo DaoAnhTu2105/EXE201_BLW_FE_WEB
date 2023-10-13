@@ -21,9 +21,10 @@ const AdminLogin = () => {
                 const data = await response.json();
                 console.log(data)
                 if (data.data.role === 0) {
+                    localStorage.setItem("admin", JSON.stringify(data));
                     navigate('/admin/dashboard')
                 }
-                
+
             } else {
                 // navigate('/admin/dashboard')
                 // Handle login failure, display an error message, etc.

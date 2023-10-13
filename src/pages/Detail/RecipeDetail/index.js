@@ -1,18 +1,115 @@
 import React, { useState } from "react";
 import { Rating } from "@mui/material";
 import recipe from "../../../image/recipe2.jpg";
+import { Link, useParams } from "react-router-dom";
 import "./recipeDetail.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faCrown,
-//   faChevronRight,
-//   faDisplay,
-//   faFire,
-// } from "@fortawesome/free-solid-svg-icons";
-// import { faAdversal, faJs } from "@fortawesome/free-brands-svg-icons";
+import { useQuery, useMutation } from "react-query";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
 
 const RecipeDetail = () => {
-  //  const [buttonVip, setButtonVip] = useState(false);
+  const { id } = useParams();
+  //Chờ dữ liệu chính thức rồi thêm vào
+  const detailUrl = `https://blw-api.azurewebsites.net/api/Recipe/GetRecipe?id=${id}`;
+  const ratingUrl = `https://blw-api.azurewebsites.net/api/Rating/GetAll`;
+  const upCommentUrl = `https://blw-api.azurewebsites.net/api/Rating/AddRating`;
+
+  const [userRate, setUserRate] = useState(0);
+  const [userComment, setUserComment] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const username = user?.data?.fullname;
+  const useravatar = user?.data?.avatar;
+  const { data: detailRecipe, isLoading: detailLoading } = useQuery(
+    "detail-recipe",
+    () => fetch(detailUrl).then((response) => response.json())
+  );
+  const { data: rating, isLoading: ratingLoading } = useQuery(
+    "rating-recipe",
+    () => fetch(ratingUrl).then((response) => response.json())
+  );
+  const { mutate: postComment } = useMutation(({ data }) =>
+    fetch(upCommentUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({ data }),
+    }).then((res) => res.json())
+  );
+  const handleComment = () => {
+    if (userRate === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Rate không được để trống",
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
+    } else {
+      fetch(upCommentUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          fullname: username,
+          avatar: useravatar,
+          rate: userRate,
+          comment: userComment,
+          ratingImage: "",
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {})
+        .catch((error) => {
+          console.error("Error during fetch:", error);
+        });
+    }
+  };
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://blw-api.azurewebsites.net/api/Rating/DeleteRating?recipeId=${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          })
+          .catch((error) => {
+            console.error("Error during fetch:", error);
+          });
+      }
+    });
+  };
+
   return (
     <div className="container is-widescreen mt-5 mb-5">
       <h2 className="title is-2 has-text-primary">
@@ -117,269 +214,125 @@ const RecipeDetail = () => {
       </div>
       <div>
         <h3 className="title is-4 has-text-primary">Bình luận: </h3>
-        <div className="box" style={{ width: "600px" }}>
-          <article className="media">
-            <div className="media-left">
-              <figure className="image is-64x64">
-                <img
-                  src="https://bulma.io/images/placeholders/128x128.png"
-                  alt=""
-                />
-              </figure>
-            </div>
-            <div className="media-content">
-              <div>
-                <p>
-                  <strong>Đào Anh Tú</strong> &nbsp;{" "}
-                  <span>Xóa bình luận (chỉnh qua icon sau)</span>
+        {detailRecipe &&
+          detailRecipe.data.ratingVMs.map((rate) => (
+            <div
+              className="box"
+              style={{ width: "600px" }}
+              key={rate.customerId}
+            >
+              <article className="media">
+                <div className="media-left">
+                  <figure className="image is-64x64">
+                    <img src={rate.avatar} alt="" />
+                  </figure>
+                </div>
+                <div className="media-content">
                   <div>
-                    <Rating
-                      name="half-rating-read"
-                      defaultValue={3.5}
-                      precision={0.5}
-                      readOnly
-                      size="small"
-                    />
+                    <p>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <strong>{rate.fullname}</strong> &nbsp;
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          style={{ cursor: "pointer" }}
+                          onClick={() => handleDelete(rate.recipeId)}
+                        />
+                      </div>
+
+                      <div>
+                        <Rating
+                          name="half-rating-read"
+                          defaultValue={rate.rate}
+                          precision={0.5}
+                          readOnly
+                          size="small"
+                        />
+                      </div>
+                      {rate.comment}
+                    </p>
                   </div>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Aenean efficitur sit amet massa fringilla egestas. Nullam
-                  condimentum luctus turpis.
+                  <nav className="level is-mobile mt-2">
+                    <div className="level-left">
+                      <a className="level-item" aria-label="reply" href="/">
+                        <span className="icon is-small">
+                          <i className="fas fa-reply" aria-hidden="true"></i>
+                        </span>
+                      </a>
+                      <a className="level-item" aria-label="retweet" href="/">
+                        <span className="icon is-small">
+                          <i className="fas fa-retweet" aria-hidden="true"></i>
+                        </span>
+                      </a>
+                      <a className="level-item" aria-label="like" href="/">
+                        <span className="icon is-small">
+                          <i className="fas fa-heart" aria-hidden="true"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </nav>
+                </div>
+              </article>
+            </div>
+          ))}
+      </div>
+      {user ? (
+        <div style={{ marginTop: "80px" }}>
+          <article className="media mt-5">
+            <figure className="media-left">
+              <p className="image is-64x64">
+                <img src={user.data.avatar} />
+              </p>
+            </figure>
+            <div className="media-content">
+              <strong className="pl-2">{user.data.fullname}</strong>
+              <div className="mt-2 mb-2">
+                <Rating
+                  name="half-rating-read"
+                  value={userRate}
+                  precision={0.5}
+                  size="large"
+                  onChange={(event, newValue) => setUserRate(newValue)}
+                />
+              </div>
+
+              <div className="field">
+                <p className="control">
+                  <textarea
+                    className="textarea"
+                    placeholder="Ghi bình luận tại đây..."
+                    value={userComment}
+                    onChange={(e) => setUserComment(e.target.value)}
+                  ></textarea>
                 </p>
               </div>
-              <nav className="level is-mobile">
-                <div className="level-left">
-                  <a className="level-item" aria-label="reply" href="/">
-                    <span className="icon is-small">
-                      <i className="fas fa-reply" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a className="level-item" aria-label="retweet" href="/">
-                    <span className="icon is-small">
-                      <i className="fas fa-retweet" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a className="level-item" aria-label="like" href="/">
-                    <span className="icon is-small">
-                      <i className="fas fa-heart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </nav>
+              <div className="field">
+                <p className="control">
+                  <button className="button" onClick={handleComment}>
+                    Đăng bình luận
+                  </button>
+                </p>
+              </div>
             </div>
           </article>
         </div>
-      </div>
-      <div style={{ marginTop: "80px" }}>
-        <article className="media mt-5">
-          <figure className="media-left">
-            <p className="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png" />
-            </p>
-          </figure>
-          <div className="media-content">
-            <strong className="pl-2">Đào Anh Tú</strong>
-            <div className="mt-2 mb-2">
-              <Rating
-                name="half-rating-read"
-                defaultValue={3.5}
-                precision={0.5}
-                readOnly
-                size="large"
-              />
-            </div>
-
-            <div className="field">
-              <p className="control">
-                <textarea
-                  className="textarea"
-                  placeholder="Ghi bình luận tại đây..."
-                ></textarea>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <button className="button">Đăng bình luận</button>
-              </p>
-            </div>
-          </div>
-        </article>
-      </div>
-      {/* <div className="mt-5">
-        <button
-          className="button is-warning"
-          onMouseOver={() => setButtonVip(true)}
-          // onMouseOut={() => setButtonVip(false)}
-          style={{ display: "flex", justifyContent: "flex-start" }}
+      ) : (
+        <div
+          className="container is-max-desktop text-center"
+          style={{ marginTop: 40 }}
         >
-          <div>
-            <FontAwesomeIcon icon={faCrown} />
-            &nbsp; &nbsp;
-            <span className="title is-6">VIP</span>
+          <div className="notification is-primary notification is-primary is-light">
+            <Link to="/login">
+              <strong>Đăng nhập</strong>
+            </Link>{" "}
+            để tham gia bình luận.
           </div>
-        </button>
-      </div>
-      {buttonVip && (
-        <>
-          <div
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
-              marginTop: 5,
-              width: 410,
-              borderRadius: "10px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                paddingTop: 5,
-                alignItems: "center",
-                paddingLeft: "30px",
-                paddingRight: "30px",
-                paddingBottom: 10,
-              }}
-            >
-              <p
-                className="title is-6 mb-0"
-                style={{ color: "rgba(245, 245, 245, 0.8)" }}
-              >
-                Quyền lợi thành viên
-              </p>
-              <div>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  style={{ color: "rgba(245, 245, 245, 0.8)" }}
-                />
-              </div>
-            </div>
-            <div style={{ marginTop: 10 }}>
-              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-                <div style={{ display: "flex" }}>
-                  <div
-                    style={{
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(251, 227, 0, 0.2)",
-                      width: 30,
-                      height: 25,
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faDisplay}
-                      style={{
-                        color: "rgba(251, 227, 0, 0.8)",
-                        paddingLeft: 6,
-                      }}
-                    />
-                  </div>
-                  &nbsp;
-                  <span
-                    className="subtitle is-6 mb-0"
-                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
-                  >
-                    Hỗ trợ đa nền tảng
-                  </span>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <div
-                    style={{
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(251, 227, 0, 0.2)",
-                      width: 30,
-                      height: 25,
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faJs}
-                      style={{
-                        color: "rgba(251, 227, 0, 0.8)",
-                        paddingLeft: 7,
-                      }}
-                    />
-                  </div>
-                  &nbsp;
-                  <span
-                    className="subtitle is-6 mb-0"
-                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
-                  >
-                    1080P
-                  </span>
-                </div>
-              </div>
-              <div style={{ display: "flex", paddingLeft: 50, marginTop: 20 }}>
-                <div style={{ display: "flex", width: 140, marginLeft: 5 }}>
-                  <div
-                    style={{
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(251, 227, 0, 0.2)",
-                      width: 35,
-                      height: 25,
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faFire}
-                      style={{
-                        color: "rgba(251, 227, 0, 0.8)",
-                        paddingLeft: 6,
-                      }}
-                    />
-                  </div>
-                  &nbsp;
-                  <span
-                    className="subtitle is-6 mb-0"
-                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
-                  >
-                    Nội dung độc quyền
-                  </span>
-                </div>
-                <div style={{ display: "flex", width: 140, marginLeft: 95 }}>
-                  <div
-                    style={{
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(251, 227, 0, 0.2)",
-                      width: 35,
-                      height: 25,
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faAdversal}
-                      style={{
-                        color: "rgba(251, 227, 0, 0.8)",
-                        paddingLeft: 7,
-                      }}
-                    />
-                  </div>
-                  &nbsp;
-                  <span
-                    className="subtitle is-6 mb-0"
-                    style={{ color: "rgba(245, 245, 245, 0.8)" }}
-                  >
-                    Không quảng cáo
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="mt-5" style={{ textAlign: "center" }}>
-              <button
-                class="button is-warning"
-                style={{ color: "black", width: 300 }}
-              >
-                Đăng kí VIP, tận hưởng nội dung,...
-              </button>
-            </div>
-            <div
-              className="mt-5"
-              style={{ textAlign: "center", paddingBottom: 20 }}
-            >
-              <h6
-                class="subtitle is-6 is-warning"
-                style={{ color: "rgba(245, 245, 245, 0.8)" }}
-              >
-                Mã đổi quà
-              </h6>
-            </div>
-          </div>
-        </>
-      )} */}
+        </div>
+      )}
     </div>
   );
 };

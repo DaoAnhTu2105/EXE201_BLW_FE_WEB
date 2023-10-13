@@ -14,7 +14,6 @@ const Admin = () => {
     const handleSelectContent = (content) => {
         setSelectedContentBread(content)
     }
-    console.log(selectedContentBread)
     return (
         <>
 
@@ -23,21 +22,7 @@ const Admin = () => {
                     <SideBar selectContent={handleSelectContent} />
                 </div>
                 <div style={{ margin: "55px ", width: "70%" }}>
-                    <div style={{ backgroundColor: "#f3f6f4", height: "50px" }}>
-                        <nav className="breadcrumb" aria-label="breadcrumbs" style={{ display: "flex", justifyContent: "start", alignItems: "center", height: "100%" }}>
-                            <ul style={{ display: "flex", alignItems: "center", listStyle: "none", padding: "0", margin: 0 }}>
-                                <li style={{ paddingLeft: "20px" }}><a className="bread-crumb" href="/admin/dashboard">Home</a></li>
-                                <li className="is-active"><a href="#" className="bread-crumb" aria-current="page">{selectedContentBread}</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <hr style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }} />
-                    <div id="heading-title">
-                        <p id="heading" >{selectedContentBread}</p>
-                    </div>
-                    <div style={{ display: "flex" }}>
-                        <button disabled className="button is-rounded" style={{ border: "1px solid black" }}> All (2)</button>
-                    </div>
+                   
                     <section className="ftco-section" style={selectedContentBread === 'Giao dịch' ? {} : { display: 'none' }}>
                         <Transactions />
                     </section>

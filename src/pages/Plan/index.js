@@ -28,7 +28,7 @@ const Plan = () => {
         <div className="container is-fluid">
           <div className="notification is-primary is-fullheight">
             <div className="box">
-              <Link to="/planDetail" style={{ textDecoration: "none" }}>
+              <Link to="/plan-detail" style={{ textDecoration: "none" }}>
                 <h5
                   className="title is-5 has-text-dark mb-0"
                   style={{ textAlign: "center" }}
