@@ -9,6 +9,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import loadingGif from "../../../image/Baby-Crawl-Cycle-unscreen.gif";
 import { useQueryClient } from "react-query";
+import crown from "../../../image/crown.png";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -115,9 +117,60 @@ const RecipeDetail = () => {
         </div>
       ) : (
         <div className="container is-widescreen mt-5 mb-5">
-          <h2 className="title is-2 has-text-primary">
-            {detailRecipe.data.recipeName}
-          </h2>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {detailRecipe.data.forPremium && (
+                <>
+                  <img src={crown} alt="" style={{ width: 50, height: 50 }} />
+                  &nbsp; &nbsp; &nbsp; &nbsp;
+                </>
+              )}
+              <h2 className="title is-2 has-text-primary mb-0">
+                {detailRecipe.data.recipeName}
+              </h2>
+            </div>
+            <div>
+              {detailRecipe.isFavorite && user ? (
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  className="has-text-primary"
+                  style={{
+                    width: "10px",
+                    height: "30px",
+                  }}
+                />
+              ) : (
+                <button
+                  className="button is-primary"
+                  style={{
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                </button>
+              )}
+            </div>
+          </div>
+
           <p className="subtitle is-5 mt-1">Ngày cập nhật: 13/9/2023</p>
           <div
             style={{

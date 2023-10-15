@@ -14,6 +14,7 @@ import loadingGif from "../../image/Baby-Crawl-Cycle-unscreen.gif";
 import Swal from "sweetalert2";
 import { useQueryClient } from "react-query";
 import vip from "../../image/premium-logo.png";
+import { Link } from "react-router-dom";
 
 const Recipe = () => {
   const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
@@ -144,28 +145,33 @@ const Recipe = () => {
                     className="card"
                     style={{ width: "300px", height: "300px" }}
                   >
-                    <div
-                      className="card-image"
-                      style={{ position: "relative" }}
-                    >
-                      <figure className="image is-3by2">
-                        <img
-                          src={recommendRecipe.recipeImage}
-                          alt="Placeholder"
-                        />
-                      </figure>
-                      {recommendRecipe.forPremium && (
-                        <img
-                          src={vip}
-                          alt="vip"
-                          style={{
-                            position: "absolute",
-                            top: 0,
-                            right: 0,
-                          }}
-                        />
-                      )}
-                    </div>
+                    <Link to={`/recipe-detail/${recommendRecipe.recipeId}`}>
+                      <div
+                        className="card-image"
+                        style={{ position: "relative" }}
+                      >
+                        <figure className="image is-3by2">
+                          <img
+                            src={recommendRecipe.recipeImage}
+                            alt="Placeholder"
+                          />
+                        </figure>
+                        {recommendRecipe.forPremium && (
+                          <img
+                            src={vip}
+                            alt="vip"
+                            style={{
+                              width: "24px",
+                              height: "24px",
+                              position: "absolute",
+                              top: 0,
+                              right: 0,
+                            }}
+                          />
+                        )}
+                      </div>
+                    </Link>
+
                     <div className="card-content p-5">
                       <div className="media">
                         <div className="media-content">
@@ -180,13 +186,22 @@ const Recipe = () => {
                           >
                             <span
                               style={{
-                                width: "190px",
+                                width: "170px",
                                 height: "23px",
                                 overflow: "hidden",
+                                color: "black",
                               }}
                             >
-                              {recommendRecipe.recipeName}
+                              <Link
+                                to={`/recipe-detail/${recommendRecipe.recipeId}`}
+                                style={{
+                                  color: "black",
+                                }}
+                              >
+                                {recommendRecipe.recipeName}
+                              </Link>
                             </span>
+
                             <div
                               style={{
                                 display: "flex",
@@ -219,24 +234,28 @@ const Recipe = () => {
                               </h6>
                             </div>
                           </p>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
+                          <Link
+                            to={`/recipe-detail/${recommendRecipe.recipeId}`}
                           >
-                            <Rating
-                              name="half-rating-read"
-                              defaultValue={recommendRecipe.aveRate}
-                              precision={0.5}
-                              readOnly
-                              size="small"
-                            />
-                            &nbsp; &nbsp;
-                            <span className="title is-6">
-                              {recommendRecipe.aveRate}/5
-                            </span>
-                          </div>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Rating
+                                name="half-rating-read"
+                                defaultValue={recommendRecipe.aveRate}
+                                precision={0.5}
+                                readOnly
+                                size="small"
+                              />
+                              &nbsp; &nbsp;
+                              <span className="title is-6">
+                                {recommendRecipe.aveRate}/5
+                              </span>
+                            </div>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -277,11 +296,30 @@ const Recipe = () => {
                       className="card"
                       style={{ width: "300px", height: "380px" }}
                     >
-                      <div className="card-image">
-                        <figure className="image is-3by2">
-                          <img src={recipe.recipeImage} alt="Placeholder" />
-                        </figure>
-                      </div>
+                      <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                        <div
+                          className="card-image"
+                          style={{ position: "relative" }}
+                        >
+                          <figure className="image is-3by2">
+                            <img src={recipe.recipeImage} alt="Placeholder" />
+                          </figure>
+                          {recipe.forPremium && (
+                            <img
+                              src={vip}
+                              alt="vip"
+                              style={{
+                                width: "24px",
+                                height: "24px",
+                                position: "absolute",
+                                top: 0,
+                                right: 0,
+                              }}
+                            />
+                          )}
+                        </div>
+                      </Link>
+
                       <div className="card-content">
                         <div className="media">
                           <div className="media-content">
@@ -294,15 +332,19 @@ const Recipe = () => {
                                 justifyContent: "space-between",
                               }}
                             >
-                              <span
-                                style={{
-                                  width: "160px",
-                                  height: "23px",
-                                  overflow: "hidden",
-                                }}
-                              >
-                                {recipe.recipeName}
-                              </span>
+                              <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                                <span
+                                  style={{
+                                    width: "160px",
+                                    height: "23px",
+                                    overflow: "hidden",
+                                    color: "black",
+                                  }}
+                                >
+                                  {recipe.recipeName}
+                                </span>
+                              </Link>
+
                               {recipe.isFavorite && user ? (
                                 <FontAwesomeIcon
                                   icon={faHeart}
@@ -324,44 +366,44 @@ const Recipe = () => {
                                 </button>
                               )}
                             </p>
-                            <div
-                              style={{ display: "flex", alignItems: "center" }}
-                            >
-                              <Rating
-                                name="half-rating-read"
-                                defaultValue={recipe.aveRate}
-                                precision={0.5}
-                                readOnly
-                                size="small"
-                              />
-                              &nbsp; &nbsp;
-                              <span className="title is-6">
-                                {recipe.aveRate}/5
-                              </span>
-                            </div>
-                            {/* <div style={{ marginTop: 5 }}>
-                          <p className="title is-6">
-                            <strong className="subtitle is-6 has-text-primary">
-                              Ngày cập nhật:
-                            </strong>
-                            &nbsp; 10/9/2023
-                          </p>
-                        </div> */}
-                            <p
-                              className="title is-6 mb-4"
-                              style={{ marginTop: 10 }}
-                            >
-                              <strong className="subtitle is-6 has-text-primary">
-                                Loại:
-                              </strong>
-                              &nbsp; {recipe.mealName}
-                            </p>
-                            <p className="title is-6" style={{ marginTop: 10 }}>
-                              <strong className="subtitle is-6 has-text-primary">
-                                Độ tuổi:
-                              </strong>
-                              &nbsp; {recipe.ageName}
-                            </p>
+                            <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <Rating
+                                  name="half-rating-read"
+                                  defaultValue={recipe.aveRate}
+                                  precision={0.5}
+                                  readOnly
+                                  size="small"
+                                />
+                                &nbsp; &nbsp;
+                                <span className="title is-6">
+                                  {recipe.aveRate}/5
+                                </span>
+                              </div>
+                              <p
+                                className="title is-6 mb-4"
+                                style={{ marginTop: 10 }}
+                              >
+                                <strong className="subtitle is-6 has-text-primary">
+                                  Loại:
+                                </strong>
+                                &nbsp; {recipe.mealName}
+                              </p>
+                              <p
+                                className="title is-6"
+                                style={{ marginTop: 10 }}
+                              >
+                                <strong className="subtitle is-6 has-text-primary">
+                                  Độ tuổi:
+                                </strong>
+                                &nbsp; {recipe.ageName}
+                              </p>
+                            </Link>
                           </div>
                         </div>
                       </div>

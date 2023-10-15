@@ -1,7 +1,6 @@
 import React from "react";
 import "./home.css";
 import "./home.scss";
-import recipe from "../../image/recipe1.jpg";
 import Rating from "@mui/material/Rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +12,7 @@ import Swal from "sweetalert2";
 import { useQueryClient } from "react-query";
 import vip from "../../image/premium-logo.png";
 
-const Home = ({ results }) => {
+const Home = ({ results, addFavorite }) => {
   const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
   const recommendRecipeApi = `https://blw-api.azurewebsites.net/api/Recipe/MostFavoriteRecipe`;
   const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
@@ -50,7 +49,7 @@ const Home = ({ results }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user?.token}`,
         },
         body: JSON.stringify({
           recipeId: id,
@@ -137,7 +136,7 @@ const Home = ({ results }) => {
                                   {result.recipeName}
                                 </span>
                               </Link>
-                              {/* {result.isFavorite && user ? (
+                              {result.isFavorite && user ? (
                                 <FontAwesomeIcon
                                   icon={faHeart}
                                   className="has-text-primary"
@@ -150,13 +149,11 @@ const Home = ({ results }) => {
                                     width: "10px",
                                     height: "30px",
                                   }}
-                                  onClick={() =>
-                                    handleSearchFavorite(result.recipeId)
-                                  }
+                                  onClick={() => addFavorite(result.recipeId)}
                                 >
                                   <FontAwesomeIcon icon={faHeart} />
                                 </button>
-                              )} */}
+                              )}
                             </p>
                             <div
                               style={{
