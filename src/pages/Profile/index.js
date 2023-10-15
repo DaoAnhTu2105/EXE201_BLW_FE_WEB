@@ -15,6 +15,8 @@ import { format } from "date-fns";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import rabbit from "../../image/rabbit.gif";
 import penguin from "../../image/penguin.gif";
+import { useQuery } from "react-query";
+import { useQueryClient } from "react-query";
 
 const Profile = () => {
   const [active, setActive] = useState("account");
@@ -28,7 +30,22 @@ const Profile = () => {
   const [fullname, setFullname] = useState("");
   const accountApi = `https://blw-api.azurewebsites.net/api/Customers/GetInfo`;
   const updateInfo = `https://blw-api.azurewebsites.net/api/Customers/UpdateInfo`;
+  const favoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/GetAllRecipeFavorite`;
+  const deleteFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/DeleteFavorite`;
   const user = JSON.parse(localStorage.getItem("user"));
+  const queryClient = useQueryClient();
+
+  const { data: dataFavorite, isLoading } = useQuery("favorite", () =>
+    fetch(favoriteUrl, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+    }).then((response) => response.json())
+  );
+
+  console.log(dataFavorite);
+
   const handleActive = (item) => {
     setActive(item);
   };
@@ -96,6 +113,45 @@ const Profile = () => {
     } catch (error) {
       console.error("Error calling API:", error);
     }
+  };
+
+  const handleDeleteFavorite = (id) => {
+    Swal.fire({
+      title: "Xác nhận!",
+      text: "Bạn có chắc là sẽ xóa khỏi yêu thích!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Có",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${deleteFavoriteUrl}?recipeId=${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            Swal.fire(
+              "Deleted!",
+              "Đã xóa khỏi mục yêu thích thành công!",
+              "success"
+            );
+            queryClient.invalidateQueries("favorite");
+          })
+          .catch((error) => {
+            console.error("Error during fetch:", error);
+          });
+      }
+    });
   };
 
   useEffect(() => {
@@ -404,84 +460,74 @@ const Profile = () => {
           ) : active === "favorite" ? (
             <div style={{ paddingLeft: 15 }}>
               <h2 className="title is-2 mb-5">Thực đơn yêu thích của bạn</h2>
-              <div
-                className="grid-container"
-                style={{
-                  marginBottom: 20,
-                }}
-              >
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <div className="grid-item" key={index}>
-                    <div
-                      className="card"
-                      style={{ width: "300px", height: "350px" }}
-                    >
-                      <div className="card-image">
-                        <figure className="image is-3by2">
-                          <img src={img} alt="Placeholder" />
-                        </figure>
-                      </div>
-                      <div className="card-content">
-                        <div className="media">
-                          <div className="media-content">
-                            <p
-                              className="title is-5"
-                              style={{
-                                marginBottom: 10,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-evenly",
-                              }}
-                            >
-                              <span
+              {dataFavorite?.data?.length === 0 ? (
+                <h3 className="title is-3 mb-5" style={{ marginTop: 100 }}>
+                  Bạn chưa có thực đơn yêu thích của mình
+                </h3>
+              ) : (
+                <div
+                  className="grid-container"
+                  style={{
+                    marginBottom: 20,
+                  }}
+                >
+                  {dataFavorite?.data.map((favorite) => (
+                    <div className="grid-item" key={favorite.recipeId}>
+                      <div
+                        className="card"
+                        style={{ width: "300px", height: "350px" }}
+                      >
+                        <div className="card-image">
+                          <figure className="image is-3by2">
+                            <img
+                              src={favorite?.recipe?.recipeImage}
+                              alt="Placeholder"
+                            />
+                          </figure>
+                        </div>
+                        <div className="card-content">
+                          <div className="media">
+                            <div className="media-content">
+                              <p
+                                className="title is-5"
                                 style={{
-                                  width: "160px",
-                                  height: "23px",
+                                  marginBottom: 10,
+                                  width: "200px",
+                                  height: "48px",
                                   overflow: "hidden",
                                 }}
                               >
-                                Thực đơn {index + 1}
-                              </span>
-                              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                              <button
-                                className="button is-primary"
-                                style={{
-                                  borderRadius: "50%",
-                                  width: "10px",
-                                  height: "30px",
-                                }}
-                              >
-                                <FontAwesomeIcon icon={faHeart} />
-                              </button>
-                            </p>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Rating
-                                name={`half-rating-read-${index}`}
-                                defaultValue={4.5}
-                                precision={0.5}
-                                readOnly
-                                size="small"
-                              />
-                              &nbsp; &nbsp;
-                              <span>4.5/5</span>
-                            </div>
-                            <div style={{ textAlign: "center" }}>
-                              <button className="button is-warning is-light mt-2">
-                                Remove recipe
-                              </button>
+                                {favorite?.recipe?.recipeName}
+                              </p>
+                              <div style={{ marginTop: 5 }}>
+                                <p className="title is-6">
+                                  <strong className="subtitle is-6 has-text-primary">
+                                    Ngày cập nhật:
+                                  </strong>
+                                  &nbsp;
+                                  {new Date(
+                                    favorite?.recipe?.updateTime
+                                  ).toLocaleDateString()}
+                                </p>
+                              </div>
+                              <div style={{ textAlign: "center" }}>
+                                <button
+                                  className="button is-warning is-light mt-2"
+                                  onClick={() =>
+                                    handleDeleteFavorite(favorite?.recipeId)
+                                  }
+                                >
+                                  Remove recipe
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           ) : active === "premium" ? (
             <div style={{ paddingLeft: 15, position: "relative" }}>
