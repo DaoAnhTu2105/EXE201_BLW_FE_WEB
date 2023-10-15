@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-
+import Swal from "sweetalert2";
 
 const Transactions = () => {
     const navigate = useNavigate()
@@ -20,7 +20,66 @@ const Transactions = () => {
     const [transactionData, setTransactionData] = useState({ data: [] });
     console.log(transactionData.data)
 
-    const handleUpdatePayment = (id) => {
+    const handleUpdatePayment = (id,privateCode) => {
+        console.log('payment:', id)
+        Swal.fire({
+            title: `Approve payment <strong>${privateCode}?</strong>`,
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            
+            confirmButtonText: 'Yes, approve it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (admin) {
+                    const updatePaymentURL = `https://blw-api.azurewebsites.net/api/Payments/UpdatePaymentStatus?paymentId=${id}`
+                    fetch(updatePaymentURL, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${accessToken}`,
+                        }
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Failed to fetch payment data');
+                            } else {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Updated',
+                                    width: 600,
+                                    height: 600,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Update the specific payment in the data array
+                            setTransactionData(prevData => {
+                                const updatedData = prevData.data.map(payment => {
+                                    if (payment.paymentId === id) {
+                                        // Update the payment status in this object
+                                        return { ...payment, paymentStatus: true };
+                                    }
+                                    return payment;
+                                });
+                                return { data: updatedData };
+                            });
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                } else {
+                    navigate('/blw-manager/login');
+                }
+            }
+        })
+
     }
     useEffect(() => {
         if (admin) {
@@ -64,7 +123,8 @@ const Transactions = () => {
                 <p id="heading" >Giao dịch</p>
             </div>
             <div style={{ display: "flex", paddingBottom: "40px" }}>
-                <button disabled className="button is-rounded" style={{ border: "1px solid black", marginRight: "500px" }}> Tất cả ({transactionData.data.length})</button>
+                <button disabled className="button is-rounded" style={{ border: "1px solid black", marginRight: "500px" }}> Tất cả ({transactionData?.data?.length || 0})</button>
+
                 <Search>
                     <SearchIconWrapper>
                         <SearchIcon />
@@ -103,8 +163,8 @@ const Transactions = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {transactionData.data.map((transaction) => (
-                                        <tr style={{ alignContent: "center" }} key={transaction.paymentId}>
+                                    {transactionData?.data.map((transaction) => (
+                                        <tr style={{ alignContent: "center" }} id={transaction.paymentId} key={transaction.paymentId}>
                                             <td style={{ fontWeight: "800" }}>{transaction.privateCode}</td>
                                             <td>{transaction.customerName}</td>
                                             <td>{transaction.packageName}</td>
@@ -118,11 +178,11 @@ const Transactions = () => {
                                                     <p className="has-text-success" style={{ fontWeight: "700" }}>Đã duyệt</p>
                                                 )}
                                             </td>
-                                            <td>
+                                            <td style={{textAlign:"center"}}>
                                                 {transaction.paymentStatus === false ? (
-                                                    <button onclick={() => handleUpdatePayment(transaction.paymentId)} className="button is-rounded" style={{ width: "25px", color: "inherit" }}><FontAwesomeIcon color="green" icon={faCheck} /></button>
+                                                    <button onClick={() => handleUpdatePayment(transaction.paymentId,transaction.privateCode)} className="button is-rounded" style={{ width: "25px", color: "inherit" }}><FontAwesomeIcon color="green" icon={faCheck} /></button>
                                                 ) : (
-                                                    <p className="has-text-success" style={{ fontWeight: "700" }}>Đã duyệt</p>
+                                                    <p className="has-text-success" style={{ fontWeight: "700" }}>Thành công</p>
                                                 )}
 
                                             </td>

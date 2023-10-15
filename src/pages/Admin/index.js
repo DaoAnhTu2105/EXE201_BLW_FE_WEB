@@ -18,11 +18,11 @@ const Admin = () => {
         <>
 
             <div className="container-admin">
-                <div style={{ width: "20%" }}>
+                <div style={{ width: "auto", position: 'relative', height: "100%" }}>
                     <SideBar selectContent={handleSelectContent} />
                 </div>
                 <div style={{ margin: "55px ", width: "70%" }}>
-                   
+
                     <section className="ftco-section" style={selectedContentBread === 'Giao dịch' ? {} : { display: 'none' }}>
                         <Transactions />
                     </section>
@@ -30,10 +30,10 @@ const Admin = () => {
                     <section className="ftco-section" style={selectedContentBread === 'Khách hàng' ? {} : { display: 'none' }}>
                         <CustomersManager />
                     </section>
-                    {/* <section className="ftco-section">
+                    <section className="ftco-section" style={selectedContentBread === 'Công thức' ? {} : { display: 'none' }}>
                         <RecipesManager />
                     </section>
-                    <section className="ftco-section">
+                    {/* <section className="ftco-section">
                         <FoodsManager />
                     </section> */}
                     <section className="ftco-section" style={selectedContentBread === 'Chuyên gia' ? {} : { display: 'none' }}>

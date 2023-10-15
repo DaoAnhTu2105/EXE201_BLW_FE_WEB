@@ -65,7 +65,6 @@
     transition: opacity 0.1s;
     pointer-events: none;
 }
-
 #nav-bar {
     position: sticky;
     left: 1vw;
