@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Navbar";
 import Search from "../Search";
 import Footer from "../Footer";
@@ -14,8 +14,10 @@ const LayoutNavSearchFooter = ({ children }) => {
   const [age, setAge] = useState([""]);
   const [meal, setMeal] = useState([""]);
   const [rate, setRate] = useState(0);
+  const [refresh, setRefresh] = useState(0);
   const user = JSON.parse(localStorage.getItem("user"));
   const queryClient = useQueryClient();
+
   const searchApi = `https://blw-api.azurewebsites.net/api/Recipe/SearchRecipe`;
   const handleSearch = async (
     search = "",
@@ -45,7 +47,7 @@ const LayoutNavSearchFooter = ({ children }) => {
         console.log("No content found.");
       } else {
         const searchNameData = await response.json();
-        console.log(searchNameData);
+
         setSearch(searchNameData);
       }
     } catch (error) {
@@ -53,10 +55,27 @@ const LayoutNavSearchFooter = ({ children }) => {
     }
   };
 
+  const childProps = {
+    results: search,
+    key: refresh,
+  };
+
   return (
     <>
       <Navbar />
       <div style={{ paddingTop: 70 }}>
+        {user?.data?.isPremium && (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              class="notification is-warning is-light mb-1"
+              style={{ width: 410, textAlign: "center" }}
+            >
+              Chào mừng bạn đã đến với gói
+              <strong className="has-text-warning is-dark"> Vip </strong>của
+              chúng tôi
+            </div>
+          </div>
+        )}
         <Search
           handleSearchName={handleSearch}
           age={age}
@@ -72,10 +91,7 @@ const LayoutNavSearchFooter = ({ children }) => {
           <div className="layout-main-content">
             {React.Children.map(children, (child) => {
               if (React.isValidElement(child)) {
-                return React.cloneElement(child, {
-                  results: search,
-                  key: child.props.id,
-                });
+                return React.cloneElement(child, childProps);
               }
               return child;
             })}

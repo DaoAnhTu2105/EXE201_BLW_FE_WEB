@@ -11,11 +11,16 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Rating } from "@mui/material";
 import { useQuery } from "react-query";
 import loadingGif from "../../image/Baby-Crawl-Cycle-unscreen.gif";
+import Swal from "sweetalert2";
+import { useQueryClient } from "react-query";
+import vip from "../../image/premium-logo.png";
 
 const Recipe = () => {
   const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
   const recommendRecipeApi = `https://blw-api.azurewebsites.net/api/Recipe/MostFavoriteRecipe`;
+  const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
   const user = JSON.parse(localStorage.getItem("user"));
+  const queryClient = useQueryClient();
   const {
     data: recipes,
     isLoading: loading,
@@ -40,6 +45,41 @@ const Recipe = () => {
       },
     }).then((response) => response.json())
   );
+
+  const handleAddFavorite = (id) => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Đăng nhập để được thêm thực đơn vào yêu thích",
+      });
+    } else {
+      fetch(postFavoriteUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          recipeId: id,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          queryClient.invalidateQueries("allRecipes");
+          queryClient.invalidateQueries("recommendRecipes");
+        })
+        .catch((error) => {
+          console.error("Error during fetch:", error);
+        });
+    }
+  };
+
   return (
     <>
       <div style={{ marginBottom: 20 }}>
@@ -104,13 +144,27 @@ const Recipe = () => {
                     className="card"
                     style={{ width: "300px", height: "300px" }}
                   >
-                    <div className="card-image">
+                    <div
+                      className="card-image"
+                      style={{ position: "relative" }}
+                    >
                       <figure className="image is-3by2">
                         <img
                           src={recommendRecipe.recipeImage}
                           alt="Placeholder"
                         />
                       </figure>
+                      {recommendRecipe.forPremium && (
+                        <img
+                          src={vip}
+                          alt="vip"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            right: 0,
+                          }}
+                        />
+                      )}
                     </div>
                     <div className="card-content p-5">
                       <div className="media">
@@ -140,20 +194,10 @@ const Recipe = () => {
                               }}
                             >
                               {recommendRecipe.isFavorite && user ? (
-                                <button
-                                  className="button"
-                                  style={{
-                                    borderRadius: "50%",
-                                    width: "10px",
-                                    height: "30px",
-                                    background: "white",
-                                  }}
-                                >
-                                  <FontAwesomeIcon
-                                    icon={faHeart}
-                                    className="has-text-primary"
-                                  />
-                                </button>
+                                <FontAwesomeIcon
+                                  icon={faHeart}
+                                  className="has-text-primary"
+                                />
                               ) : (
                                 <button
                                   className="button is-primary"
@@ -162,6 +206,9 @@ const Recipe = () => {
                                     width: "10px",
                                     height: "30px",
                                   }}
+                                  onClick={() =>
+                                    handleAddFavorite(recommendRecipe.recipeId)
+                                  }
                                 >
                                   <FontAwesomeIcon icon={faHeart} />
                                 </button>
@@ -257,20 +304,10 @@ const Recipe = () => {
                                 {recipe.recipeName}
                               </span>
                               {recipe.isFavorite && user ? (
-                                <button
-                                  className="button"
-                                  style={{
-                                    borderRadius: "50%",
-                                    width: "10px",
-                                    height: "30px",
-                                    background: "white",
-                                  }}
-                                >
-                                  <FontAwesomeIcon
-                                    icon={faHeart}
-                                    className="has-text-primary"
-                                  />
-                                </button>
+                                <FontAwesomeIcon
+                                  icon={faHeart}
+                                  className="has-text-primary"
+                                />
                               ) : (
                                 <button
                                   className="button is-primary"
@@ -279,6 +316,9 @@ const Recipe = () => {
                                     width: "10px",
                                     height: "30px",
                                   }}
+                                  onClick={() =>
+                                    handleAddFavorite(recipe.recipeId)
+                                  }
                                 >
                                   <FontAwesomeIcon icon={faHeart} />
                                 </button>
