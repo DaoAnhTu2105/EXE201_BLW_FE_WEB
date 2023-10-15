@@ -9,17 +9,68 @@ import { Link } from "react-router-dom";
 import home1 from "../../image/home1.png";
 import { useQuery } from "react-query";
 import loadingGif from "../../image/Baby-Crawl-Cycle-unscreen.gif";
+import Swal from "sweetalert2";
+import { useQueryClient } from "react-query";
 
 const Home = ({ results }) => {
   const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
   const recommendRecipeApi = `https://blw-api.azurewebsites.net/api/Recipe/MostFavoriteRecipe`;
+  const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const queryClient = useQueryClient();
   const { data: recipes, isLoading: loading } = useQuery("allRecipes", () =>
-    fetch(recipeApi).then((response) => response.json())
+    fetch(recipeApi, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+    }).then((response) => response.json())
   );
   const { data: recommendRecipes, isLoading: recommendLoading } = useQuery(
     "recommendRecipes",
-    () => fetch(recommendRecipeApi).then((response) => response.json())
+    () =>
+      fetch(recommendRecipeApi, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
+        },
+      }).then((response) => response.json())
   );
+
+  const handleAddFavorite = (id) => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Đăng nhập để được thêm thực đơn vào yêu thích",
+      });
+    } else {
+      fetch(postFavoriteUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          recipeId: id,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          queryClient.invalidateQueries("allRecipes");
+          queryClient.invalidateQueries("recommendRecipes");
+        })
+        .catch((error) => {
+          console.error("Error during fetch:", error);
+        });
+    }
+  };
+
   return (
     <>
       <div style={{ marginBottom: "30px", marginTop: 20 }}>
@@ -50,42 +101,50 @@ const Home = ({ results }) => {
           }}
         >
           <div className="home-explore-container">
-            <figure className="home-explore">
-              <img
-                src={home1}
-                alt="Mountains"
-                style={{
-                  width: "250px",
-                  height: "300px",
-                  objectFit: "cover",
-                }}
-              />
-              <figcaption className="home-explore-title">Thực đơn</figcaption>
-            </figure>
-            <figure className="home-explore">
-              <img
-                src={home1}
-                alt="Mountains"
-                style={{
-                  width: "250px",
-                  height: "300px",
-                  objectFit: "cover",
-                }}
-              />
-              <figcaption className="home-explore-title">Kế hoạch</figcaption>
-            </figure>
-            <figure className="home-explore">
-              <img
-                src={home1}
-                alt="Mountains"
-                style={{
-                  width: "250px",
-                  height: "300px",
-                  objectFit: "cover",
-                }}
-              />
-              <figcaption className="home-explore-title">Chuyên gia</figcaption>
-            </figure>
+            <Link to="/recipe">
+              <figure className="home-explore">
+                <img
+                  src={home1}
+                  alt="Mountains"
+                  style={{
+                    width: "250px",
+                    height: "300px",
+                    objectFit: "cover",
+                  }}
+                />
+                <figcaption className="home-explore-title">Thực đơn</figcaption>
+              </figure>
+            </Link>
+            <Link to="/plan">
+              <figure className="home-explore">
+                <img
+                  src={home1}
+                  alt="Mountains"
+                  style={{
+                    width: "250px",
+                    height: "300px",
+                    objectFit: "cover",
+                  }}
+                />
+                <figcaption className="home-explore-title">Kế hoạch</figcaption>
+              </figure>
+            </Link>
+            <Link to="/list-expert">
+              <figure className="home-explore">
+                <img
+                  src={home1}
+                  alt="Mountains"
+                  style={{
+                    width: "250px",
+                    height: "300px",
+                    objectFit: "cover",
+                  }}
+                />
+                <figcaption className="home-explore-title">
+                  Chuyên gia
+                </figcaption>
+              </figure>
+            </Link>
           </div>
         </div>
         {results ? (
@@ -101,113 +160,114 @@ const Home = ({ results }) => {
               }}
             >
               <div className="grid-container">
-                {results?.data.map((result) => (
-                  <Link
-                    to={`/recipe-detail/${result.recipeId}`}
-                    key={result.recipeId}
-                  >
-                    <div className="grid-item">
-                      <div
-                        className="card"
-                        style={{ width: "290px", height: "370px" }}
-                      >
-                        <div className="card-image">
+                {results?.data?.map((result) => (
+                  <div className="grid-item" key={result.recipeId}>
+                    <div
+                      className="card"
+                      style={{ width: "290px", height: "380px" }}
+                    >
+                      <div className="card-image">
+                        <Link to={`/recipe-detail/${result.recipeId}`}>
                           <figure className="image is-3by2">
-                            <img src={result.recipeImage} alt="Placeholder" />
+                            <img
+                              src={result.recipeImage}
+                              alt="hình ảnh thực đơn"
+                            />
                           </figure>
-                        </div>
-
-                        <div className="card-content p-2">
-                          <div className="media">
-                            <div className="media-content">
-                              <p
-                                className="title is-5"
-                                style={{
-                                  marginBottom: 10,
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "space-between",
-                                }}
-                              >
+                        </Link>
+                      </div>
+                      <div className="card-content">
+                        <div className="media">
+                          <div className="media-content">
+                            <p
+                              className="title is-5"
+                              style={{
+                                marginBottom: 10,
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <Link to={`/recipe-detail/${result.recipeId}`}>
                                 <span
                                   style={{
                                     width: "190px",
                                     height: "24px",
                                     overflow: "hidden",
+                                    color: "black",
                                   }}
                                 >
                                   {result.recipeName}
                                 </span>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <Link to="/">
-                                    <button
-                                      className="button is-primary"
-                                      style={{
-                                        borderRadius: "50%",
-                                        width: "10px",
-                                        height: "30px",
-                                      }}
-                                    >
-                                      <FontAwesomeIcon icon={faHeart} />
-                                    </button>
-                                  </Link>
-                                  &nbsp;
-                                  <h6 className="title is-6 mb-0">
-                                    {result.totalFavorite}
-                                  </h6>
-                                </div>
-                              </p>
-
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <Rating
-                                  name="half-rating-read"
-                                  defaultValue={result.aveRate}
-                                  precision={0.5}
-                                  readOnly
-                                  size="small"
+                              </Link>
+                              {result.isFavorite && user ? (
+                                <FontAwesomeIcon
+                                  icon={faHeart}
+                                  className="has-text-primary"
                                 />
-                                &nbsp; &nbsp;
-                                <span
-                                  style={{ color: "black" }}
-                                  className="title is-6"
+                              ) : (
+                                <button
+                                  className="button is-primary"
+                                  style={{
+                                    borderRadius: "50%",
+                                    width: "10px",
+                                    height: "30px",
+                                  }}
+                                  onClick={() =>
+                                    handleAddFavorite(result.recipeId)
+                                  }
                                 >
-                                  {result.aveRate}/5
-                                </span>
-                              </div>
-                              <p
-                                className="title is-6 mb-4"
-                                style={{ marginTop: 10 }}
-                              >
-                                <strong className="subtitle is-6 has-text-primary">
-                                  Loại:
-                                </strong>
-                                &nbsp; {result.mealName}
-                              </p>
-                              <p
-                                className="title is-6"
-                                style={{ marginTop: 10 }}
-                              >
-                                <strong className="subtitle is-6 has-text-primary">
-                                  Độ tuổi:
-                                </strong>
-                                &nbsp; {result.ageName}
-                              </p>
+                                  <FontAwesomeIcon icon={faHeart} />
+                                </button>
+                              )}
+                            </p>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Rating
+                                name="half-rating-read"
+                                defaultValue={result.aveRate}
+                                precision={0.5}
+                                readOnly
+                                size="small"
+                              />
+                              &nbsp; &nbsp;
+                              <span className="title is-6">
+                                {result.aveRate}/5
+                              </span>
                             </div>
+                            {/* <div style={{ marginTop: 5 }}>
+                              <p className="title is-6">
+                                <strong className="subtitle is-6 has-text-primary">
+                                  Ngày cập nhật:
+                                </strong>
+                                &nbsp; 10/9/2023
+                                {new Date(favor.updateTime).toLocaleDateString()}
+                              </p>
+                            </div> */}
+                            <p
+                              className="title is-6 mb-4"
+                              style={{ marginTop: 10 }}
+                            >
+                              <strong className="subtitle is-6 has-text-primary">
+                                Loại:
+                              </strong>
+                              &nbsp; {result.mealName}
+                            </p>
+                            <p className="title is-6" style={{ marginTop: 10 }}>
+                              <strong className="subtitle is-6 has-text-primary">
+                                Độ tuổi:
+                              </strong>
+                              &nbsp; {result.ageName}
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             </div>
@@ -230,25 +290,26 @@ const Home = ({ results }) => {
                 </div>
               ) : (
                 <div className="grid-container">
-                  {recommendRecipes?.data.slice(0, 3).map((recommendRecipe) => (
-                    <Link
-                      to={`/recipe-detail/${recommendRecipe.recipeId}`}
-                      key={recommendRecipe.recipeId}
-                    >
-                      <div className="grid-item">
+                  {recommendRecipes?.data
+                    ?.slice(0, 3)
+                    .map((recommendRecipe) => (
+                      <div className="grid-item" key={recommendRecipe.recipeId}>
                         <div
                           className="card"
                           style={{ width: "290px", height: "370px" }}
                         >
-                          <div className="card-image">
-                            <figure className="image is-3by2">
-                              <img
-                                src={recommendRecipe.recipeImage}
-                                alt="Placeholder"
-                              />
-                            </figure>
-                          </div>
-
+                          <Link
+                            to={`/recipe-detail/${recommendRecipe.recipeId}`}
+                          >
+                            <div className="card-image">
+                              <figure className="image is-3by2">
+                                <img
+                                  src={recommendRecipe.recipeImage}
+                                  alt="Placeholder"
+                                />
+                              </figure>
+                            </div>
+                          </Link>
                           <div className="card-content p-2">
                             <div className="media">
                               <div className="media-content">
@@ -261,22 +322,32 @@ const Home = ({ results }) => {
                                     justifyContent: "space-between",
                                   }}
                                 >
-                                  <span
-                                    style={{
-                                      width: "190px",
-                                      height: "24px",
-                                      overflow: "hidden",
-                                    }}
+                                  <Link
+                                    to={`/recipe-detail/${recommendRecipe.recipeId}`}
                                   >
-                                    {recommendRecipe.recipeName}
-                                  </span>
+                                    <span
+                                      style={{
+                                        width: "190px",
+                                        height: "24px",
+                                        overflow: "hidden",
+                                        color: "black",
+                                      }}
+                                    >
+                                      {recommendRecipe.recipeName}
+                                    </span>
+                                  </Link>
                                   <div
                                     style={{
                                       display: "flex",
                                       alignItems: "center",
                                     }}
                                   >
-                                    <Link to="/">
+                                    {recommendRecipe.isFavorite && user ? (
+                                      <FontAwesomeIcon
+                                        icon={faHeart}
+                                        className="has-text-primary"
+                                      />
+                                    ) : (
                                       <button
                                         className="button is-primary"
                                         style={{
@@ -284,63 +355,70 @@ const Home = ({ results }) => {
                                           width: "10px",
                                           height: "30px",
                                         }}
+                                        onClick={() =>
+                                          handleAddFavorite(
+                                            recommendRecipe.recipeId
+                                          )
+                                        }
                                       >
                                         <FontAwesomeIcon icon={faHeart} />
                                       </button>
-                                    </Link>
+                                    )}
                                     &nbsp;
                                     <h6 className="title is-6 mb-0">
                                       {recommendRecipe.totalFavorite}
                                     </h6>
                                   </div>
                                 </p>
-
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
+                                <Link
+                                  to={`/recipe-detail/${recommendRecipe.recipeId}`}
                                 >
-                                  <Rating
-                                    name="half-rating-read"
-                                    defaultValue={recommendRecipe.aveRate}
-                                    precision={0.5}
-                                    readOnly
-                                    size="small"
-                                  />
-                                  &nbsp; &nbsp;
-                                  <span
-                                    style={{ color: "black" }}
-                                    className="title is-6"
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
                                   >
-                                    {recommendRecipe.aveRate}/5
-                                  </span>
-                                </div>
-                                <p
-                                  className="title is-6 mb-4"
-                                  style={{ marginTop: 10 }}
-                                >
-                                  <strong className="subtitle is-6 has-text-primary">
-                                    Loại:
-                                  </strong>
-                                  &nbsp; {recommendRecipe.mealName}
-                                </p>
-                                <p
-                                  className="title is-6"
-                                  style={{ marginTop: 10 }}
-                                >
-                                  <strong className="subtitle is-6 has-text-primary">
-                                    Độ tuổi:
-                                  </strong>
-                                  &nbsp; {recommendRecipe.ageName}
-                                </p>
+                                    <Rating
+                                      name="half-rating-read"
+                                      defaultValue={recommendRecipe.aveRate}
+                                      precision={0.5}
+                                      readOnly
+                                      size="small"
+                                    />
+                                    &nbsp; &nbsp;
+                                    <span
+                                      style={{ color: "black" }}
+                                      className="title is-6"
+                                    >
+                                      {recommendRecipe.aveRate}/5
+                                    </span>
+                                  </div>
+                                  <p
+                                    className="title is-6 mb-4"
+                                    style={{ marginTop: 10 }}
+                                  >
+                                    <strong className="subtitle is-6 has-text-primary">
+                                      Loại:
+                                    </strong>
+                                    &nbsp; {recommendRecipe.mealName}
+                                  </p>
+                                  <p
+                                    className="title is-6"
+                                    style={{ marginTop: 10 }}
+                                  >
+                                    <strong className="subtitle is-6 has-text-primary">
+                                      Độ tuổi:
+                                    </strong>
+                                    &nbsp; {recommendRecipe.ageName}
+                                  </p>
+                                </Link>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </Link>
-                  ))}
+                    ))}
                 </div>
               )}
             </div>
@@ -366,13 +444,13 @@ const Home = ({ results }) => {
                   </div>
                 ) : (
                   <div className="grid-container">
-                    {recipes?.data?.result.slice(0, 3).map((recipe) => (
+                    {recipes?.data?.slice(0, 3).map((recipe) => (
                       <div className="grid-item" key={recipe.recipeId}>
-                        <Link to={`/recipe-detail/${recipe.recipeId}`}>
-                          <div
-                            className="card"
-                            style={{ width: "290px", height: "380px" }}
-                          >
+                        <div
+                          className="card"
+                          style={{ width: "290px", height: "380px" }}
+                        >
+                          <Link to={`/recipe-detail/${recipe.recipeId}`}>
                             <div className="card-image">
                               <figure className="image is-3by2">
                                 <img
@@ -381,41 +459,57 @@ const Home = ({ results }) => {
                                 />
                               </figure>
                             </div>
-                            <div className="card-content">
-                              <div className="media">
-                                <div className="media-content">
-                                  <p
-                                    className="title is-5"
-                                    style={{
-                                      marginBottom: 10,
-                                      display: "flex",
-                                      alignItems: "center",
-                                      justifyContent: "space-between",
-                                    }}
+                          </Link>
+
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-content">
+                                <p
+                                  className="title is-5"
+                                  style={{
+                                    marginBottom: 10,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <Link
+                                    to={`/recipe-detail/${recipe.recipeId}`}
                                   >
                                     <span
                                       style={{
                                         width: "190px",
                                         height: "24px",
                                         overflow: "hidden",
+                                        color: "black",
                                       }}
                                     >
                                       {recipe.recipeName}
                                     </span>
+                                  </Link>
 
-                                    <Link to="/">
-                                      <button
-                                        className="button is-primary"
-                                        style={{
-                                          borderRadius: "50%",
-                                          width: "10px",
-                                          height: "30px",
-                                        }}
-                                      >
-                                        <FontAwesomeIcon icon={faHeart} />
-                                      </button>
-                                    </Link>
-                                  </p>
+                                  {recipe.isFavorite && user ? (
+                                    <FontAwesomeIcon
+                                      icon={faHeart}
+                                      className="has-text-primary"
+                                    />
+                                  ) : (
+                                    <button
+                                      className="button is-primary"
+                                      style={{
+                                        borderRadius: "50%",
+                                        width: "10px",
+                                        height: "30px",
+                                      }}
+                                      onClick={() =>
+                                        handleAddFavorite(recipe.recipeId)
+                                      }
+                                    >
+                                      <FontAwesomeIcon icon={faHeart} />
+                                    </button>
+                                  )}
+                                </p>
+                                <Link to={`/recipe-detail/${recipe.recipeId}`}>
                                   <div
                                     style={{
                                       display: "flex",
@@ -461,11 +555,11 @@ const Home = ({ results }) => {
                                     </strong>
                                     &nbsp; {recipe.ageName}
                                   </p>
-                                </div>
+                                </Link>
                               </div>
                             </div>
                           </div>
-                        </Link>
+                        </div>
                       </div>
                     ))}
                   </div>

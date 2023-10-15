@@ -5,8 +5,8 @@ import Footer from "../Footer";
 import "./index.css";
 import Advertisement from "../Advertisement";
 import Filter from "../Filter";
-import { useQuery } from "react-query";
 import { useState } from "react";
+import { useQueryClient } from "react-query";
 
 const LayoutNavSearchFooter = ({ children }) => {
   const [search, setSearch] = useState("");
@@ -14,6 +14,8 @@ const LayoutNavSearchFooter = ({ children }) => {
   const [age, setAge] = useState([""]);
   const [meal, setMeal] = useState([""]);
   const [rate, setRate] = useState(0);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const queryClient = useQueryClient();
   const searchApi = `https://blw-api.azurewebsites.net/api/Recipe/SearchRecipe`;
   const handleSearch = async (
     search = "",
@@ -30,6 +32,7 @@ const LayoutNavSearchFooter = ({ children }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user?.token}`,
         },
         body: JSON.stringify({
           search,
