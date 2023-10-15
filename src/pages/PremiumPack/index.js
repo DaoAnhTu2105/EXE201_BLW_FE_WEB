@@ -24,7 +24,6 @@ const PremiumPack = () => {
     const accessToken = user?.token
     const [data, setData] = useState('')
     const [open, setOpen] = useState(false);
-    console.log("open", open)
     const [selectedPack, setSelectedPack] = useState('')
     const handleOpen = async (id) => {
 
@@ -62,8 +61,6 @@ const PremiumPack = () => {
     const handleClose = () => {
         setOpen(false)
     };
-
-
 
     const handlePayment = async (packId, privateCode) => {
         Swal.fire({
@@ -155,16 +152,29 @@ const PremiumPack = () => {
                     </div>
                     <div style={{ display: "flex", justifyContent: "center", padding: "50px 25px 0 25px" }}>
 
-                        <div className="package-1" onClick={(newValue) => {
-                            newValue = '175c31954b1c496b9ffc'
-                            handleOpen(newValue)
-                            setSelectedPack('175c31954b1c496b9ffc')
-                        }}>
-                            <div className="name">Gói tháng</div>
-                            <div className="price-for-month">49.000đ</div>
-                            <div className="trial">Sau tháng đầu tiên 120.000đ</div>
-                            <hr />
-                        </div>
+                        {user?.data.isPremium ? (
+                            <div className="package-1" onClick={(newValue) => {
+                                newValue = '175c31954b1c496b9ffc'
+                                handleOpen(newValue)
+                                setSelectedPack('175c31954b1c496b9ffc')
+                            }}>
+                                <div className="name">Gói tháng</div>
+                                <div className="price-for-month">49.000đ</div>
+                                <div className="trial">Sau tháng đầu tiên 120.000đ</div>
+                                <hr />
+                            </div>
+                        ) : (
+                            <div className="package-1" onClick={(newValue) => {
+                                newValue = '175c31954b1c496b9ffc'
+                                handleOpen(newValue)
+                                setSelectedPack('175c31954b1c496b9ffc')
+                            }}>
+                                <div className="name">Gói tháng</div>
+                                <div className="price-for-month">49.000đ</div>
+                                <div className="trial">Sau tháng đầu tiên 120.000đ</div>
+                                <hr />
+                            </div>
+                        )}
 
                         <div className="package-2" onClick={(newValue) => {
                             newValue = '0badbceb37a54cba83e7'

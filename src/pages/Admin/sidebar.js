@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import './css/sidebar.css'
 import logo from "../../image/rmbg-logo.png"
-import { Link } from "react-router-dom";
-const SideBar = ({ selectContent }) => {
+import { Link, useNavigate } from "react-router-dom";
 
+const SideBar = ({ selectContent }) => {
+    const navigate = useNavigate()
     const [selectedContent, setSelectedContent] = useState('Giao dịch')
 
     const handleSelectContent = (content) => {
         setSelectedContent(content)
         selectContent(content)
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem("admin");
+        navigate('/blw-manager/login')
     }
     return (
         <div id="nav-bar">
@@ -31,8 +37,11 @@ const SideBar = ({ selectContent }) => {
                 <div id="nav-content-highlight"></div>
             </div><input id="nav-footer-toggle" type="checkbox" />
             <div id="nav-footer">
-                <div id="nav-footer-heading">
-                    <div className="nav-button"><i className="fas fa-magic"></i>&nbsp;&nbsp;&nbsp;<span>Admin</span></div>
+                <div id="nav-footer-heading" onClick={handleLogout}>
+                    <div className="nav-button">
+                        <i class="fas fa-right-from-bracket"></i>&nbsp;&nbsp;&nbsp;
+                        <span>Sign out</span>
+                    </div>
 
                 </div>
             </div>
