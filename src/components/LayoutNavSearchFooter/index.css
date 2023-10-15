@@ -14,7 +14,7 @@
       width: 230px;
       position: -webkit-sticky;
       position: sticky;
-      top: 0;
+      top: 65px;
       z-index: 900;
       min-height: 900px; 
       overflow-y: auto;
@@ -23,7 +23,8 @@
     .layout-sidebar .layout-ads{
       position: -webkit-sticky;
       position: sticky;
-      top: 0;
+      top: 65px;
       z-index: 900;
       overflow-y: auto;
     }
+    

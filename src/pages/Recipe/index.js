@@ -11,11 +11,17 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Rating } from "@mui/material";
 import { useQuery } from "react-query";
 import loadingGif from "../../image/Baby-Crawl-Cycle-unscreen.gif";
+import Swal from "sweetalert2";
+import { useQueryClient } from "react-query";
+import vip from "../../image/premium-logo.png";
+import { Link } from "react-router-dom";
 
 const Recipe = () => {
   const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
   const recommendRecipeApi = `https://blw-api.azurewebsites.net/api/Recipe/MostFavoriteRecipe`;
+  const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
   const user = JSON.parse(localStorage.getItem("user"));
+  const queryClient = useQueryClient();
   const {
     data: recipes,
     isLoading: loading,
@@ -40,6 +46,41 @@ const Recipe = () => {
       },
     }).then((response) => response.json())
   );
+
+  const handleAddFavorite = (id) => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Đăng nhập để được thêm thực đơn vào yêu thích",
+      });
+    } else {
+      fetch(postFavoriteUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          recipeId: id,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          queryClient.invalidateQueries("allRecipes");
+          queryClient.invalidateQueries("recommendRecipes");
+        })
+        .catch((error) => {
+          console.error("Error during fetch:", error);
+        });
+    }
+  };
+
   return (
     <>
       <div style={{ marginBottom: 20 }}>
@@ -104,14 +145,33 @@ const Recipe = () => {
                     className="card"
                     style={{ width: "300px", height: "300px" }}
                   >
-                    <div className="card-image">
-                      <figure className="image is-3by2">
-                        <img
-                          src={recommendRecipe.recipeImage}
-                          alt="Placeholder"
-                        />
-                      </figure>
-                    </div>
+                    <Link to={`/recipe-detail/${recommendRecipe.recipeId}`}>
+                      <div
+                        className="card-image"
+                        style={{ position: "relative" }}
+                      >
+                        <figure className="image is-3by2">
+                          <img
+                            src={recommendRecipe.recipeImage}
+                            alt="Placeholder"
+                          />
+                        </figure>
+                        {recommendRecipe.forPremium && (
+                          <img
+                            src={vip}
+                            alt="vip"
+                            style={{
+                              width: "24px",
+                              height: "24px",
+                              position: "absolute",
+                              top: 0,
+                              right: 0,
+                            }}
+                          />
+                        )}
+                      </div>
+                    </Link>
+
                     <div className="card-content p-5">
                       <div className="media">
                         <div className="media-content">
@@ -126,13 +186,22 @@ const Recipe = () => {
                           >
                             <span
                               style={{
-                                width: "190px",
+                                width: "170px",
                                 height: "23px",
                                 overflow: "hidden",
+                                color: "black",
                               }}
                             >
-                              {recommendRecipe.recipeName}
+                              <Link
+                                to={`/recipe-detail/${recommendRecipe.recipeId}`}
+                                style={{
+                                  color: "black",
+                                }}
+                              >
+                                {recommendRecipe.recipeName}
+                              </Link>
                             </span>
+
                             <div
                               style={{
                                 display: "flex",
@@ -140,20 +209,10 @@ const Recipe = () => {
                               }}
                             >
                               {recommendRecipe.isFavorite && user ? (
-                                <button
-                                  className="button"
-                                  style={{
-                                    borderRadius: "50%",
-                                    width: "10px",
-                                    height: "30px",
-                                    background: "white",
-                                  }}
-                                >
-                                  <FontAwesomeIcon
-                                    icon={faHeart}
-                                    className="has-text-primary"
-                                  />
-                                </button>
+                                <FontAwesomeIcon
+                                  icon={faHeart}
+                                  className="has-text-primary"
+                                />
                               ) : (
                                 <button
                                   className="button is-primary"
@@ -162,6 +221,9 @@ const Recipe = () => {
                                     width: "10px",
                                     height: "30px",
                                   }}
+                                  onClick={() =>
+                                    handleAddFavorite(recommendRecipe.recipeId)
+                                  }
                                 >
                                   <FontAwesomeIcon icon={faHeart} />
                                 </button>
@@ -172,24 +234,28 @@ const Recipe = () => {
                               </h6>
                             </div>
                           </p>
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                            }}
+                          <Link
+                            to={`/recipe-detail/${recommendRecipe.recipeId}`}
                           >
-                            <Rating
-                              name="half-rating-read"
-                              defaultValue={recommendRecipe.aveRate}
-                              precision={0.5}
-                              readOnly
-                              size="small"
-                            />
-                            &nbsp; &nbsp;
-                            <span className="title is-6">
-                              {recommendRecipe.aveRate}/5
-                            </span>
-                          </div>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Rating
+                                name="half-rating-read"
+                                defaultValue={recommendRecipe.aveRate}
+                                precision={0.5}
+                                readOnly
+                                size="small"
+                              />
+                              &nbsp; &nbsp;
+                              <span className="title is-6">
+                                {recommendRecipe.aveRate}/5
+                              </span>
+                            </div>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -230,11 +296,30 @@ const Recipe = () => {
                       className="card"
                       style={{ width: "300px", height: "380px" }}
                     >
-                      <div className="card-image">
-                        <figure className="image is-3by2">
-                          <img src={recipe.recipeImage} alt="Placeholder" />
-                        </figure>
-                      </div>
+                      <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                        <div
+                          className="card-image"
+                          style={{ position: "relative" }}
+                        >
+                          <figure className="image is-3by2">
+                            <img src={recipe.recipeImage} alt="Placeholder" />
+                          </figure>
+                          {recipe.forPremium && (
+                            <img
+                              src={vip}
+                              alt="vip"
+                              style={{
+                                width: "24px",
+                                height: "24px",
+                                position: "absolute",
+                                top: 0,
+                                right: 0,
+                              }}
+                            />
+                          )}
+                        </div>
+                      </Link>
+
                       <div className="card-content">
                         <div className="media">
                           <div className="media-content">
@@ -247,30 +332,24 @@ const Recipe = () => {
                                 justifyContent: "space-between",
                               }}
                             >
-                              <span
-                                style={{
-                                  width: "160px",
-                                  height: "23px",
-                                  overflow: "hidden",
-                                }}
-                              >
-                                {recipe.recipeName}
-                              </span>
-                              {recipe.isFavorite && user ? (
-                                <button
-                                  className="button"
+                              <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                                <span
                                   style={{
-                                    borderRadius: "50%",
-                                    width: "10px",
-                                    height: "30px",
-                                    background: "white",
+                                    width: "160px",
+                                    height: "23px",
+                                    overflow: "hidden",
+                                    color: "black",
                                   }}
                                 >
-                                  <FontAwesomeIcon
-                                    icon={faHeart}
-                                    className="has-text-primary"
-                                  />
-                                </button>
+                                  {recipe.recipeName}
+                                </span>
+                              </Link>
+
+                              {recipe.isFavorite && user ? (
+                                <FontAwesomeIcon
+                                  icon={faHeart}
+                                  className="has-text-primary"
+                                />
                               ) : (
                                 <button
                                   className="button is-primary"
@@ -279,49 +358,52 @@ const Recipe = () => {
                                     width: "10px",
                                     height: "30px",
                                   }}
+                                  onClick={() =>
+                                    handleAddFavorite(recipe.recipeId)
+                                  }
                                 >
                                   <FontAwesomeIcon icon={faHeart} />
                                 </button>
                               )}
                             </p>
-                            <div
-                              style={{ display: "flex", alignItems: "center" }}
-                            >
-                              <Rating
-                                name="half-rating-read"
-                                defaultValue={recipe.aveRate}
-                                precision={0.5}
-                                readOnly
-                                size="small"
-                              />
-                              &nbsp; &nbsp;
-                              <span className="title is-6">
-                                {recipe.aveRate}/5
-                              </span>
-                            </div>
-                            {/* <div style={{ marginTop: 5 }}>
-                          <p className="title is-6">
-                            <strong className="subtitle is-6 has-text-primary">
-                              Ngày cập nhật:
-                            </strong>
-                            &nbsp; 10/9/2023
-                          </p>
-                        </div> */}
-                            <p
-                              className="title is-6 mb-4"
-                              style={{ marginTop: 10 }}
-                            >
-                              <strong className="subtitle is-6 has-text-primary">
-                                Loại:
-                              </strong>
-                              &nbsp; {recipe.mealName}
-                            </p>
-                            <p className="title is-6" style={{ marginTop: 10 }}>
-                              <strong className="subtitle is-6 has-text-primary">
-                                Độ tuổi:
-                              </strong>
-                              &nbsp; {recipe.ageName}
-                            </p>
+                            <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <Rating
+                                  name="half-rating-read"
+                                  defaultValue={recipe.aveRate}
+                                  precision={0.5}
+                                  readOnly
+                                  size="small"
+                                />
+                                &nbsp; &nbsp;
+                                <span className="title is-6">
+                                  {recipe.aveRate}/5
+                                </span>
+                              </div>
+                              <p
+                                className="title is-6 mb-4"
+                                style={{ marginTop: 10 }}
+                              >
+                                <strong className="subtitle is-6 has-text-primary">
+                                  Loại:
+                                </strong>
+                                &nbsp; {recipe.mealName}
+                              </p>
+                              <p
+                                className="title is-6"
+                                style={{ marginTop: 10 }}
+                              >
+                                <strong className="subtitle is-6 has-text-primary">
+                                  Độ tuổi:
+                                </strong>
+                                &nbsp; {recipe.ageName}
+                              </p>
+                            </Link>
                           </div>
                         </div>
                       </div>
