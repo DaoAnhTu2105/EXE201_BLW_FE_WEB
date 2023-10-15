@@ -24,18 +24,16 @@ const RecipeDetail = () => {
       fetch(detailUrl, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user?.token}`,
         },
       }).then((response) => response.json())
   );
-  console.log("data id tra ra", detailRecipe);
   const handleComment = () => {
     if (userRate === 0) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Rate không được để trống",
-        footer: '<a href="">Why do I have this issue?</a>',
       });
     } else {
       fetch(upCommentUrl, {
@@ -67,13 +65,13 @@ const RecipeDetail = () => {
   };
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Xóa bình luận?",
+      text: "Bạn chắc là muốn xóa bình luận này không!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Có!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
@@ -350,11 +348,11 @@ const RecipeDetail = () => {
               <article className="media mt-5">
                 <figure className="media-left">
                   <p className="image is-64x64">
-                    <img src={user.data.avatar} alt="#" />
+                    <img src={user?.data?.avatar} alt="#" />
                   </p>
                 </figure>
                 <div className="media-content">
-                  <strong className="pl-2">{user.data.fullname}</strong>
+                  <strong className="pl-2">{user?.data?.fullname}</strong>
                   <div className="mt-2 mb-2">
                     <Rating
                       name="half-rating-read"

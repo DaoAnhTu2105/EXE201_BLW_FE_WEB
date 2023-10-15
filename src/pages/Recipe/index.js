@@ -15,19 +15,30 @@ import loadingGif from "../../image/Baby-Crawl-Cycle-unscreen.gif";
 const Recipe = () => {
   const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
   const recommendRecipeApi = `https://blw-api.azurewebsites.net/api/Recipe/MostFavoriteRecipe`;
+  const user = JSON.parse(localStorage.getItem("user"));
   const {
     data: recipes,
     isLoading: loading,
     isError: error,
   } = useQuery("allRecipes", () =>
-    fetch(recipeApi).then((response) => response.json())
+    fetch(recipeApi, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+    }).then((response) => response.json())
   );
   const {
     data: recommendRecipes,
     isLoading: recommendLoading,
     isError: recommendError,
   } = useQuery("recommendRecipes", () =>
-    fetch(recommendRecipeApi).then((response) => response.json())
+    fetch(recommendRecipeApi, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+    }).then((response) => response.json())
   );
   return (
     <>
@@ -128,16 +139,33 @@ const Recipe = () => {
                                 alignItems: "center",
                               }}
                             >
-                              <button
-                                className="button is-primary"
-                                style={{
-                                  borderRadius: "50%",
-                                  width: "10px",
-                                  height: "30px",
-                                }}
-                              >
-                                <FontAwesomeIcon icon={faHeart} />
-                              </button>
+                              {recommendRecipe.isFavorite && user ? (
+                                <button
+                                  className="button"
+                                  style={{
+                                    borderRadius: "50%",
+                                    width: "10px",
+                                    height: "30px",
+                                    background: "white",
+                                  }}
+                                >
+                                  <FontAwesomeIcon
+                                    icon={faHeart}
+                                    className="has-text-primary"
+                                  />
+                                </button>
+                              ) : (
+                                <button
+                                  className="button is-primary"
+                                  style={{
+                                    borderRadius: "50%",
+                                    width: "10px",
+                                    height: "30px",
+                                  }}
+                                >
+                                  <FontAwesomeIcon icon={faHeart} />
+                                </button>
+                              )}
                               &nbsp;
                               <h6 className="title is-6 mb-0">
                                 {recommendRecipe.totalFavorite}
@@ -196,7 +224,7 @@ const Recipe = () => {
               </div>
             ) : (
               <div className="grid-container-food">
-                {recipes?.data?.result.map((recipe) => (
+                {recipes?.data?.map((recipe) => (
                   <div className="grid-item-food" key={recipe.recipeId}>
                     <div
                       className="card"
@@ -228,16 +256,33 @@ const Recipe = () => {
                               >
                                 {recipe.recipeName}
                               </span>
-                              <button
-                                className="button is-primary"
-                                style={{
-                                  borderRadius: "50%",
-                                  width: "10px",
-                                  height: "30px",
-                                }}
-                              >
-                                <FontAwesomeIcon icon={faHeart} />
-                              </button>
+                              {recipe.isFavorite && user ? (
+                                <button
+                                  className="button"
+                                  style={{
+                                    borderRadius: "50%",
+                                    width: "10px",
+                                    height: "30px",
+                                    background: "white",
+                                  }}
+                                >
+                                  <FontAwesomeIcon
+                                    icon={faHeart}
+                                    className="has-text-primary"
+                                  />
+                                </button>
+                              ) : (
+                                <button
+                                  className="button is-primary"
+                                  style={{
+                                    borderRadius: "50%",
+                                    width: "10px",
+                                    height: "30px",
+                                  }}
+                                >
+                                  <FontAwesomeIcon icon={faHeart} />
+                                </button>
+                              )}
                             </p>
                             <div
                               style={{ display: "flex", alignItems: "center" }}
