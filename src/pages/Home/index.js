@@ -11,6 +11,7 @@ import { useQuery } from "react-query";
 import loadingGif from "../../image/Baby-Crawl-Cycle-unscreen.gif";
 import Swal from "sweetalert2";
 import { useQueryClient } from "react-query";
+import vip from "../../image/premium-logo.png";
 
 const Home = ({ results }) => {
   const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
@@ -74,79 +75,6 @@ const Home = ({ results }) => {
   return (
     <>
       <div style={{ marginBottom: "30px", marginTop: 20 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <article id="intro-card-welcome">
-            <img src={home1} alt="Avatar wallpaper" />
-            <div className="content-welcome">
-              <h1>Chào mừng các bạn đã đến với Baby Led Weaning</h1>
-              <div className="infos"></div>
-            </div>
-          </article>
-        </div>
-
-        <h4 className="title is-4" style={{ textAlign: "center" }}>
-          Khám phá
-        </h4>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div className="home-explore-container">
-            <Link to="/recipe">
-              <figure className="home-explore">
-                <img
-                  src={home1}
-                  alt="Mountains"
-                  style={{
-                    width: "250px",
-                    height: "300px",
-                    objectFit: "cover",
-                  }}
-                />
-                <figcaption className="home-explore-title">Thực đơn</figcaption>
-              </figure>
-            </Link>
-            <Link to="/plan">
-              <figure className="home-explore">
-                <img
-                  src={home1}
-                  alt="Mountains"
-                  style={{
-                    width: "250px",
-                    height: "300px",
-                    objectFit: "cover",
-                  }}
-                />
-                <figcaption className="home-explore-title">Kế hoạch</figcaption>
-              </figure>
-            </Link>
-            <Link to="/list-expert">
-              <figure className="home-explore">
-                <img
-                  src={home1}
-                  alt="Mountains"
-                  style={{
-                    width: "250px",
-                    height: "300px",
-                    objectFit: "cover",
-                  }}
-                />
-                <figcaption className="home-explore-title">
-                  Chuyên gia
-                </figcaption>
-              </figure>
-            </Link>
-          </div>
-        </div>
         {results ? (
           <>
             <h4 className="title is-4" style={{ textAlign: "center" }}>
@@ -166,15 +94,24 @@ const Home = ({ results }) => {
                       className="card"
                       style={{ width: "290px", height: "380px" }}
                     >
-                      <div className="card-image">
-                        <Link to={`/recipe-detail/${result.recipeId}`}>
-                          <figure className="image is-3by2">
-                            <img
-                              src={result.recipeImage}
-                              alt="hình ảnh thực đơn"
-                            />
-                          </figure>
-                        </Link>
+                      <div
+                        className="card-image"
+                        style={{ position: "relative" }}
+                      >
+                        <figure className="image is-3by2">
+                          <img src={result.recipeImage} alt="Placeholder" />
+                        </figure>
+                        {result.forPremium && (
+                          <img
+                            src={vip}
+                            alt="vip"
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              right: 0,
+                            }}
+                          />
+                        )}
                       </div>
                       <div className="card-content">
                         <div className="media">
@@ -200,7 +137,7 @@ const Home = ({ results }) => {
                                   {result.recipeName}
                                 </span>
                               </Link>
-                              {result.isFavorite && user ? (
+                              {/* {result.isFavorite && user ? (
                                 <FontAwesomeIcon
                                   icon={faHeart}
                                   className="has-text-primary"
@@ -214,12 +151,12 @@ const Home = ({ results }) => {
                                     height: "30px",
                                   }}
                                   onClick={() =>
-                                    handleAddFavorite(result.recipeId)
+                                    handleSearchFavorite(result.recipeId)
                                   }
                                 >
                                   <FontAwesomeIcon icon={faHeart} />
                                 </button>
-                              )}
+                              )} */}
                             </p>
                             <div
                               style={{
@@ -274,6 +211,83 @@ const Home = ({ results }) => {
           </>
         ) : (
           <>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: "20px",
+              }}
+            >
+              <article id="intro-card-welcome">
+                <img src={home1} alt="Avatar wallpaper" />
+                <div className="content-welcome">
+                  <h1>Chào mừng các bạn đã đến với Baby Led Weaning</h1>
+                  <div className="infos"></div>
+                </div>
+              </article>
+            </div>
+
+            <h4 className="title is-4" style={{ textAlign: "center" }}>
+              Khám phá
+            </h4>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div className="home-explore-container">
+                <Link to="/recipe">
+                  <figure className="home-explore">
+                    <img
+                      src={home1}
+                      alt="Mountains"
+                      style={{
+                        width: "250px",
+                        height: "300px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <figcaption className="home-explore-title">
+                      Thực đơn
+                    </figcaption>
+                  </figure>
+                </Link>
+                <Link to="/plan">
+                  <figure className="home-explore">
+                    <img
+                      src={home1}
+                      alt="Mountains"
+                      style={{
+                        width: "250px",
+                        height: "300px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <figcaption className="home-explore-title">
+                      Kế hoạch
+                    </figcaption>
+                  </figure>
+                </Link>
+                <Link to="/list-expert">
+                  <figure className="home-explore">
+                    <img
+                      src={home1}
+                      alt="Mountains"
+                      style={{
+                        width: "250px",
+                        height: "300px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <figcaption className="home-explore-title">
+                      Chuyên gia
+                    </figcaption>
+                  </figure>
+                </Link>
+              </div>
+            </div>
             <h4 className="title is-4" style={{ textAlign: "center" }}>
               Thực đơn được ưa chuộng nhất
             </h4>
@@ -301,13 +315,27 @@ const Home = ({ results }) => {
                           <Link
                             to={`/recipe-detail/${recommendRecipe.recipeId}`}
                           >
-                            <div className="card-image">
+                            <div
+                              className="card-image"
+                              style={{ position: "relative" }}
+                            >
                               <figure className="image is-3by2">
                                 <img
                                   src={recommendRecipe.recipeImage}
                                   alt="Placeholder"
                                 />
                               </figure>
+                              {recommendRecipe.forPremium && (
+                                <img
+                                  src={vip}
+                                  alt="vip"
+                                  style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    right: 0,
+                                  }}
+                                />
+                              )}
                             </div>
                           </Link>
                           <div className="card-content p-2">
@@ -451,13 +479,27 @@ const Home = ({ results }) => {
                           style={{ width: "290px", height: "380px" }}
                         >
                           <Link to={`/recipe-detail/${recipe.recipeId}`}>
-                            <div className="card-image">
+                            <div
+                              className="card-image"
+                              style={{ position: "relative" }}
+                            >
                               <figure className="image is-3by2">
                                 <img
                                   src={recipe.recipeImage}
-                                  alt="hình ảnh thực đơn"
+                                  alt="Placeholder"
                                 />
                               </figure>
+                              {recipe.forPremium && (
+                                <img
+                                  src={vip}
+                                  alt="vip"
+                                  style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    right: 0,
+                                  }}
+                                />
+                              )}
                             </div>
                           </Link>
 

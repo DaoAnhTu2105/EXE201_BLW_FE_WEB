@@ -14,7 +14,7 @@
       width: 200px;
       position: -webkit-sticky;
       position: sticky;
-      top: 0;
+      top: 65px;
       z-index: 900;
       height: 600px; 
       overflow-y: auto;
@@ -23,7 +23,7 @@
     .layout-without-search-sidebar .layout-without-search-ads{
       position: -webkit-sticky;
       position: sticky;
-      top: 0;
+      top: 65px;
       z-index: 900;
       overflow-y: auto;
     }

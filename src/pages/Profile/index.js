@@ -17,6 +17,8 @@ import rabbit from "../../image/rabbit.gif";
 import penguin from "../../image/penguin.gif";
 import { useQuery } from "react-query";
 import { useQueryClient } from "react-query";
+import premium from "../../image/premium.png";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [active, setActive] = useState("account");
@@ -44,7 +46,7 @@ const Profile = () => {
     }).then((response) => response.json())
   );
 
-  console.log(dataFavorite);
+  console.log(user);
 
   const handleActive = (item) => {
     setActive(item);
@@ -351,8 +353,19 @@ const Profile = () => {
                     top: 200,
                   }}
                 />
-                <h2 className="title is-2">Thông tin cá nhân</h2>
-                <h6 className="title is-6">
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <h2 className="title is-2 mb-0">Thông tin cá nhân</h2>
+                  &nbsp; &nbsp; &nbsp;
+                  {user.data.isPremium && <img src={premium} alt="" />}
+                </div>
+
+                <h6 className="title is-6 mt-5">
                   Đây là chi tiết thông tin cá nhân của bạn vui lòng không chia
                   sẻ cho người lạ.
                 </h6>
@@ -459,14 +472,29 @@ const Profile = () => {
             )
           ) : active === "favorite" ? (
             <div style={{ paddingLeft: 15 }}>
-              <h2 className="title is-2 mb-5">Thực đơn yêu thích của bạn</h2>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <h2 className="title is-2 mb-0">Thực đơn yêu thích</h2>
+                &nbsp; &nbsp; &nbsp;
+                {user.data.isPremium && <img src={premium} alt="" />}
+              </div>
+
               {dataFavorite?.data?.length === 0 ? (
                 <h3 className="title is-3 mb-5" style={{ marginTop: 100 }}>
-                  Bạn chưa có thực đơn yêu thích của mình
+                  Bạn chưa có thực đơn
+                  <Link to="/">
+                    <strong className="has-text-primary"> yêu thích </strong>
+                  </Link>
+                  của mình
                 </h3>
               ) : (
                 <div
-                  className="grid-container"
+                  className="grid-container mt-5"
                   style={{
                     marginBottom: 20,
                   }}
@@ -541,8 +569,18 @@ const Profile = () => {
                   top: 200,
                 }}
               />
-              <h2 className="title is-2">Chi tiết gói</h2>
-              <div className="notification is-primary is-light">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <h2 className="title is-2 mb-0">Chi tiết gói</h2>
+                &nbsp; &nbsp; &nbsp;
+                {user.data.isPremium && <img src={premium} alt="" />}
+              </div>
+              <div className="notification is-primary is-light mt-5">
                 Bạn đã mua gói 365 ngày vào lúc <strong> 12h</strong> ngày
                 <strong> 17/9/2023</strong>, gói sẽ hết hạn vào lúc
                 <strong> 12h</strong> ngày <strong> 17/9/2024 </strong>
