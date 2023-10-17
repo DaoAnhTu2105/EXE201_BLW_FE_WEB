@@ -9,6 +9,9 @@ import {
   faCrown,
   faChevronRight,
   faDisplay,
+  faFire,
+  faScaleBalanced,
+  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import { faJs } from "@fortawesome/free-brands-svg-icons";
 import IconButton from "@mui/material/IconButton";
@@ -234,7 +237,7 @@ const Navbar = () => {
           style={{
             backgroundColor: "rgba(0, 0, 0, 0.6)",
             marginTop: 5,
-            width: 380,
+            width: 250,
             borderRadius: "10px",
             top: 60,
             right: 0,
@@ -262,85 +265,71 @@ const Navbar = () => {
             <Link to="/pack">
               <p
                 className="title is-6 mb-0"
-                style={{ color: "rgba(245, 245, 245, 0.8", paddingTop: "10px" }}
+                style={{ color: "rgba(245, 245, 245, 0.8", paddingTop: "10px", borderBottom: "1px solid #f0f0f0" }}
               >
                 Quyền lợi thành viên
                 <FontAwesomeIcon
                   icon={faChevronRight}
                   style={{
                     color: "rgba(245, 245, 245, 0.8",
-                    paddingLeft: "150px",
+                    paddingLeft: "15px",
                   }}
                 />
               </p>
             </Link>
           </div>
-          <div style={{ marginTop: 10 }}>
-            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-              <div style={{ display: "flex" }}>
-                <div
-                  style={{
-                    borderRadius: "50%",
-                    backgroundColor: "rgba(251, 227, 0, 0.2)",
-                    width: 30,
-                    height: 25,
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faDisplay}
-                    style={{
-                      color: "rgba(251, 227, 0, 0.8",
-                      paddingLeft: 6,
-                    }}
-                  />
+          <div style={{ marginTop: 10, paddingLeft: "10px" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  borderRadius: "50%",
+                  backgroundColor: "rgba(251, 227, 0, 0.2)",
+                  width: 30,
+                  height: 30,
+                  alignItems: "center",
+                  display: "flex",
+                  justifyContent: 'center'
+                }}
+              >
+                <div>
+                  <FontAwesomeIcon icon={faUtensils} style={{ color: "rgba(251, 227, 0, 0.8" }} />
                 </div>
-                &nbsp;
-                <span
-                  className="subtitle is-6 mb-0"
-                  style={{ color: "rgba(245, 245, 245, 0.8" }}
-                >
-                  300+ món ăn dinh dưỡng
-                </span>
+
+              </div>&nbsp;
+              <span
+                className="subtitle is-6 mb-0"
+                style={{ color: "rgba(245, 245, 245, 0.8" }}
+              >
+                300+ món ăn dinh dưỡng
+              </span>
+            </div>
+            <div style={{ display: "flex", paddingTop: "15px", alignItems: "center" }}>
+              <div style={{
+                borderRadius: "50%", backgroundColor: "rgba(251, 227, 0, 0.2)", width: 30, height: 30, alignItems: "center", display: "flex", justifyContent: 'center'
+              }}>
+                <FontAwesomeIcon icon={faScaleBalanced} style={{ color: "rgba(251, 227, 0, 0.8" }} />
               </div>
-              <div style={{ display: "flex" }}>
-                <div
-                  style={{
-                    borderRadius: "50%",
-                    backgroundColor: "rgba(251, 227, 0, 0.2)",
-                    width: 30,
-                    height: 25,
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faJs}
-                    style={{
-                      color: "rgba(251, 227, 0, 0.8",
-                      paddingLeft: 7,
-                    }}
-                  />
-                </div>
-                &nbsp;
-                <span
-                  className="subtitle is-6 mb-0"
-                  style={{ color: "rgba(245, 245, 245, 0.8" }}
-                >
-                  Lên thực đơn cho bữa ăn
-                </span>
-              </div>
+              &nbsp;
+              <span
+                className="subtitle is-6 mb-0"
+                style={{ color: "rgba(245, 245, 245, 0.8" }}
+              >
+                Lên thực đơn cho bữa ăn
+              </span>
             </div>
           </div>
-          <div
-            className="mt-5"
-            style={{ textAlign: "center", paddingBottom: "15px" }}
-          >
-            <button
-              class="button is-warning"
-              style={{ color: "black", width: 300 }}
-            >
-              Đăng kí gói hội viên
-            </button>
+          <div className="mt-5" style={{ textAlign: "center", paddingBottom: "15px" }}>
+            <Link to="/pack">
+              <button
+                class="button is-warning"
+                style={{ color: "black", width: 180 }}
+              >
+                Đăng kí gói hội viên
+              </button>
+            </Link>
+
           </div>
-        </div>
+        </div >
       )}
     </>
   );
