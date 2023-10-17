@@ -50,8 +50,8 @@ const ExpertManager = () => {
     const [workProgress, setWorkProgress] = useState('')
     const [facebookId, setFacebookId] = useState('')
     const [professionalQualification, setProfessionalQualification] = useState('')
-    const [achievements,setAchievements]= useState('')
-    const [workUnit,setWorkUnit]= useState('')
+    const [achievements, setAchievements] = useState('')
+    const [workUnit, setWorkUnit] = useState('')
 
     // -------------------------------END CREATE------------------------------
     return (
@@ -77,32 +77,40 @@ const ExpertManager = () => {
                     <div className="col-md-12-trans">
                         <div className="table-wrap">
                             <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Tên chuyên gia</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Khu vực</th>
-                                        <th>Mô tả</th>
-                                        <th>Liên lạc mxh</th>
-                                        <th>Trạng thái</th>
-                                        <th>Edit</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {experts && experts?.data.forEach(expert => {
-                                        <tr style={{ alignItems: "center" }}>
-                                            <td>Chuyên gia A</td>
-                                            <td>0123456789</td>
-                                            <td>Hồ Chí Minh</td>
-                                            <td>Chuyên gia dinh dưỡng</td>
-                                            <td>-</td>
-                                            <td><p style={{ color: "#5d7ee7" }}>Active</p></td>
-                                            <td>
+                                {!experts ? (
+                                    <p>No data found</p>
+                                ) : (
+                                    <>
 
-                                            </td>
-                                        </tr>
-                                    })}
-                                </tbody>
+                                        <thead>
+                                            <tr>
+                                                <th>Tên chuyên gia</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Khu vực</th>
+                                                <th>Mô tả</th>
+                                                <th>Liên lạc mxh</th>
+                                                <th>Trạng thái</th>
+                                                <th>Edit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {experts && experts?.data.forEach(expert => {
+                                                <tr style={{ alignItems: "center" }}>
+                                                    <td>Chuyên gia A</td>
+                                                    <td>0123456789</td>
+                                                    <td>Hồ Chí Minh</td>
+                                                    <td>Chuyên gia dinh dưỡng</td>
+                                                    <td>-</td>
+                                                    <td><p style={{ color: "#5d7ee7" }}>Active</p></td>
+                                                    <td>
+
+                                                    </td>
+                                                </tr>
+                                            })}
+                                        </tbody>
+                                    </>
+                                )}
+
                             </table>
                         </div>
                     </div>

@@ -23,7 +23,8 @@ const CustomersManager = () => {
                     <div className="col-md-12-trans">
                         <div className="table-wrap">
                             <table className="table table-striped">
-                                <thead>
+                                <p>No data found</p>
+                                {/* <thead>
                                     <tr>
                                         <th >Mã KH</th>
                                         <th>Tên KH</th>
@@ -47,7 +48,7 @@ const CustomersManager = () => {
                                         <td><p style={{ color: "#5d7ee7" }}>Active</p></td>
                                         <td></td>
                                     </tr>
-                                </tbody>
+                                </tbody> */}
                             </table>
                         </div>
                     </div>

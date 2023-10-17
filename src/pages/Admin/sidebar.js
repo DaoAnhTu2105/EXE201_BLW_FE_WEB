@@ -39,7 +39,7 @@ const SideBar = ({ selectContent }) => {
             <div id="nav-footer">
                 <div id="nav-footer-heading" onClick={handleLogout}>
                     <div className="nav-button">
-                        <i class="fas fa-right-from-bracket"></i>&nbsp;&nbsp;&nbsp;
+                        <i className="fas fa-right-from-bracket"></i>&nbsp;&nbsp;&nbsp;
                         <span>Sign out</span>
                     </div>
 

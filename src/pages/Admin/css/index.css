@@ -1,9 +1,14 @@
 .container-admin {
-    height: 100vh;
+  
     display: flex;
-    justify-content: start
+    justify-content: start;
+ 
 }
 
+.container-sidebar {
+    position: relative;
+    
+}
 
 .admin-tab-active {
     display: block;

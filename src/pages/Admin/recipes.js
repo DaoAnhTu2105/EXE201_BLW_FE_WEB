@@ -4,11 +4,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
+import { useQuery } from "react-query";
 const RecipesManager = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
     return (
         <>
             <div style={{ backgroundColor: "#f3f6f4", height: "50px" }}>

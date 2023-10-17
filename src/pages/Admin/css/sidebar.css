@@ -65,10 +65,14 @@
     transition: opacity 0.1s;
     pointer-events: none;
 }
+
 #nav-bar {
+    position: -webkit-sticky;
     position: sticky;
+    top: 0px;
+    z-index: 900;
+    overflow-y: auto;
     left: 1vw;
-    top: 1vw;
     height: 100vh;
     background: var(--navbar-dark-primary);
     border-radius: 16px;

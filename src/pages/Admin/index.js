@@ -5,11 +5,11 @@ import "./css/index.css"
 import Transactions from "./transactions";
 import CustomersManager from "./customers";
 import RecipesManager from "./recipes";
-import FoodsManager from "./foods";
+import FoodsManager from "./ingredients";
 import ExpertManager from "./experts";
 import { Link } from "react-router-dom";
 const Admin = () => {
-    const [selectedContentBread, setSelectedContentBread] = useState('Khách hàng')
+    const [selectedContentBread, setSelectedContentBread] = useState('Giao dịch')
 
     const handleSelectContent = (content) => {
         setSelectedContentBread(content)
@@ -18,7 +18,7 @@ const Admin = () => {
         <>
 
             <div className="container-admin">
-                <div style={{ width: "auto", position: 'relative', height: "100%" }}>
+                <div className="container-sidebar">
                     <SideBar selectContent={handleSelectContent} />
                 </div>
                 <div style={{ margin: "55px ", width: "70%" }}>
@@ -33,9 +33,9 @@ const Admin = () => {
                     <section className="ftco-section" style={selectedContentBread === 'Công thức' ? {} : { display: 'none' }}>
                         <RecipesManager />
                     </section>
-                    {/* <section className="ftco-section">
+                    <section className="ftco-section" style={selectedContentBread === 'Nguyên liệu' ? {} : { display: 'none' }}>
                         <FoodsManager />
-                    </section> */}
+                    </section>
                     <section className="ftco-section" style={selectedContentBread === 'Chuyên gia' ? {} : { display: 'none' }}>
                         <ExpertManager />
                     </section>
