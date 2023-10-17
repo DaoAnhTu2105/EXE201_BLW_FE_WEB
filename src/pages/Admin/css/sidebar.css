@@ -67,10 +67,13 @@
 }
 
 #nav-bar {
-    position: absolute;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    z-index: 900;
+    overflow-y: auto;
     left: 1vw;
-    top: 1vw;
-    height: calc(100% - 2vw);
+    height: 100vh;
     background: var(--navbar-dark-primary);
     border-radius: 16px;
     display: flex;
@@ -102,7 +105,7 @@
 #nav-header {
     position: relative;
     width: var(--navbar-width);
-    left: 16px;
+
     width: calc(var(--navbar-width) - 16px);
     min-height: 80px;
     background: var(--navbar-dark-primary);

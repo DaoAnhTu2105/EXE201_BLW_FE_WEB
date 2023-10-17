@@ -8,7 +8,6 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 // import Register from "../pages/Register";
 import LayoutNavSearchFooter from "../components/LayoutNavSearchFooter";
-import Payment from "../pages/Payment";
 import Recipe from "../pages/Recipe";
 import Plan from "../pages/Plan";
 import RecipeDetail from "../pages/Detail/RecipeDetail";
@@ -60,11 +59,6 @@ export const publicRouters = [
     layout: LayoutWithoutAds,
   },
   {
-    path: "/payment",
-    name: "payment",
-    component: Payment,
-  },
-  {
     path: "/pack",
     name: "pack",
     component: PremiumPack,
@@ -88,7 +82,7 @@ export const publicRouters = [
     component: Admin,
   },
   {
-    path: "/admin/login",
+    path: "/blw-manager/login",
     name: "adminlogin",
     component: AdminLogin,
   },
