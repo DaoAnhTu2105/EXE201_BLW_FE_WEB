@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../Navbar";
 import Search from "../Search";
 import Footer from "../Footer";
@@ -19,6 +19,7 @@ const LayoutNavSearchFooter = ({ children }) => {
 
   const searchApi = `https://blw-api.azurewebsites.net/api/Recipe/SearchRecipe`;
   const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
+
   const handleSearch = async (
     search = "",
     ageIds = [""],
@@ -26,10 +27,6 @@ const LayoutNavSearchFooter = ({ children }) => {
     rating = 0
   ) => {
     try {
-      await setName(search);
-      await setAge(ageIds);
-      await setMeal(mealIds);
-      await setRate(rating);
       const response = await fetch(searchApi, {
         method: "POST",
         headers: {
@@ -47,13 +44,18 @@ const LayoutNavSearchFooter = ({ children }) => {
         console.log("No content found.");
       } else {
         const searchNameData = await response.json();
-        console.log(age);
+        setName(search);
+        setAge(ageIds);
+        setMeal(mealIds);
+        setRate(rating);
         setSearch(searchNameData);
       }
     } catch (error) {
       console.error("Error during fetch:", error);
     }
   };
+  console.log(age);
+
   const handleAddFavorite = (id) => {
     if (!user) {
       Swal.fire({
