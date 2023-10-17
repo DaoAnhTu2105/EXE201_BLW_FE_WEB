@@ -86,94 +86,104 @@ const Home = ({ results, addFavorite }) => {
                 alignItems: "center",
               }}
             >
-              <div className="grid-container">
-                {results?.data?.map((result) => (
-                  <div className="grid-item" key={result.recipeId}>
-                    <div
-                      className="card"
-                      style={{ width: "290px", height: "380px" }}
-                    >
+              {results?.data?.length === 0 ? (
+                <>
+                  <h4
+                    className="title is-4 text-center"
+                    style={{ width: "1024px", height: "920px" }}
+                  >
+                    Không tìm thấy thực đơn phù hợp
+                  </h4>
+                </>
+              ) : (
+                <div className="grid-container">
+                  {results?.data?.map((result) => (
+                    <div className="grid-item" key={result.recipeId}>
                       <div
-                        className="card-image"
-                        style={{ position: "relative" }}
+                        className="card"
+                        style={{ width: "290px", height: "380px" }}
                       >
-                        <figure className="image is-3by2">
-                          <img src={result.recipeImage} alt="Placeholder" />
-                        </figure>
-                        {result.forPremium && (
-                          <img
-                            src={vip}
-                            alt="vip"
-                            style={{
-                              position: "absolute",
-                              top: 0,
-                              right: 0,
-                            }}
-                          />
-                        )}
-                      </div>
-                      <div className="card-content">
-                        <div className="media">
-                          <div className="media-content">
-                            <p
-                              className="title is-5"
+                        <div
+                          className="card-image"
+                          style={{ position: "relative" }}
+                        >
+                          <figure className="image is-3by2">
+                            <img src={result.recipeImage} alt="Placeholder" />
+                          </figure>
+                          {result.forPremium && (
+                            <img
+                              src={vip}
+                              alt="vip"
                               style={{
-                                marginBottom: 10,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
+                                position: "absolute",
+                                top: 0,
+                                right: 0,
                               }}
-                            >
-                              <Link to={`/recipe-detail/${result.recipeId}`}>
-                                <span
-                                  style={{
-                                    width: "190px",
-                                    height: "24px",
-                                    overflow: "hidden",
-                                    color: "black",
-                                  }}
-                                >
-                                  {result.recipeName}
-                                </span>
-                              </Link>
-                              {result.isFavorite && user ? (
-                                <FontAwesomeIcon
-                                  icon={faHeart}
-                                  className="has-text-primary"
+                            />
+                          )}
+                        </div>
+                        <div className="card-content">
+                          <div className="media">
+                            <div className="media-content">
+                              <p
+                                className="title is-5"
+                                style={{
+                                  marginBottom: 10,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                <Link to={`/recipe-detail/${result.recipeId}`}>
+                                  <span
+                                    style={{
+                                      width: "190px",
+                                      height: "24px",
+                                      overflow: "hidden",
+                                      color: "black",
+                                    }}
+                                  >
+                                    {result.recipeName}
+                                  </span>
+                                </Link>
+                                {result.isFavorite && user ? (
+                                  <FontAwesomeIcon
+                                    icon={faHeart}
+                                    className="has-text-primary"
+                                  />
+                                ) : (
+                                  <button
+                                    className="button is-primary"
+                                    style={{
+                                      borderRadius: "50%",
+                                      width: "10px",
+                                      height: "30px",
+                                    }}
+                                    onClick={() => addFavorite(result.recipeId)}
+                                  >
+                                    <FontAwesomeIcon icon={faHeart} />
+                                  </button>
+                                )}
+                              </p>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <Rating
+                                  name="half-rating-read"
+                                  defaultValue={result.aveRate}
+                                  precision={0.5}
+                                  readOnly
+                                  size="small"
                                 />
-                              ) : (
-                                <button
-                                  className="button is-primary"
-                                  style={{
-                                    borderRadius: "50%",
-                                    width: "10px",
-                                    height: "30px",
-                                  }}
-                                  onClick={() => addFavorite(result.recipeId)}
-                                >
-                                  <FontAwesomeIcon icon={faHeart} />
-                                </button>
-                              )}
-                            </p>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Rating
-                                name="half-rating-read"
-                                defaultValue={result.aveRate}
-                                precision={0.5}
-                                readOnly
-                                size="small"
-                              />
-                              &nbsp; &nbsp;
-                              <span className="title is-6">
-                                {result.aveRate}/5
-                              </span>
-                            </div>
-                            {/* <div style={{ marginTop: 5 }}>
+                                &nbsp; &nbsp;
+                                <span className="title is-6">
+                                  {result.aveRate}/5
+                                </span>
+                              </div>
+                              {/* <div style={{ marginTop: 5 }}>
                               <p className="title is-6">
                                 <strong className="subtitle is-6 has-text-primary">
                                   Ngày cập nhật:
@@ -182,28 +192,32 @@ const Home = ({ results, addFavorite }) => {
                                 {new Date(favor.updateTime).toLocaleDateString()}
                               </p>
                             </div> */}
-                            <p
-                              className="title is-6 mb-4"
-                              style={{ marginTop: 10 }}
-                            >
-                              <strong className="subtitle is-6 has-text-primary">
-                                Loại:
-                              </strong>
-                              &nbsp; {result.mealName}
-                            </p>
-                            <p className="title is-6" style={{ marginTop: 10 }}>
-                              <strong className="subtitle is-6 has-text-primary">
-                                Độ tuổi:
-                              </strong>
-                              &nbsp; {result.ageName}
-                            </p>
+                              <p
+                                className="title is-6 mb-4"
+                                style={{ marginTop: 10 }}
+                              >
+                                <strong className="subtitle is-6 has-text-primary">
+                                  Loại:
+                                </strong>
+                                &nbsp; {result.mealName}
+                              </p>
+                              <p
+                                className="title is-6"
+                                style={{ marginTop: 10 }}
+                              >
+                                <strong className="subtitle is-6 has-text-primary">
+                                  Độ tuổi:
+                                </strong>
+                                &nbsp; {result.ageName}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </>
         ) : (
