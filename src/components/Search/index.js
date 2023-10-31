@@ -28,6 +28,7 @@ const Search = ({ handleSearchName, age, meal, rate }) => {
       >
         <p className="control has-icons-left has-icons-right">
           <input
+            style={{ maxWidth: "500px" }}
             className="input is-primary"
             type="text"
             placeholder="Tìm kiếm ở đây"
@@ -44,7 +45,6 @@ const Search = ({ handleSearchName, age, meal, rate }) => {
         style={{
           width: "50px",
           height: "50px",
-          marginTop: 15,
           border: "none",
           backgroundColor: "white",
           fontSize: 30,
