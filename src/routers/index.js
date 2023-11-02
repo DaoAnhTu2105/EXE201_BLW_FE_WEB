@@ -46,12 +46,12 @@ export const publicRouters = [
     component: Recipe,
     layout: LayoutWithoutSearch,
   },
-  {
-    path: "/plan",
-    name: "plan",
-    component: Plan,
-    layout: LayoutWithoutSearch,
-  },
+  // {
+  //   path: "/plan",
+  //   name: "plan",
+  //   component: Plan,
+  //   layout: LayoutWithoutSearch,
+  // },
   {
     path: "/recipe-detail/:id",
     name: "recipe-detail",
@@ -70,12 +70,12 @@ export const publicRouters = [
     component: Expert,
     layout: LayoutWithoutAds,
   },
-  {
-    path: "/plan-detail",
-    name: "plan-detail",
-    component: PlanDetail,
-    layout: LayoutWithoutSearch,
-  },
+  // {
+  //   path: "/plan-detail",
+  //   name: "plan-detail",
+  //   component: PlanDetail,
+  //   layout: LayoutWithoutSearch,
+  // },
   {
     path: "/admin/dashboard",
     name: "dashboard",
@@ -86,12 +86,12 @@ export const publicRouters = [
     name: "adminlogin",
     component: AdminLogin,
   },
-  {
-    path: "/list-expert",
-    name: "list-expert",
-    component: ListExpert,
-    layout: LayoutWithoutAds,
-  },
+  // {
+  //   path: "/list-expert",
+  //   name: "list-expert",
+  //   component: ListExpert,
+  //   layout: LayoutWithoutAds,
+  // },
   {
     path: "/checkout",
     name: "checkout",

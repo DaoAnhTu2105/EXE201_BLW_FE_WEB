@@ -48,11 +48,6 @@ const Footer = () => {
               </span>
             </a>
             <br />
-            <a href="https://">
-              <span className="icon-text has-text-black">
-                <span>Kế hoạch</span>
-              </span>
-            </a>
           </p>
         </div>
         <div className="column">

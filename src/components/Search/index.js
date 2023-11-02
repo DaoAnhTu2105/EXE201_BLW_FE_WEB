@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faList } from "@fortawesome/free-solid-svg-icons";
 
-const Search = ({ handleSearchName, age, meal, rate }) => {
+const Search = ({ handleSearchName }) => {
   const [searchName, setSearchName] = useState("");
-
   const handleSearch = async (e) => {
     const result = e.target.value;
     await setSearchName(result);
-    handleSearchName(result, age, meal, rate);
+    handleSearchName(result);
   };
 
   return (

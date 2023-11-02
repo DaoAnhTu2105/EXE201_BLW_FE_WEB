@@ -4,7 +4,7 @@ import Search from "../Search";
 import Footer from "../Footer";
 import "./index.css";
 import Advertisement from "../Advertisement";
-import Filter from "../Filter";
+// import Filter from "../Filter";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -105,17 +105,17 @@ const LayoutNavSearchFooter = ({ children }) => {
             </div>
           </div>
         )}
-        <Search
-          handleSearchName={handleSearch}
-          age={age}
-          meal={meal}
-          rate={rate}
-        />
+        <Search handleSearchName={handleSearch} />
         <div className="layout-container">
-          <div className="layout-sidebar">
+          {/* <div className="layout-sidebar">
             <article className="layout-content" style={{ height: 600 }}>
               <Filter handleSearchFilter={handleSearch} name={name} />
             </article>
+          </div> */}
+          <div className="layout-sidebar">
+            <div className="layout-ads">
+              <Advertisement />
+            </div>
           </div>
           <div className="layout-main-content">
             {React.Children.map(children, (child) => {
