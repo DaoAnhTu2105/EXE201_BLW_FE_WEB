@@ -47,39 +47,39 @@ const Recipe = () => {
     }).then((response) => response.json())
   );
 
-  const handleAddFavorite = (id) => {
-    if (!user) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Đăng nhập để được thêm thực đơn vào yêu thích",
-      });
-    } else {
-      fetch(postFavoriteUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          recipeId: id,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          queryClient.invalidateQueries("allRecipes");
-          queryClient.invalidateQueries("recommendRecipes");
-        })
-        .catch((error) => {
-          console.error("Error during fetch:", error);
-        });
-    }
-  };
+  // const handleAddFavorite = (id) => {
+  //   if (!user) {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Oops...",
+  //       text: "Đăng nhập để được thêm thực đơn vào yêu thích",
+  //     });
+  //   } else {
+  //     fetch(postFavoriteUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${user.token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         recipeId: id,
+  //       }),
+  //     })
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           throw new Error(`HTTP error! Status: ${response.status}`);
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //         queryClient.invalidateQueries("allRecipes");
+  //         queryClient.invalidateQueries("recommendRecipes");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error during fetch:", error);
+  //       });
+  //   }
+  // };
 
   return (
     <>
@@ -202,7 +202,7 @@ const Recipe = () => {
                               </Link>
                             </span>
 
-                            <div
+                            {/* <div
                               style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -232,7 +232,7 @@ const Recipe = () => {
                               <h6 className="title is-6 mb-0">
                                 {recommendRecipe.totalFavorite}
                               </h6>
-                            </div>
+                            </div> */}
                           </p>
                           <Link
                             to={`/recipe-detail/${recommendRecipe.recipeId}`}
@@ -345,7 +345,7 @@ const Recipe = () => {
                                 </span>
                               </Link>
 
-                              {recipe.isFavorite && user ? (
+                              {/* {recipe.isFavorite && user ? (
                                 <FontAwesomeIcon
                                   icon={faHeart}
                                   className="has-text-primary"
@@ -364,7 +364,7 @@ const Recipe = () => {
                                 >
                                   <FontAwesomeIcon icon={faHeart} />
                                 </button>
-                              )}
+                              )} */}
                             </p>
                             <Link to={`/recipe-detail/${recipe.recipeId}`}>
                               <div
