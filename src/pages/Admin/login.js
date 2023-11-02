@@ -7,7 +7,7 @@ const AdminLogin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const adminLoginAPI_URL = `https://blw-api.azurewebsites.net/api/StaffAccount/LoginAdminOrStaff?username=${username}&password=${password}`
+    const adminLoginAPI_URL = `http://localhost:5000/admins/${username}/${password}`
     const handleLogin = async () => {
         try {
             const response = await fetch(adminLoginAPI_URL, {
@@ -20,7 +20,7 @@ const AdminLogin = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data)
-                if (data.data.role === 0) {
+                if (data.data.role === true) {
                     localStorage.setItem("admin", JSON.stringify(data));
                     navigate('/admin/dashboard')
                 }
