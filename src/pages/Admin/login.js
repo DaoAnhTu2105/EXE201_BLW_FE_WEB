@@ -10,6 +10,15 @@ const AdminLogin = () => {
     const adminLoginAPI_URL = `http://localhost:5000/admins/${username}/${password}`
     const handleLogin = async () => {
         try {
+
+
+            const responseRoot = await fetch(`https://blw-api.azurewebsites.net/api/StaffAccount/LoginAdminOrStaff?username=vu&password=1`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
             const response = await fetch(adminLoginAPI_URL, {
                 method: 'POST',
                 headers: {
@@ -19,9 +28,11 @@ const AdminLogin = () => {
 
             if (response.ok) {
                 const data = await response.json();
+                const dataRoot = await responseRoot.json();
                 console.log(data)
                 if (data.data.role === true) {
                     localStorage.setItem("admin", JSON.stringify(data));
+                    localStorage.setItem("adminRoot", JSON.stringify(dataRoot));
                     navigate('/admin/dashboard')
                 }
 

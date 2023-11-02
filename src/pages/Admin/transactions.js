@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 
 const Transactions = () => {
     const navigate = useNavigate()
-    const admin = JSON.parse(localStorage.getItem('admin'))
+    const admin = JSON.parse(localStorage.getItem('adminRoot'))
     const accessToken = admin?.token
     const [transactionData, setTransactionData] = useState({ data: [] });
     console.log(transactionData.data)
