@@ -53,7 +53,7 @@ const RecipesManager = () => {
   };
 
   //  ----------------------------------------------Ingredients-----------------------------------------------------------
-  const ingredientsApi = `https://blw-api.azurewebsites.net/api/Ingredients/GetAll`;
+  const ingredientsApi = `http://localhost:5000/ingredients`;
 
   const { data: ingredientData, isLoading } = useQuery("ingredients", () =>
     fetch(ingredientsApi).then((response) => response.json())
@@ -113,10 +113,8 @@ const RecipesManager = () => {
   const [meal, setMeal] = useState("");
   const [age, setAge] = useState("");
   const [image, setImage] = useState("");
-  const ageApi = `https://blw-api.azurewebsites.net/api/Age/GetAll`;
-  const mealApi = `https://blw-api.azurewebsites.net/api/Meal/GetAll`;
-
-  console.log("Meal: ", meal);
+  const ageApi = `http://localhost:5000/ages/`;
+  const mealApi = `http://localhost:5000/meals/`;
 
   const { data: ageData } = useQuery("ageData", () =>
     fetch(ageApi).then((response) => response.json())
@@ -125,9 +123,7 @@ const RecipesManager = () => {
     fetch(mealApi).then((response) => response.json())
   );
 
-  console.log("bua an", mealData);
-
-  const createUrl = `https://blw-api.azurewebsites.net/api/Recipe/AddRecipe`;
+  const createUrl = `http://localhost:5000/recipes/create-recipe`;
 
   const handleCreateRecipe = async (e) => {
     e.preventDefault();
@@ -136,7 +132,7 @@ const RecipesManager = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${admin.token}`,
+          Authorization: `${admin.token}`,
         },
         body: JSON.stringify({
           recipeName: name,
@@ -145,9 +141,9 @@ const RecipesManager = () => {
           standTime: standTime,
           cookTime: cookTime,
           servings: serving,
-          mealId: meal,
+          meal: meal,
           recipeImage: image,
-          ageId: age,
+          age: age,
           forPremium: premium,
           directionVMs: direction,
           ingredientOfRecipeVMs: ingredient,
@@ -200,7 +196,7 @@ const RecipesManager = () => {
   const [imageEdit, setImageEdit] = useState("");
   //  ----------------------------------------------Directions----------------------------------------------------------------
   const [directionEdit, setDirectionEdit] = useState([
-    { directionNum: 1, directionDesc: "", directionImage: [""] },
+    { directionNum: 1, directionDesc: "", directionImage: "" },
   ]);
   const nextStepEdit = directionEdit.length + 1;
   const handleInputChangeDirectionEdit = (e, index) => {
@@ -223,11 +219,11 @@ const RecipesManager = () => {
   const handleAddDirectionEditClick = () => {
     setDirectionEdit([
       ...directionEdit,
-      { directionNum: nextStepEdit, directionDesc: "", directionImage: [""] },
+      { directionNum: nextStepEdit, directionDesc: "", directionImage: "" },
     ]);
   };
 
-  //  ----------------------------------------------Ingredients-----------------------------------------------------------
+  //----------------------------------------------Ingredients-----------------------------------------------------------
 
   const [ingredientEdit, setIngredientEdit] = useState([
     { ingredientId: "", quantity: 1 },
@@ -258,13 +254,13 @@ const RecipesManager = () => {
   };
 
   const handleEditOpen = async (id) => {
+    console.log("id detail", id);
     try {
       const response = await fetch(
-        `https://blw-api.azurewebsites.net/api/Recipe/GetRecipe?id=${id}`,
+        `http://localhost:5000/recipes/detail-recipe/${id}`,
         {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${admin?.token}`,
+            Authorization: `${admin?.token}`,
           },
         }
       );
@@ -273,6 +269,7 @@ const RecipesManager = () => {
       }
 
       const result = await response.json();
+      console.log("result", result);
       setNameEdit(result.data.recipeName);
       setDescriptionEdit(result.data.recipeDesc);
       setPrepareEdit(result.data.prepareTime);
@@ -280,12 +277,12 @@ const RecipesManager = () => {
       setCookTimeEdit(result.data.cookTime);
       setServingEdit(result.data.servings);
       setPremiumEdit(result.data.forPremium);
-      setMealEdit(result.data.mealId);
-      setAgeEdit(result.data.ageId);
+      setMealEdit(result.data.meal._id);
+      setAgeEdit(result.data.age._id);
       setImageEdit(result.data.recipeImage);
       setDirectionEdit(result.data.directionVMs);
       setIngredientEdit(result.data.ingredientOfRecipeVMs);
-      setRecipeId(result.data.recipeId);
+      setRecipeId(result?.data?._id);
 
       setOpenEdit(true);
       console.log("ket qua edit: ", result);
@@ -293,26 +290,26 @@ const RecipesManager = () => {
       console.error("Error fetching data:", error);
     }
   };
-  console.log("image Edit", imageEdit);
   const handleEditClose = () => setOpenEdit(false);
   const recipeApi = `http://localhost:5000/recipes/`;
-  const editApi = `https://blw-api.azurewebsites.net/api/Recipe/UpdateRecipe?id=`;
+  const editApi = `http://localhost:5000/recipes/edit`;
   const { data: recipes, isLoading: loading } = useQuery("allRecipes", () =>
     fetch(recipeApi, {
       headers: {
-        Authorization: `Bearer ${admin?.token}`,
+        Authorization: `${admin?.token}`,
       },
     }).then((response) => response.json())
   );
   console.log("tat ca trong api moi", recipes);
   const handleEditRecipe = async (e, id) => {
+    console.log("id cua edit", id);
     e.preventDefault();
     try {
-      const response = await fetch(`${editApi}${id}`, {
+      const response = await fetch(`${editApi}/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${admin.token}`,
+          Authorization: `${admin.token}`,
         },
         body: JSON.stringify({
           recipeId: recipeId,
@@ -322,9 +319,9 @@ const RecipesManager = () => {
           standTime: standTimeEdit,
           cookTime: cookTimeEdit,
           servings: servingEdit,
-          mealId: mealEdit,
+          meal: mealEdit,
           recipeImage: imageEdit,
-          ageId: ageEdit,
+          age: ageEdit,
           forPremium: premiumEdit,
           directionVMs: directionEdit,
           ingredientOfRecipeVMs: ingredientEdit,
@@ -358,16 +355,12 @@ const RecipesManager = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await fetch(
-          `https://blw-api.azurewebsites.net/api/Recipe/DeleteRecipe?id=${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${admin.token}`,
-            },
-          }
-        )
+        await fetch(`http://localhost:5000/recipes/delete-recipe/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `${admin.token}`,
+          },
+        })
           .then((response) => {
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
@@ -461,71 +454,6 @@ const RecipesManager = () => {
               <form>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                   <Box sx={{ flexGrow: 1 }}>
-                    <Grid
-                      container
-                      spacing={{ xs: 2, md: 3 }}
-                      columns={{ xs: 4, sm: 8, md: 12 }}
-                      style={{ display: "flex", alignItems: "center" }}
-                    >
-                      {/* <Grid item xs={4} sm={6} md={6}>
-                        <Box sx={{ marginLeft: 10 }}>
-                          {!selectedImage ? (
-                            <Button
-                              onClick={handleUploadImage}
-                              sx={{
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                                width: "160px",
-                                height: "160px",
-                                borderRadius: "50%",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                cursor: "pointer",
-                                border: "2px dashed rgb(243, 156, 18)",
-                              }}
-                            >
-                              <input
-                                ref={fileInputRef}
-                                type="file"
-                                onChange={handleImageChange}
-                                style={{ display: "none" }}
-                              />
-                              <AddPhotoAlternateIcon fontSize="large" />
-                            </Button>
-                          ) : (
-                            <div>
-                              <button
-                                onClick={() => setSelectedImage(null)}
-                                style={{
-                                  backgroundSize: "cover",
-                                  backgroundPosition: "center",
-                                  width: "160px",
-                                  height: "160px",
-                                  borderRadius: "50%",
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                  cursor: "pointer",
-                                  border: "2px dashed rgb(243, 156, 18)",
-                                }}
-                              >
-                                <img
-                                  src={selectedImage}
-                                  alt="Selected"
-                                  style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    borderRadius: "50%",
-                                  }}
-                                />
-                              </button>
-                            </div>
-                          )}
-                          
-                        </Box>
-                      </Grid> */}
-                    </Grid>
                     <Grid item xs={4} sm={6} md={6}>
                       <div className="field">
                         <label className="label">Tên món ăn</label>
@@ -669,7 +597,7 @@ const RecipesManager = () => {
                           >
                             <option>Select Meal</option>
                             {mealData?.data.map((meal) => (
-                              <option value={meal.mealId} key={meal.mealId}>
+                              <option value={meal._id} key={meal._id}>
                                 {meal.mealName}
                               </option>
                             ))}
@@ -686,7 +614,7 @@ const RecipesManager = () => {
                           >
                             <option>Select Age</option>
                             {ageData?.data.map((age) => (
-                              <option value={age.ageId} key={age.ageId}>
+                              <option value={age._id} key={age._id}>
                                 {age.ageName}
                               </option>
                             ))}
@@ -761,7 +689,7 @@ const RecipesManager = () => {
                   <div className="field">
                     <label className="label">Nguyên liệu</label>
                     {ingredient.map((x, i) => {
-                      console.log(x.ingredientId);
+                      console.log(x._id);
                       return (
                         <>
                           <div
@@ -775,7 +703,7 @@ const RecipesManager = () => {
                               className="dropdown-content is-primary"
                               style={{ width: 200 }}
                               name="ingredientId"
-                              value={x.ingredientId}
+                              value={x._id}
                               required
                               onChange={(e) =>
                                 handleInputChangeIngredients(e, i)
@@ -783,10 +711,7 @@ const RecipesManager = () => {
                             >
                               <option>Select Ingredients</option>
                               {ingredientData?.data.map((ingredient, index) => (
-                                <option
-                                  value={ingredient.ingredientId}
-                                  key={index}
-                                >
+                                <option value={ingredient._id} key={index}>
                                   {ingredient.ingredientName}
                                 </option>
                               ))}
@@ -1040,7 +965,7 @@ const RecipesManager = () => {
                         >
                           <option value="">Select Meal</option>
                           {mealData?.data.map((meal) => (
-                            <option value={meal.mealId} key={meal.mealId}>
+                            <option value={meal._id} key={meal._id}>
                               {meal.mealName}
                             </option>
                           ))}
@@ -1057,7 +982,7 @@ const RecipesManager = () => {
                         >
                           <option value="">Select Age</option>
                           {ageData?.data.map((age) => (
-                            <option value={age.ageId} key={age.ageId}>
+                            <option value={age._id} key={age._id}>
                               {age.ageName}
                             </option>
                           ))}
@@ -1157,11 +1082,9 @@ const RecipesManager = () => {
                             <option>Select Ingredients</option>
                             {ingredientData?.data.map((ingredient, index) => (
                               <option
-                                value={ingredient.ingredientId}
+                                value={ingredient._id}
                                 key={index}
-                                selected={
-                                  x.ingredientId === ingredient.ingredientId
-                                }
+                                selected={x.ingredientId === ingredient._id}
                               >
                                 {ingredient.ingredientName}
                               </option>
@@ -1246,19 +1169,16 @@ const RecipesManager = () => {
               <th>Tên món</th>
               <th>Bữa ăn</th>
               <th>Hình ảnh</th>
-              <th>Thích hợp</th>
-              <th>Tổng lượt thích</th>
-              <th>Tổng rate</th>
-              <th>Trung bình rate</th>
+              <th>Độ tuổi</th>
               <th>Vip</th>
               <th>Chỉnh sửa</th>
             </tr>
           </thead>
           <tbody>
             {recipes.data.map((recipe) => (
-              <tr key={recipe.recipeId}>
+              <tr key={recipe._id}>
                 <th>{recipe.recipeName}</th>
-                <th>{recipe.mealName}</th>
+                <th>{recipe?.meal?.mealName}</th>
                 <th
                   style={{
                     maxWidth: "100px",
@@ -1267,17 +1187,14 @@ const RecipesManager = () => {
                 >
                   {recipe.recipeImage}
                 </th>
-                <th>{recipe.ageName}</th>
-                <th>{recipe.totalFavorite}</th>
-                <th>{recipe.totalRate}</th>
-                <th>{recipe.aveRate}</th>
+                <th>{recipe?.age?.ageName}</th>
                 <th>{recipe.forPremium ? "True" : "False"}</th>
                 <th>
-                  <button onClick={() => handleRemove(recipe.recipeId)}>
+                  <button onClick={() => handleRemove(recipe._id)}>
                     <FontAwesomeIcon icon={faTrashCan} />
                   </button>
                   &nbsp; &nbsp;
-                  <button onClick={() => handleEditOpen(recipe.recipeId)}>
+                  <button onClick={() => handleEditOpen(recipe._id)}>
                     <FontAwesomeIcon icon={faPaintBrush} />
                   </button>
                 </th>
