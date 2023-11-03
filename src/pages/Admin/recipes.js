@@ -153,27 +153,34 @@ const RecipesManager = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log("data tao: ", responseData);
-        await Swal.fire({
-          icon: "success",
-          title: "Tạo thành công",
-        });
-        queryClient.invalidateQueries("allRecipes");
-        setName("");
-        setDescription("");
-        setPrepare(1);
-        setStandTime(0);
-        setCookTime(1);
-        setServing(1);
-        setPremium(true);
-        setMeal("");
-        setAge("");
-        setImage("");
-        setDirection([
-          { directionNum: 1, directionDesc: "", directionImage: "" },
-        ]);
-        setIngredient([{ ingredientId: "", quantity: 1 }]);
+        if (responseData.status === "Failed") {
+          await Swal.fire({
+            icon: "error",
+            title: "Tạo thất bại",
+          });
+        } else {
+          await Swal.fire({
+            icon: "success",
+            title: "Tạo thành công",
+          });
+          queryClient.invalidateQueries("allRecipes");
+          setName("");
+          setDescription("");
+          setPrepare(1);
+          setStandTime(0);
+          setCookTime(1);
+          setServing(1);
+          setPremium(true);
+          setMeal("");
+          setAge("");
+          setImage("");
+          setDirection([
+            { directionNum: 1, directionDesc: "", directionImage: "" },
+          ]);
+          setIngredient([{ ingredientId: "", quantity: 1 }]);
 
-        handleClose();
+          handleClose();
+        }
       } else {
         console.log("Tạo thất bại!!!");
       }
@@ -312,7 +319,6 @@ const RecipesManager = () => {
           Authorization: `${admin.token}`,
         },
         body: JSON.stringify({
-          recipeId: recipeId,
           recipeName: nameEdit,
           recipeDesc: descriptionEdit,
           prepareTime: prepareEdit,
@@ -330,13 +336,20 @@ const RecipesManager = () => {
 
       if (response.ok) {
         const responseData = await response.json();
-
-        await Swal.fire({
-          icon: "success",
-          title: "Sửa thành công",
-        });
-        queryClient.invalidateQueries("allRecipes");
-        handleEditClose();
+        if (responseData.status === "Failed") {
+          await Swal.fire({
+            icon: "error",
+            title: "Sửa thất bại, vui lòng nhập đủ thông tin!",
+          });
+          handleEditOpen(id);
+        } else {
+          await Swal.fire({
+            icon: "success",
+            title: "Sửa thành công",
+          });
+          queryClient.invalidateQueries("allRecipes");
+          handleEditClose();
+        }
       } else {
         console.log("Tạo thất bại!!!");
       }
@@ -580,7 +593,7 @@ const RecipesManager = () => {
                             onChange={(e) =>
                               setPremium(JSON.parse(e.target.value))
                             }
-                            value={premium.toString()}
+                            value={premium?.toString()}
                           >
                             <option value={true}>Có</option>
                             <option value={false}>Không</option>

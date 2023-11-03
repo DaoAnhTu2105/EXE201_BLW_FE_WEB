@@ -17,7 +17,7 @@ import vip from "../../image/premium-logo.png";
 import { Link } from "react-router-dom";
 
 const Recipe = () => {
-  const recipeApi = `https://blw-api.azurewebsites.net/api/Recipe/LastUpdateRecipe`;
+  const recipeApi = `http://localhost:5000/recipes/lastest-recipe`;
   const recommendRecipeApi = `https://blw-api.azurewebsites.net/api/Recipe/MostFavoriteRecipe`;
   const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
   const user = JSON.parse(localStorage.getItem("user"));
@@ -122,7 +122,7 @@ const Recipe = () => {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <h4 className="title is-4" style={{ textAlign: "center" }}>
           Thực đơn được ưa chuộng nhiều nhất
         </h4>
@@ -201,38 +201,6 @@ const Recipe = () => {
                                 {recommendRecipe.recipeName}
                               </Link>
                             </span>
-
-                            {/* <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              {recommendRecipe.isFavorite && user ? (
-                                <FontAwesomeIcon
-                                  icon={faHeart}
-                                  className="has-text-primary"
-                                />
-                              ) : (
-                                <button
-                                  className="button is-primary"
-                                  style={{
-                                    borderRadius: "50%",
-                                    width: "10px",
-                                    height: "30px",
-                                  }}
-                                  onClick={() =>
-                                    handleAddFavorite(recommendRecipe.recipeId)
-                                  }
-                                >
-                                  <FontAwesomeIcon icon={faHeart} />
-                                </button>
-                              )}
-                              &nbsp;
-                              <h6 className="title is-6 mb-0">
-                                {recommendRecipe.totalFavorite}
-                              </h6>
-                            </div> */}
                           </p>
                           <Link
                             to={`/recipe-detail/${recommendRecipe.recipeId}`}
@@ -265,7 +233,7 @@ const Recipe = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
       <div className="mt-5 mb-5">
         <h4 className="title is-4" style={{ textAlign: "center" }}>
           Thực đơn mới được cập nhật
@@ -291,12 +259,12 @@ const Recipe = () => {
             ) : (
               <div className="grid-container-food">
                 {recipes?.data?.map((recipe) => (
-                  <div className="grid-item-food" key={recipe.recipeId}>
+                  <div className="grid-item-food" key={recipe._id}>
                     <div
                       className="card"
                       style={{ width: "300px", height: "380px" }}
                     >
-                      <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                      <Link to={`/recipe-detail/${recipe._id}`}>
                         <div
                           className="card-image"
                           style={{ position: "relative" }}
@@ -332,7 +300,7 @@ const Recipe = () => {
                                 justifyContent: "space-between",
                               }}
                             >
-                              <Link to={`/recipe-detail/${recipe.recipeId}`}>
+                              <Link to={`/recipe-detail/${recipe._id}`}>
                                 <span
                                   style={{
                                     width: "160px",
@@ -366,25 +334,7 @@ const Recipe = () => {
                                 </button>
                               )} */}
                             </p>
-                            <Link to={`/recipe-detail/${recipe.recipeId}`}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <Rating
-                                  name="half-rating-read"
-                                  defaultValue={recipe.aveRate}
-                                  precision={0.5}
-                                  readOnly
-                                  size="small"
-                                />
-                                &nbsp; &nbsp;
-                                <span className="title is-6">
-                                  {recipe.aveRate}/5
-                                </span>
-                              </div>
+                            <Link to={`/recipe-detail/${recipe._id}`}>
                               <p
                                 className="title is-6 mb-4"
                                 style={{ marginTop: 10 }}
@@ -392,7 +342,7 @@ const Recipe = () => {
                                 <strong className="subtitle is-6 has-text-primary">
                                   Loại:
                                 </strong>
-                                &nbsp; {recipe.mealName}
+                                &nbsp; {recipe.meal.mealName}
                               </p>
                               <p
                                 className="title is-6"
@@ -401,7 +351,7 @@ const Recipe = () => {
                                 <strong className="subtitle is-6 has-text-primary">
                                   Độ tuổi:
                                 </strong>
-                                &nbsp; {recipe.ageName}
+                                &nbsp; {recipe.age.ageName}
                               </p>
                             </Link>
                           </div>
