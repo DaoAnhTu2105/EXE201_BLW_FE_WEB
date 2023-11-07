@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const RecipeDetail = () => {
   const { id } = useParams();
-  const detailUrl = `https://blw-api.azurewebsites.net/api/Recipe/GetRecipe?id=${id}`;
+  const detailUrl = `http://localhost:5000/recipes/recipe-detail/${id}`;
   const upCommentUrl = `https://blw-api.azurewebsites.net/api/Rating/AddRating`;
   const deleteFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/DeleteFavorite`;
   const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
@@ -27,10 +27,10 @@ const RecipeDetail = () => {
     "detail-recipe",
     () =>
       fetch(detailUrl, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user?.token}`,
-        },
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   Authorization: `Bearer ${user?.token}`,
+        // },
       }).then((response) => {
         if (!response.ok) {
           navigate("/");
@@ -38,6 +38,9 @@ const RecipeDetail = () => {
         return response.json();
       })
   );
+
+  console.log(detailRecipe);
+
   const handleComment = () => {
     if (userRate === 0) {
       Swal.fire({
@@ -155,25 +158,6 @@ const RecipeDetail = () => {
             Ngày cập nhật:{" "}
             {new Date(detailRecipe?.data?.updateTime).toLocaleDateString()}
           </p> */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: 30,
-              marginTop: 30,
-            }}
-          >
-            <Rating
-              name="half-rating-read"
-              defaultValue={detailRecipe?.data?.aveRate}
-              precision={0.5}
-              readOnly
-              size="large"
-            />
-            <span className="subtitle is-4 pl-5">
-              {detailRecipe?.data?.aveRate}/5 ratings
-            </span>
-          </div>
           <div className="mb-5">
             <div className="mt-5">
               <h4 className="title is-5 has-text-primary">
@@ -185,7 +169,7 @@ const RecipeDetail = () => {
               <h4 className="title is-5 has-text-primary">
                 Thích hợp: &nbsp;
                 <span className="subtitle is-5">
-                  {detailRecipe?.data?.ageName}
+                  {detailRecipe?.data?.age?.ageName}
                 </span>
               </h4>
             </div>
@@ -229,12 +213,9 @@ const RecipeDetail = () => {
             </h4>
             <ul style={{ listStyleType: "disc", paddingLeft: "20px" }}>
               {detailRecipe?.data?.ingredientOfRecipeVMs.map((ingredient) => (
-                <li
-                  className="list-item-ingredients"
-                  key={ingredient.ingredientId}
-                >
-                  {ingredient.quantity} x {ingredient.measure}{" "}
-                  {ingredient.ingredientName}
+                <li className="list-item-ingredients" key={ingredient._id}>
+                  {ingredient.quantity} x {ingredient.ingredientId.measure}{" "}
+                  {ingredient.ingredientId.ingredientName}
                 </li>
               ))}
             </ul>
