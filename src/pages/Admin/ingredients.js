@@ -38,13 +38,14 @@ const FoodsManager = () => {
         });
     };
     const addNewIngredient = async () => {
+        const ingredientAdd_API_URL = `http://localhost:5000/ingredients/create-ingredient`
         try {
             // Make an API POST request to create a new ingredient
-            const response = await fetch('https://blw-api.azurewebsites.net/api/Ingredients/AddIngredient', {
+            const response = await fetch(ingredientAdd_API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`
+                    Authorization: `${accessToken}`
                 },
                 body: JSON.stringify(formData),
             });
@@ -79,7 +80,7 @@ const FoodsManager = () => {
     };
     //Update modal
     const [editFormData, setEditFormData] = useState({
-        ingredientId: '',
+        _id: '',
         ingredientName: '',
         measure: '',
         protein: 0,
@@ -102,7 +103,7 @@ const FoodsManager = () => {
     // Function to set the edit data when the "Edit" button is clicked
     const handleEditClick = (ingredient) => {
         setEditFormData({
-            ingredientId: ingredient.ingredientId,
+            _id: ingredient._id,
             ingredientName: ingredient.ingredientName,
             measure: ingredient.measure,
             protein: ingredient.protein,
@@ -113,15 +114,15 @@ const FoodsManager = () => {
         handleEditOpen();
     };
 
-    const handleEditFormSubmit = async () => {
+    const handleEditFormSubmit = async (id) => {
 
         try {
             // Make an API POST request to create a new ingredient
-            const response = await fetch('https://blw-api.azurewebsites.net/api/Ingredients/UpdateIngredient', {
+            const response = await fetch(`http://localhost:5000/ingredients/update/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`
+                    Authorization: `${accessToken}`
                 },
                 body: JSON.stringify(editFormData),
             });
@@ -166,17 +167,15 @@ const FoodsManager = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const deleteAPI_URL = `https://blw-api.azurewebsites.net/api/Ingredients/DeleteIngredient?id=${id}`
+                const deleteAPI_URL = `http://localhost:5000/ingredients/delete-ingredient/${id}`
                 try {
                     // Make an API POST request to create a new ingredient
                     const response = await fetch(deleteAPI_URL, {
                         method: 'DELETE',
                         headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${accessToken}`
+                            Authorization: `${accessToken}`
                         }
                     });
-
                     if (response.ok) {
                         Swal.fire(
                             'Deleted!',
@@ -185,11 +184,13 @@ const FoodsManager = () => {
                         )
                         queryClient.invalidateQueries('ingredientsData');
                     } else {
-                        console.error('Error creating ingredient');
+                        const responseData = await response.json();
+
+                        console.log("response delete",responseData)
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Something went wrong! Delete failed',
+                            text: responseData.message,
                         })
                     }
                 } catch (error) {
@@ -328,7 +329,7 @@ const FoodsManager = () => {
                                         <tbody>
                                             {ingredients && ingredients.data.map(ingredient => (
                                                 <tr key={ingredient.id}>
-                                                    <td style={{ fontWeight: "600" }}>{ingredient.ingredientId}</td>
+                                                    <td style={{ fontWeight: "600" }}>{ingredient._id}</td>
                                                     <td>{ingredient.ingredientName}</td>
                                                     <td>{ingredient.measure}</td>
                                                     <td>{ingredient.protein}</td>
@@ -340,7 +341,7 @@ const FoodsManager = () => {
                                                             <i className="fas fa-pen-to-square"></i>
                                                         </button>
                                                         &nbsp;
-                                                        <button className="button is-danger" style={{ width: 24, height: 32 }} onClick={() => handleDeleteClick(ingredient.ingredientId)}>
+                                                        <button className="button is-danger" style={{ width: 24, height: 32 }} onClick={() => handleDeleteClick(ingredient._id)}>
                                                             <i className="fas fa-trash"></i>
                                                         </button>
                                                     </td>
@@ -423,7 +424,9 @@ const FoodsManager = () => {
 
                                             <div className="field is-grouped " style={{ paddingTop: "20px", display: "flex", justifyContent: "flex-end" }}>
                                                 <div className="control">
-                                                    <button className="button is-link" onClick={handleEditFormSubmit}>Submit</button>
+                                                    <button className="button is-link" onClick={() => {
+                                                        handleEditFormSubmit(editFormData._id)
+                                                    }}>Submit</button>
                                                 </div>
                                                 <div className="control">
                                                     <button className="button is-link is-light" onClick={handleEditClose}>Cancel</button>

@@ -159,8 +159,8 @@ const PremiumPack = () => {
                                 setSelectedPack('175c31954b1c496b9ffc')
                             }}>
                                 <div className="name">Gói tháng</div>
-                                <div className="price-for-month">49.000đ</div>
-                                <div className="trial">Sau tháng đầu tiên 120.000đ</div>
+                                <div className="price-for-month">120.000đ</div>
+                                <div className="trial">7 ngày dùng thử</div>
                                 <hr />
                             </div>
                         ) : (
@@ -170,7 +170,7 @@ const PremiumPack = () => {
                                 setSelectedPack('175c31954b1c496b9ffc')
                             }}>
                                 <div className="name">Gói tháng</div>
-                                <div className="price-for-month">49.000đ</div>
+                                <div className="price-for-month">120.000đ</div>
                                 <div className="trial">Sau tháng đầu tiên 120.000đ</div>
                                 <hr />
                             </div>
@@ -183,7 +183,7 @@ const PremiumPack = () => {
                         }}>
                             <div className="name">Gói nửa năm</div>
                             <div className="price-for-6-month">499.000đ</div>
-                            <div className="trial">7 ngày dùng thử miễn phí</div>
+                            <div className="trial">Giá ưu đãi</div>
                             <hr />
                         </div>
 
