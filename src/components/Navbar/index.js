@@ -150,6 +150,13 @@ const Navbar = () => {
                         open={Boolean(anchorElUser)}
                         onClose={handleCloseUserMenu}
                       >
+                        <Link to="/profile" style={{ color: "black" }}>
+                          <MenuItem>
+                            <Typography textAlign="center">
+                              Tài khoản
+                            </Typography>
+                          </MenuItem>
+                        </Link>
                         <MenuItem onClick={handleLogout}>
                           <Typography textAlign="center">Đăng xuất</Typography>
                         </MenuItem>
