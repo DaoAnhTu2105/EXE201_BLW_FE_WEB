@@ -170,7 +170,7 @@ const Profile = () => {
               border: "2px solid hsl(171, 100%, 41%)",
               borderRadius: "10px",
               width: "267px",
-              height: "300px",
+              height: "200px",
             }}
           >
             <h4 className="title is-4">Thông tin tài khoản</h4>
@@ -196,7 +196,7 @@ const Profile = () => {
                   Tài khoản
                 </span>
               </li>
-              <hr className="is-divider mt-3 mb-3" />
+              {/* <hr className="is-divider mt-3 mb-3" />
               <li
                 style={{
                   display: "flex",
@@ -217,8 +217,8 @@ const Profile = () => {
                 >
                   Yêu thích
                 </span>
-              </li>
-              <hr className="is-divider mt-3 mb-3" />
+              </li> */}
+              {/* <hr className="is-divider mt-3 mb-3" />
               <li
                 style={{
                   display: "flex",
@@ -239,7 +239,7 @@ const Profile = () => {
                 >
                   Gói cao cấp
                 </span>
-              </li>
+              </li> */}
               <hr className="is-divider mt-3 mb-3" />
               <a
                 href="https://www.facebook.com/profile.php?id=100095496554189&mibextid=LQQJ4d"
