@@ -11,6 +11,7 @@ import loadingGif from "../../image/Baby-Crawl-Cycle-unscreen.gif";
 import Swal from "sweetalert2";
 import { useQueryClient } from "react-query";
 import vip from "../../image/premium-logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ results, addFavorite }) => {
   const recipeApi = `http://localhost:5000/recipes/lastest-recipe`;
@@ -18,6 +19,7 @@ const Home = ({ results, addFavorite }) => {
   const postFavoriteUrl = `https://blw-api.azurewebsites.net/api/Favorite/AddRecipeFavorite`;
   const user = JSON.parse(localStorage.getItem("user"));
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { data: recipes, isLoading: loading } = useQuery("allRecipes", () =>
     fetch(recipeApi, {
       headers: {
@@ -26,6 +28,28 @@ const Home = ({ results, addFavorite }) => {
       },
     }).then((response) => response.json())
   );
+  const handleCheckPremium = async (id, premium) => {
+    if (user?.data?.isPremium && premium) {
+      navigate(`/recipe-detail/${id}`);
+    } else if (!premium) {
+      navigate(`/recipe-detail/${id}`);
+    } else {
+      if (!user) {
+        await Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please login!",
+        });
+        return navigate(`/login`);
+      }
+      await Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please buy premium pack!",
+      });
+      navigate(`/pack`);
+    }
+  };
   // const { data: recommendRecipes, isLoading: recommendLoading } = useQuery(
   //   "recommendRecipes",
   //   () =>
@@ -64,7 +88,13 @@ const Home = ({ results, addFavorite }) => {
               ) : (
                 <div className="grid-container">
                   {results?.data?.map((result) => (
-                    <div className="grid-item" key={result._id}>
+                    <div
+                      className="grid-item"
+                      key={result._id}
+                      onClick={() =>
+                        handleCheckPremium(result._id, result.forPremium)
+                      }
+                    >
                       <div
                         className="card"
                         style={{ width: "290px", height: "380px" }}
@@ -100,18 +130,16 @@ const Home = ({ results, addFavorite }) => {
                                   justifyContent: "space-between",
                                 }}
                               >
-                                <Link to={`/recipe-detail/${result._id}`}>
-                                  <span
-                                    style={{
-                                      width: "190px",
-                                      height: "24px",
-                                      overflow: "hidden",
-                                      color: "black",
-                                    }}
-                                  >
-                                    {result.recipeName}
-                                  </span>
-                                </Link>
+                                <span
+                                  style={{
+                                    width: "190px",
+                                    height: "24px",
+                                    overflow: "hidden",
+                                    color: "black",
+                                  }}
+                                >
+                                  {result.recipeName}
+                                </span>
                               </p>
                               <div
                                 style={{
@@ -397,35 +425,36 @@ const Home = ({ results, addFavorite }) => {
                 ) : (
                   <div className="grid-container">
                     {recipes?.data?.slice(0, 3).map((recipe) => (
-                      <div className="grid-item" key={recipe._id}>
+                      <div
+                        className="grid-item"
+                        key={recipe._id}
+                        onClick={() =>
+                          handleCheckPremium(recipe._id, recipe.forPremium)
+                        }
+                      >
                         <div
                           className="card"
                           style={{ width: "290px", height: "380px" }}
                         >
-                          <Link to={`/recipe-detail/${recipe._id}`}>
-                            <div
-                              className="card-image"
-                              style={{ position: "relative" }}
-                            >
-                              <figure className="image is-3by2">
-                                <img
-                                  src={recipe.recipeImage}
-                                  alt="Placeholder"
-                                />
-                              </figure>
-                              {recipe.forPremium && (
-                                <img
-                                  src={vip}
-                                  alt="vip"
-                                  style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    right: 0,
-                                  }}
-                                />
-                              )}
-                            </div>
-                          </Link>
+                          <div
+                            className="card-image"
+                            style={{ position: "relative" }}
+                          >
+                            <figure className="image is-3by2">
+                              <img src={recipe.recipeImage} alt="Placeholder" />
+                            </figure>
+                            {recipe.forPremium && (
+                              <img
+                                src={vip}
+                                alt="vip"
+                                style={{
+                                  position: "absolute",
+                                  top: 0,
+                                  right: 0,
+                                }}
+                              />
+                            )}
+                          </div>
 
                           <div className="card-content">
                             <div className="media">
@@ -439,18 +468,16 @@ const Home = ({ results, addFavorite }) => {
                                     justifyContent: "space-between",
                                   }}
                                 >
-                                  <Link to={`/recipe-detail/${recipe._id}`}>
-                                    <span
-                                      style={{
-                                        width: "190px",
-                                        height: "24px",
-                                        overflow: "hidden",
-                                        color: "black",
-                                      }}
-                                    >
-                                      {recipe.recipeName}
-                                    </span>
-                                  </Link>
+                                  <span
+                                    style={{
+                                      width: "190px",
+                                      height: "24px",
+                                      overflow: "hidden",
+                                      color: "black",
+                                    }}
+                                  >
+                                    {recipe.recipeName}
+                                  </span>
 
                                   {/* {recipe.isFavorite && user ? (
                                     <FontAwesomeIcon
@@ -473,26 +500,25 @@ const Home = ({ results, addFavorite }) => {
                                     </button>
                                   )} */}
                                 </p>
-                                <Link to={`/recipe-detail/${recipe._id}`}>
-                                  <p
-                                    className="title is-6 mb-4"
-                                    style={{ marginTop: 10 }}
-                                  >
-                                    <strong className="subtitle is-6 has-text-primary">
-                                      Loại:
-                                    </strong>
-                                    &nbsp; {recipe.meal.mealName}
-                                  </p>
-                                  <p
-                                    className="title is-6"
-                                    style={{ marginTop: 10 }}
-                                  >
-                                    <strong className="subtitle is-6 has-text-primary">
-                                      Độ tuổi:
-                                    </strong>
-                                    &nbsp; {recipe.age.ageName}
-                                  </p>
-                                </Link>
+
+                                <p
+                                  className="title is-6 mb-4"
+                                  style={{ marginTop: 10 }}
+                                >
+                                  <strong className="subtitle is-6 has-text-primary">
+                                    Loại:
+                                  </strong>
+                                  &nbsp; {recipe.meal.mealName}
+                                </p>
+                                <p
+                                  className="title is-6"
+                                  style={{ marginTop: 10 }}
+                                >
+                                  <strong className="subtitle is-6 has-text-primary">
+                                    Độ tuổi:
+                                  </strong>
+                                  &nbsp; {recipe.age.ageName}
+                                </p>
                               </div>
                             </div>
                           </div>

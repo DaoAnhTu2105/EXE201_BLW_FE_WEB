@@ -26,16 +26,19 @@ const RecipeDetail = () => {
   const { data: detailRecipe, isLoading: detailLoading } = useQuery(
     "detail-recipe",
     () =>
-      fetch(detailUrl, {
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   Authorization: `Bearer ${user?.token}`,
-        // },
-      }).then((response) => {
-        if (!response.ok) {
+      fetch(detailUrl).then(async (response) => {
+        const detail = await response.json();
+        if (detail.status === "Failed") {
+          await Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "This recipe has been deleted!",
+            showConfirmButton: false,
+            timer: 2500,
+          });
           navigate("/");
         }
-        return response.json();
+        return detail;
       })
   );
 
